@@ -25,6 +25,15 @@ class Login extends Component {
     formData.set("username", this.state.email);
     formData.set("password", this.state.password);
 
+    const registration2 = await axios({
+      method: "POST",
+      url: `${base}/auth/users/`,
+      data: formData,
+      config: {
+        headers: { "Content-Type": "multipart/form-data" },
+      },
+    });
+
     const authorization = await axios({
       method: "POST",
       url: `${base}/auth/token/login/`,
@@ -33,14 +42,6 @@ class Login extends Component {
         headers: { "Content-Type": "multipart/form-data" },
       },
     });
-    // const registration2 = await axios({
-    //     method: "POST",
-    //     url: `${base}/auth/users/`,
-    //     data: formData,
-    //     config: {
-    //       headers: { "Content-Type": "multipart/form-data" }
-    //     }
-    //   });
 
     console.log({ "authorisation.data": authorization.data });
 
