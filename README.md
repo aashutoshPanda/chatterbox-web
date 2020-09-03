@@ -8,19 +8,9 @@ This repository hosts the codebase for the [Python Chat Tutorial with Django and
 
 ## To get started, follow these steps:
 
-**1. Clone the Repository**
-
-`git clone git@github.com:GetStream/python-chat-example.git`
-
-**2. Setup Dependencies**
-
-- `brew install python3`
-- `brew install node && brew install yarn`
-- `python3 -m venv chatexample`
-- `source chatexample/bin/activate`
-- `cd python-chat-example/chat-frontend && yarn && yarn start`
-
-**3. Replace Stream Chat API Credentials**
-
-- `mychat/settings.py` on line `47` and `48`
-- `chat-frontend/src/Chat.js` on line `17`
+- `git clone https://github.com/aashutoshPanda/chat_app.git`
+- `python3 -m venv chatenv`
+- `source chatenv/bin/activate`
+- `pip install -r requirements.txt`
+- `cd chat-frontend`
+- `npm i`
