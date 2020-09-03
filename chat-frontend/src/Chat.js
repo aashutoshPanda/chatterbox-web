@@ -4,7 +4,7 @@ import {
   Channel,
   ChannelHeader,
   Thread,
-  Window
+  Window,
 } from "stream-chat-react";
 import { MessageList, MessageInput } from "stream-chat-react";
 import { StreamChat } from "stream-chat";
@@ -14,13 +14,13 @@ import "stream-chat-react/dist/css/index.css";
 class App extends Component {
   constructor(props) {
     super(props);
-    this.client = new StreamChat("<YOUR_STREAM_APP_ID>");
+    this.client = new StreamChat("qpajs3njbcjb");
 
     this.client.setUser(
       {
         id: "cool-sky-9",
         name: "Cool Sky",
-        image: "https://getstream.io/random_svg/?id=cool-sky-9&name=Cool+sky"
+        image: "https://getstream.io/random_svg/?id=cool-sky-9&name=Cool+sky",
       },
       localStorage.getItem("token")
     );
@@ -28,7 +28,7 @@ class App extends Component {
     this.channel = this.client.channel("messaging", "godevs", {
       image:
         "https://cdn.chrisshort.net/testing-certificate-chains-in-go/GOPHER_MIC_DROP.png",
-      name: "Talk about Go"
+      name: "Talk about Go",
     });
   }
 

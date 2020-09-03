@@ -44,8 +44,8 @@ INSTALLED_APPS = [
     'djoser',
 ]
 
-STREAM_API_KEY = YOUR_STREAM_API_KEY_HERE
-STREAM_API_SECRET = YOUR_STREAM_API_SECRET_HERE
+STREAM_API_KEY = 'qpajs3njbcjb'
+STREAM_API_SECRET = 'zwmg9haxekjw7qd78azt3u7r5g3cqcm3tb5zzrtckkacfhcnmgwpksy484ub2fd3'
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
