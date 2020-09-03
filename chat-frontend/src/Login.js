@@ -8,7 +8,7 @@ class Login extends Component {
     this.state = {
       loading: false,
       email: "",
-      password: ""
+      password: "",
     };
 
     this.initStream = this.initStream.bind(this);
@@ -16,7 +16,7 @@ class Login extends Component {
 
   async initStream() {
     await this.setState({
-      loading: true
+      loading: true,
     });
 
     const base = "http://localhost:8000";
@@ -25,36 +25,39 @@ class Login extends Component {
     formData.set("username", this.state.email);
     formData.set("password", this.state.password);
 
-    const registration = await axios({
-      method: "POST",
-      url: `${base}/auth/users/`,
-      data: formData,
-      config: {
-        headers: { "Content-Type": "multipart/form-data" }
-      }
-    });
-
     const authorization = await axios({
       method: "POST",
       url: `${base}/auth/token/login/`,
       data: formData,
       config: {
-        headers: { "Content-Type": "multipart/form-data" }
-      }
+        headers: { "Content-Type": "multipart/form-data" },
+      },
     });
+    // const registration2 = await axios({
+    //     method: "POST",
+    //     url: `${base}/auth/users/`,
+    //     data: formData,
+    //     config: {
+    //       headers: { "Content-Type": "multipart/form-data" }
+    //     }
+    //   });
+
+    console.log({ "authorisation.data": authorization.data });
 
     localStorage.setItem("token", authorization.data.stream_token);
+    localStorage.setItem("user_id", authorization.data.user_id);
+    localStorage.setItem("user_name", authorization.data.user_name);
 
     await this.setState({
-      loading: false
+      loading: false,
     });
 
     this.props.history.push("/");
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -67,13 +70,13 @@ class Login extends Component {
             type="text"
             placeholder="Email"
             name="email"
-            onChange={e => this.handleChange(e)}
+            onChange={(e) => this.handleChange(e)}
           />
           <input
             type="password"
             placeholder="Password"
             name="password"
-            onChange={e => this.handleChange(e)}
+            onChange={(e) => this.handleChange(e)}
           />
           <button onClick={this.initStream}>Submit</button>
         </div>
