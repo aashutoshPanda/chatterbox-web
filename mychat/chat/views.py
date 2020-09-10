@@ -1,6 +1,8 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
+# random comment
+
 
 @api_view(['POST'])
 def loginView(request):
