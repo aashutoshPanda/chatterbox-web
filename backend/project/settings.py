@@ -111,3 +111,5 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 USER_DETAILS_SERIALIZER = 'AuthUserSerializer'
+STREAM_API_KEY = '3bujzetkut78'
+STREAM_API_SECRET = '8geaekg944r4fvewbeewhvsmvec5mnrsev9axvncvp2dzg86zhxf3xkz89k3hhg9'

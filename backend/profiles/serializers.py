@@ -1,9 +1,12 @@
+import stream
 from django.contrib.auth.models import BaseUserManager
 from django.contrib.auth import get_user_model, password_validation, authenticate
 from rest_framework.authtoken.models import Token
 from rest_framework import serializers
-
+from django.conf import settings
 User = get_user_model()
+client = stream.connect(
+    settings.STREAM_API_KEY, settings.STREAM_API_SECRET, location='us-east')
 
 
 class UserLoginSerializer(serializers.Serializer):
@@ -22,8 +25,9 @@ class AuthUserSerializer(serializers.ModelSerializer):
             'id', 'is_active', 'is_staff')
 
     def get_auth_token(self, obj):
-        token, created = Token.objects.get_or_create(user=obj)
-        return token.key
+        # token, created = Token.objects.get_or_create(user=obj)
+        user_token = client.create_user_token(obj.username)
+        return user_token
 
 
 class EmptySerializer(serializers.Serializer):
