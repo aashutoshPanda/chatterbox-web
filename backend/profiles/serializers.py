@@ -1,6 +1,5 @@
 from django.contrib.auth.models import BaseUserManager
-from django.contrib.auth import get_user_model, password_validation
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, password_validation, authenticate
 from rest_framework.authtoken.models import Token
 from rest_framework import serializers
 
@@ -23,7 +22,7 @@ class AuthUserSerializer(serializers.ModelSerializer):
             'id', 'is_active', 'is_staff')
 
     def get_auth_token(self, obj):
-        token = Token.objects.create(user=obj)
+        token, created = Token.objects.get_or_create(user=obj)
         return token.key
 
 
