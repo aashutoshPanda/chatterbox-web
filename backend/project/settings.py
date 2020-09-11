@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'profiles.apps.ProfilesConfig',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -109,3 +110,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+USER_DETAILS_SERIALIZER = 'AuthUserSerializer'
