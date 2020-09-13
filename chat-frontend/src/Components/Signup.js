@@ -19,13 +19,15 @@ class Signup extends Component {
   handleSubmit = event => {
     event.preventDefault()
     this.props.userPostFetch(this.state)
+    .then(this.props.changeState)
   }
 
   render() {
+    console.log(this.state)
     return (
       <form onSubmit={this.handleSubmit}>
         <h1>Sign Up For An Account</h1>
-
+          
         <label>Firstname</label>
         <input
           name='firstname'

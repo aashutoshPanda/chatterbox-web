@@ -1,4 +1,4 @@
-import React from "react"
+import React, {Component} from 'react';
 import {
   BrowserRouter as Router, 
   Link,
@@ -6,6 +6,10 @@ import {
   Redirect,
   withRouter
 } from 'react-router-dom'
+import {connect} from 'react-redux';
+import Signup from './Components/Signup'
+import Login from './Components/login'
+import {getProfileFetch} from './Redux';
 
 const fakeAuth = {
   isAuthenticated: false,
@@ -22,7 +26,7 @@ const fakeAuth = {
 const Public = () => <h3>This is Home Page</h3>
 const Protected = () => <h3>This is your Dashboard</h3>
 
-class Login extends React.Component {
+class Loginin extends React.Component {
   state = {
     redirectToReferrer: false
   }
@@ -59,7 +63,7 @@ const AuthButton = withRouter(({ history }) => {
           fakeAuth.signout(() => history.push('/'))
         }}>Sign out</button>
       </p>
-    : <button onClick={Login.login}>Log in</button>
+    : <p>not logged in</p>
   )}
 )
 
@@ -76,21 +80,45 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   )
 }
 
-export default function App () {
-  return (
-    <Router>
-      <div>
-        <AuthButton />
+class rootHome extends Component {
+  componentDidMount = () => {
+    console.log(this.props)
+    this.props.getProfileFetch()
+  }
 
-        <ul>
-          <li><Link to="/">Home Page</Link></li>
-          <li><Link to="/protected">Protected Page</Link></li>
-        </ul>
-        
-        <Route exact path="/" component={Public} />
-        <Route path="/login" component={Login} />
-        <PrivateRoute path='/protected' component={Protected} />
-      </div>
-    </Router>
-  )
+  handleClick = event => {
+    event.preventDefault()
+    localStorage.removeItem("token")
+    this.props.logoutUser()
+  }
+
+  render(){
+    
+    return (
+      <Router>
+        <div>
+          <AuthButton />
+  
+          <ul>
+            <li><Link to="/">Home Page</Link></li>
+            <li><Link to="/protected">Protected Page</Link></li>
+          </ul>
+          
+          <Route exact path="/" component={Public} />
+          <Route path="/login" component={Login} />
+          <PrivateRoute path='/protected' component={Protected} />
+        </div>
+      </Router>
+    )
+  }
 }
+
+const mapStateToProps = state => ({
+  currentUser: state.currentUser
+})
+
+const mapDispatchToProps = dispatch => ({
+getProfileFetch: () => dispatch(getProfileFetch()),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(rootHome);

@@ -8,8 +8,8 @@ class App extends Component {
     render(){
     return(
       <Provider store={store}>
-        {/* <RootHome></RootHome> */}
-        <HomePage></HomePage>
+        <RootHome></RootHome>
+        {/* <HomePage></HomePage> */}
       </Provider>
     );
   }

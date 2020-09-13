@@ -1,5 +1,5 @@
 const initialState = {
-    currentUser: {}
+    currentUser: null
   }
   
   export default function reducer(state = initialState, action) {
