@@ -8,18 +8,14 @@ import {
 import {connect} from 'react-redux';
 import Signup from './Components/Signup'
 import Login from './Components/login'
-import {getProfileFetch,logoutUser} from './Redux';
+import Logout from './Components/logout'
+import {getProfileFetch} from './Redux';
 
 class rootHome extends Component {
   componentDidMount = () => {
-    this.props.getProfileFetch()
+    // this.props.getProfileFetch()
   }
 
-  handleClick = event => {
-    event.preventDefault()
-    localStorage.removeItem("token")
-    this.props.logoutUser()
-  }
 
   render(){
     return(
@@ -51,13 +47,9 @@ class rootHome extends Component {
                 <Home />
               </Route>
             </Switch>
-            <button onClick={this.handleClick}>Log Out</button>
-            {/* {this.props.currentUser
-            ? <button onClick={this.handleClick}>Log Out</button>
-            : null
-          } */}
           </div>
         </Router>
+        <Logout></Logout>
         </div>
     );
   }
@@ -68,12 +60,11 @@ function Home() {
 }
 
 const mapStateToProps = state => ({
-    currentUser: state.currentUser
+    currentUser: state.auth.currentUser
 })
 
 const mapDispatchToProps = dispatch => ({
   getProfileFetch: () => dispatch(getProfileFetch()),
-  logoutUser: () => dispatch(logoutUser())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(rootHome);

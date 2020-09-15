@@ -1,3 +1,3 @@
 export { userPostFetch } from './Signup/SignupActions'
 export { getProfileFetch } from './Revisit/revisit'
-export { logoutUser } from './Logout/logoutAction'
+export { userLogout } from './Logout/logoutAction'

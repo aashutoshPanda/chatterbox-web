@@ -4,10 +4,10 @@ import {userPostFetch} from '../Redux';
 
 class Signup extends Component {
   state = {
-    firstname: "",
-    lastname:"",
-    email: "",
-    password:""
+    username:"",
+    password:"",
+    first_name: "",
+    last_name:""
   }
 
   handleChange = event => {
@@ -25,10 +25,17 @@ class Signup extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <h1>Sign Up For An Account</h1>
+        <label>Username</label>
+        <input
+          name='username'
+          placeholder='Username'
+          value={this.state.firstname}
+          onChange={this.handleChange}
+          /><br/>
 
         <label>Firstname</label>
         <input
-          name='firstname'
+          name='first_name'
           placeholder='Firstname'
           value={this.state.firstname}
           onChange={this.handleChange}
@@ -36,19 +43,11 @@ class Signup extends Component {
 
         <label>Lastname</label>
         <input
-          name='lastname'
+          name='last_name'
           placeholder='Lastname'
           value={this.state.lastname}
           onChange={this.handleChange}
           /><br/>
-
-        <label>Email</label>
-          <input
-            name='email'
-            placeholder='email id'
-            value={this.state.email}
-            onChange={this.handleChange}
-            /><br/>
 
         <label>Password</label>
         <input
