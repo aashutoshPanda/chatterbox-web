@@ -22,10 +22,9 @@ class rootHome extends Component {
   }
 
   componentDidMount = () => {
-    this.props.getProfileFetch()
+    // this.props.getProfileFetch()
   }
 
-  
 
   render(){
 
@@ -67,10 +66,9 @@ class rootHome extends Component {
                 <Home />
               </Route>
             </Switch>
-            <Logout></Logout>
-            
           </div>
         </Router>
+        <Logout></Logout>
         </div>
     );
   }
@@ -87,7 +85,7 @@ function Dashboard() {
 
 
 const mapStateToProps = state => ({
-    currentUser: state.login.currentUser
+    currentUser: state.auth.currentUser
 })
 
 const mapDispatchToProps = dispatch => ({

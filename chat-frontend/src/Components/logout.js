@@ -2,31 +2,35 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {userLogout} from '../Redux';
 
+
 class Logout extends Component {
-  state = {
-    
+
+  handleSubmit = event => {
+    event.preventDefault()
+    this.props.userLogout()
   }
 
   handleClick = event => {
     event.preventDefault()
     localStorage.removeItem("token")
-    this.props.userLogout()
-    
+    this.props.logoutUser()
   }
 
   render() {
     return (
-        <div>{this.props.currentUser && <button onClick={this.handleClick}>Log Out</button>}</div>
+        <div>
+            {this.props.currentUser && <button onClick={this.handleClick}>Log Out</button>}
+        </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-    currentUser: state.login.currentUser
+    currentUser: state.auth.currentUser
 })
 
 const mapDispatchToProps = dispatch => ({
-    userLogout: () => dispatch(userLogout())
+    userLogout: userInfo => dispatch(userLogout(userInfo))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Logout);

@@ -1,10 +1,10 @@
 
-  export const userLogout = user => {
-    return dispatch => {
-      dispatch(logoutUser())
-    }
+export const userLogout = () => {
+  return dispatch => {
+    return dispatch(logoutUser())
   }
+}
 
-  const logoutUser = () => ({
+ const logoutUser = () => ({
     type: 'LOGOUT_USER'
   })
