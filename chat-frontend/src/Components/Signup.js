@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {userPostFetch} from '../Redux';
+import { withRouter } from 'react-router-dom';
 
 class Signup extends Component {
   state = {
@@ -16,15 +17,16 @@ class Signup extends Component {
     });
   }
 
-  handleSubmit = event => {
+  handleSubmit = async event => {
     event.preventDefault()
-    this.props.userPostFetch(this.state)
-    .then(this.props.changeState)
+    await this.props.userPostFetch(this.state)
+    // await console.log("after userPosrFetch",this.state.currentUser)
+    await this.props.history.push('/dashboard');
   }
 
   render() {
-    console.log(this.state)
-    return (
+    // console.log(this.state)
+    return (      
       <form onSubmit={this.handleSubmit}>
         <h1>Sign Up For An Account</h1>
         <label>Username</label>
@@ -66,10 +68,12 @@ class Signup extends Component {
   }
 }
 
-
+const mapStateToProps = state => ({
+  currentUser: state.auth.currentUser
+})
 
 const mapDispatchToProps = dispatch => ({
   userPostFetch: userInfo => dispatch(userPostFetch(userInfo))
 })
 
-export default connect(null, mapDispatchToProps)(Signup);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Signup));

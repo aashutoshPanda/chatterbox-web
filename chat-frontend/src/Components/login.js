@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {userLoginFetch} from '../Redux/Login/LoginActions';
+import { withRouter } from 'react-router-dom';
 
 class Login extends Component {
   state = {
@@ -14,9 +15,10 @@ class Login extends Component {
     });
   }
 
-  handleSubmit = event => {
+  handleSubmit =async event => {
     event.preventDefault()
-    this.props.userLoginFetch(this.state)
+    await this.props.userLoginFetch(this.state)
+    this.props.history.push('/dashboard');
   }
 
   render() {
@@ -47,8 +49,12 @@ class Login extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  currentUser: state.auth.currentUser
+})
+
 const mapDispatchToProps = dispatch => ({
   userLoginFetch: userInfo => dispatch(userLoginFetch(userInfo))
 })
 
-export default connect(null, mapDispatchToProps)(Login);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login));

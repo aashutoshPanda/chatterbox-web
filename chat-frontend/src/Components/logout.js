@@ -1,22 +1,19 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {userLogout} from '../Redux';
-
+import { withRouter } from 'react-router-dom';
 
 class Logout extends Component {
 
-  handleSubmit = event => {
-    event.preventDefault()
-    this.props.userLogout()
-  }
-
-  handleClick = event => {
-    event.preventDefault()
-    localStorage.removeItem("token")
-    this.props.logoutUser()
+  handleClick = async event => {
+    await event.preventDefault()
+    await localStorage.removeItem("token")
+    await this.props.userLogout()
+    await this.props.history.push('/');
   }
 
   render() {
+    // console.log(this.props.currentUser)
     return (
         <div>
             {this.props.currentUser && <button onClick={this.handleClick}>Log Out</button>}
@@ -33,4 +30,4 @@ const mapDispatchToProps = dispatch => ({
     userLogout: userInfo => dispatch(userLogout(userInfo))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Logout);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Logout));

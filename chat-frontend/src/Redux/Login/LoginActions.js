@@ -6,13 +6,13 @@ export const userLoginFetch = user => {
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
-        body: JSON.stringify({user})
+        body: JSON.stringify(user)
       })
         .then(resp => resp.json())
         .then(data => {
-            console.log(data)
-            localStorage.setItem("token", data.token)
-            dispatch(loginUser(data.user_name))
+            console.log("login data",data)
+            localStorage.setItem("token", data.auth_token)
+            dispatch(loginUser(data))
         })
     }
   }
