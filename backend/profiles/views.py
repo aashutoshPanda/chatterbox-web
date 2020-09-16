@@ -5,9 +5,12 @@ from rest_framework.decorators import action
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
+from rest_framework.views import APIView
+
 
 from .utils import get_and_authenticate_user, create_user_account
 from . import serializers
+from . models import Profile
 User = get_user_model()
 
 
@@ -49,3 +52,12 @@ class AuthViewSet(viewsets.GenericViewSet):
         if self.action in self.serializer_classes.keys():
             return self.serializer_classes[self.action]
         return super().get_serializer_class()
+
+
+class UserList(APIView):
+    def get(self, request):
+        users = Profile.objects.all()
+        data = serializers.ProfileSerializer(users, many=True).data
+        print("data of user", data)
+
+        return Response(data)

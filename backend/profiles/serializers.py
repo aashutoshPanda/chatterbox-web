@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model, password_validation, authenticat
 from rest_framework.authtoken.models import Token
 from rest_framework import serializers
 from django.conf import settings
+from .models import Profile
 User = get_user_model()
 client = stream.connect(
     settings.STREAM_API_KEY, settings.STREAM_API_SECRET, location='us-east')
@@ -52,3 +53,14 @@ class UserRegisterSerializer(serializers.ModelSerializer):
     def validate_password(self, value):
         password_validation.validate_password(value)
         return value
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(source="user.username", read_only=True)
+    first_name = serializers.CharField(
+        source="user.first_name", read_only=True)
+    last_name = serializers.CharField(source="user.last_name", read_only=True)
+
+    class Meta:
+        model = Profile
+        fields = ['bio', 'username', 'first_name', 'last_name']
