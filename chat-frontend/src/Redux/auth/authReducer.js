@@ -1,5 +1,5 @@
 const initialState = {
-    currentUser: null
+    currentUser: false
   }
   
   export default function reducer(state = initialState, action) {
@@ -7,7 +7,7 @@ const initialState = {
         case 'LOGIN_USER':
           return {...state, currentUser: action.payload}
         case 'LOGOUT_USER':
-          return {...state, currentUser: null }
+          return {...state, currentUser: false }
         default:
           return state;
       }

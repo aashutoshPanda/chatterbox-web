@@ -3,7 +3,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  Redirect,
 } from "react-router-dom";
 import {connect} from 'react-redux';
 import Signup from './Components/Signup'
@@ -28,7 +29,17 @@ class rootHome extends Component {
 
   render(){
 
-    console.log(this.props)
+    const PrivateRoute = ({ component: Component, ...rest }) => (
+      <Route {...rest} render={(props) => (
+        this.props.currentUser !== false
+          ? <Component {...props} />
+          : <Redirect to={{
+              pathname: '/',
+              state: { from: props.location }
+            }} />
+      )} />
+    )
+    
     return(
         <div>
         <Router>
@@ -38,13 +49,13 @@ class rootHome extends Component {
                 <li>
                   <Link to="/">Home</Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link to="/dashboard">Dashboard</Link>
-                </li>
-                { <li>
+                </li> */}
+                {!this.props.currentUser && <li>
                   <Link to="/login"><button>Login</button></Link>
                 </li>}
-                {<li>
+                {!this.props.currentUser && <li>
                   <Link to="/signup"><button>SignUp</button></Link>
                 </li>}
                 
@@ -55,11 +66,9 @@ class rootHome extends Component {
               <Route path="/login">
                 <Login />
               </Route>
-              <Route path="/dashboard">
-                <Dashboard />
-              </Route>
+              <PrivateRoute path="/dashboard" component={Dashboard} />
               <Route path="/signup">
-                <Signup changeState={this.changeState} />
+                <Signup />
               </Route>
               
               <Route exact path="/">
@@ -67,8 +76,9 @@ class rootHome extends Component {
               </Route>
             </Switch>
           </div>
+          <Logout></Logout>
         </Router>
-        <Logout></Logout>
+        
         </div>
     );
   }

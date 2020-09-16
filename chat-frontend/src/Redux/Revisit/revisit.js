@@ -3,7 +3,7 @@ export const getProfileFetch = () => {
       const token = localStorage.token;
       if (token) {
         return fetch("http://localhost:3000/api/v1/profile", {
-          method: "GET",
+          method: "POST",
           headers: {
             'Content-Type': 'application/json',
             Accept: 'application/json',
@@ -12,7 +12,7 @@ export const getProfileFetch = () => {
         })
           .then(resp => resp.json())
           .then(data => {
-              dispatch(loginUser(data.user_name))
+              dispatch(loginUser(data))
           })
       }
     }
