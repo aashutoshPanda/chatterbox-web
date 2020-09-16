@@ -1,18 +1,12 @@
+const axios = require('axios')
+
 export const userPostFetch = (user) => {
   return (dispatch) => {
-    // console.log("req object", user);
-    return fetch("http://localhost:8000/profile/auth/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        console.log(data);
-        localStorage.setItem("token", data.auth_token);
-        dispatch(loginUser(data));
+    axios.post("http://localhost:8000/profile/auth/register",user)
+      .then((resp) => {
+        console.log(resp.data);
+        localStorage.setItem("token", resp.data.auth_token);
+        dispatch(loginUser(resp.data));
       });
   };
 };

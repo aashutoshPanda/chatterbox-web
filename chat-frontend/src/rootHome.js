@@ -11,6 +11,7 @@ import Signup from './Components/Signup'
 import Login from './Components/login'
 import Logout from './Components/logout'
 import {getProfileFetch} from './Redux';
+import Dashboard from './Components/Dashboard'
 
 class rootHome extends Component {
 
@@ -87,11 +88,6 @@ class rootHome extends Component {
 function Home() {
   return <h2>Home</h2>;
 }
-
-function Dashboard() {
-  return <h2>Dashboard</h2>;
-}
-
 
 
 const mapStateToProps = state => ({

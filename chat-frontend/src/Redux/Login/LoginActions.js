@@ -1,19 +1,16 @@
+const axios = require('axios')
+
 export const userLoginFetch = user => {
     return dispatch => {
-      return fetch("http://localhost:8000/profile/auth/login", {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify(user)
+      return axios.post("http://localhost:8000/profile/auth/login",user)
+      .then((resp) => {
+        console.log(resp.data);
+        localStorage.setItem("token", resp.data.auth_token);
+        dispatch(loginUser(resp.data));
       })
-        .then(resp => resp.json())
-        .then(data => {
-            console.log("login data",data)
-            localStorage.setItem("token", data.auth_token)
-            dispatch(loginUser(data))
-        })
+      .catch(err => {
+        console.log("ye wla err aa gya",err)
+      })
     }
   }
 
