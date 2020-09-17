@@ -44,15 +44,15 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'username', 'password', 'first_name', 'last_name')
 
-    # def validate_username(self, value):
-    #     user = User.objects.filter(username=value)
-    #     if user:
-    #         raise serializers.ValidationError("Usename is already taken")
-    #     return BaseUserManager.normalize_username(value)
+    def validate_username(self, value):
+        user = User.objects.filter(username=value)
+        if user:
+            raise serializers.ValidationError("Usename is already taken")
+        return BaseUserManager.normalize_username(value)
 
-    def validate_password(self, value):
-        password_validation.validate_password(value)
-        return value
+    # def validate_password(self, value):
+    #     password_validation.validate_password(value)
+    #     return value
 
 
 class ProfileSerializer(serializers.ModelSerializer):
@@ -63,4 +63,13 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Profile
+        fields = ['bio', 'username', 'first_name', 'last_name']
+
+
+class UserSerializer(serializers.ModelSerializer):
+
+    bio = serializers.CharField(source="profile.bio", read_only=True)
+
+    class Meta:
+        model = User
         fields = ['bio', 'username', 'first_name', 'last_name']

@@ -10,6 +10,7 @@ from rest_framework.views import APIView
 
 from .utils import get_and_authenticate_user, create_user_account
 from . import serializers
+from .serializers import ProfileSerializer, UserSerializer
 from . models import Profile
 User = get_user_model()
 
@@ -57,7 +58,19 @@ class AuthViewSet(viewsets.GenericViewSet):
 class UserList(APIView):
     def get(self, request):
         users = Profile.objects.all()
-        data = serializers.ProfileSerializer(users, many=True).data
-        print("data of user", data)
+        data = ProfileSerializer(users, many=True).data
 
         return Response(data)
+
+
+class UserFromToken(APIView):
+    def get(self, request):
+        print(request.user)
+        data = UserSerializer(request.user).data
+        return Response(data)
+
+
+# class My_profile(APIView):
+#     def get(request):
+#         profile = Profile.objects.get(user=request.user)
+#         return Response(profile)
