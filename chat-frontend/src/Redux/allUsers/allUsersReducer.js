@@ -1,11 +1,11 @@
 const initialState = {
-    currentUser: null
+    allUsers:[]
   }
   
   export default function reducer(state = initialState, action) {
       switch (action.type) {
-        case 'LOGOUT_USER':
-          return {...state, currentUser: null }
+        case 'GET_ALL_USERS':
+          return {...state, allUsers: action.payload}
         default:
           return state;
       }
