@@ -8,9 +8,9 @@ export const getSentReq = () => {
         }
       })
       .then((resp) => {
-        console.log("reqqq",resp.data["received"]);
+        console.log("reqqq",resp.data["sent"]);
         
-        dispatch(getSentRequest(resp.data["received"]));
+        dispatch(getSentRequest(resp.data["sent"]));
       })
       .catch(err => {
         console.log("ye wla err aa gya",err)
@@ -19,6 +19,6 @@ export const getSentReq = () => {
   }
 
   const getSentRequest = req => ({
-    type: 'RECEIVED_REQUESTS',
+    type: 'SENT_REQUESTS',
     payload: req
 })

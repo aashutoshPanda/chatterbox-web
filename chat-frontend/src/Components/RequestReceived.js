@@ -13,11 +13,11 @@ class RequestSent extends Component {
   render() {
     this.getUsers()
     // console.log("agagagahha")
-    const All=this.props.sentReq 
+    const All=this.props.receivedReq 
     const displayList=All.map(this.createTask)
     return (
         <div>
-            <h2>RequestSent</h2>
+            <h2>RequestReceived</h2>
             {displayList}
         </div>
     )
@@ -25,7 +25,7 @@ class RequestSent extends Component {
 }
 
 const mapStateToProps = state => ({
-  sentReq : state.sentReq.Requests
+  receivedReq : state.receivedReq.Requests
 })
 
 const mapDispatchToProps = dispatch => ({
