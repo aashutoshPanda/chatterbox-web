@@ -24,7 +24,7 @@ class rootHome extends Component {
   }
 
   componentDidMount = () => {
-    this.props.getProfileFetch()
+    // this.props.getProfileFetch()
   }
 
 
