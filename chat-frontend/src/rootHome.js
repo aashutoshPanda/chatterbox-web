@@ -24,7 +24,7 @@ class rootHome extends Component {
   }
 
   componentDidMount = () => {
-    // this.props.getProfileFetch()
+    this.props.getProfileFetch()
   }
 
 
@@ -47,12 +47,12 @@ class rootHome extends Component {
           <div>
             <nav>
               <ul>
-                <li>
+                {<li>
                   <Link to="/">Home</Link>
-                </li>
-                {/* <li>
+                </li>}
+                {this.props.currentUser && <li>
                   <Link to="/dashboard">Dashboard</Link>
-                </li> */}
+                </li>}
                 {!this.props.currentUser && <li>
                   <Link to="/login"><button>Login</button></Link>
                 </li>}

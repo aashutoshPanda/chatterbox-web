@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {FetchAllUsers} from '../Redux'
 
-class UserList extends Component {
+class Friends extends Component {
 
   getUsers = () => this.props.FetchAllUsers()
 
@@ -21,7 +21,7 @@ class UserList extends Component {
     const displayList=All.map(this.createTask)
     return (
         <div>
-            <h2>userlist</h2>
+            <h2>Friends</h2>
             {displayList}
         </div>
     )
@@ -36,4 +36,4 @@ const mapDispatchToProps = dispatch => ({
   FetchAllUsers: () => dispatch(FetchAllUsers())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserList);
+export default connect(mapStateToProps, mapDispatchToProps)(Friends);
