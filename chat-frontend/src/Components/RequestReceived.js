@@ -25,7 +25,7 @@ class RequestReceived extends Component {
     
     const rejecturl=`http://localhost:8000/profile/request/${item["id"]}/`
     await axios({
-      method: 'post',
+      method: 'delete',
       url: rejecturl,
       headers : {
         "Authorization":"Token "+localStorage.token
