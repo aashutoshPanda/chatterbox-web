@@ -8,12 +8,12 @@ export const FetchAllUsers = () => {
         }
       })
       .then((resp) => {
-        console.log(resp.data);
+        // console.log(resp.data);
         
         dispatch(getAllUsers(resp.data));
       })
       .catch(err => {
-        console.log("ye wla err aa gya",err)
+        console.log("error message",err)
       })
     }
   }

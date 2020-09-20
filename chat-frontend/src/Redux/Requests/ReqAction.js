@@ -8,12 +8,12 @@ export const getReq = () => {
         }
       })
       .then((resp) => {
-        console.log("reqqq",resp.data);
+        // console.log("reqqq",resp.data);
         
         dispatch(getRequest(resp.data));
       })
       .catch(err => {
-        console.log("ye wla err aa gya",err)
+        console.log("error message",err)
       })
     }
   }

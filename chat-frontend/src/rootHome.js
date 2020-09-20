@@ -24,7 +24,7 @@ class rootHome extends Component {
   }
 
   componentDidMount = () => {
-    // this.props.getProfileFetch()
+    if(localStorage.token) this.props.getProfileFetch()
   }
 
 
@@ -77,6 +77,7 @@ class rootHome extends Component {
               </Route>
             </Switch>
           </div>
+          <br></br>
           <Logout></Logout>
         </Router>
         

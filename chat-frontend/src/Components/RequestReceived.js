@@ -20,10 +20,29 @@ class RequestReceived extends Component {
     });
     await this.props.getReq()
   }
+
+  rejectReq=async (item)=>{
+    
+    const rejecturl=`http://localhost:8000/profile/request/${item["id"]}/`
+    await axios({
+      method: 'post',
+      url: rejecturl,
+      headers : {
+        "Authorization":"Token "+localStorage.token
+      },
+    });
+    await this.props.getReq()
+  }
    
   createTask=(item)=>{
     if(item["status"]==="sent")
-      return <div><p>{item["sender"].first_name} {item["sender"].last_name}</p> <button onClick={()=>this.acceptReq(item)}>Accept</button> </div>
+      return (
+        <div key={item.id}>
+          <p>{item["sender"].first_name} {item["sender"].last_name}</p>{" "} 
+          <button onClick={()=>this.acceptReq(item)}>Accept</button> 
+          <button onClick={()=>this.rejectReq(item)}>Reject</button>
+        </div>
+      )
   }
 
   render() {

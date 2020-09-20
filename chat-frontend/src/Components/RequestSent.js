@@ -10,12 +10,12 @@ class RequestReceived extends Component {
    
   createTask=(item)=>{
     if(item["status"]==="sent")
-      return <div><p>{item["receiver"].first_name} {item["receiver"].last_name}</p> </div>
+      return <div key={item.id}><p>{item["receiver"].first_name} {item["receiver"].last_name}</p> </div>
   }
 
   render() {
     const All=this.props.Req["sent"]
-    console.log("this is all",All)
+    // console.log("this is all",All)
     let displayList
     if(this.props.Req.length!==0){
       displayList=All.map(this.createTask)

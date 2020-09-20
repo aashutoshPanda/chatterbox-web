@@ -10,11 +10,11 @@ class RequestReceived extends Component {
    
   createTask1=(item)=>{
     if(item["status"]==="accepted")
-      return <div><p>{item["receiver"].first_name} {item["receiver"].last_name}</p> </div>
+      return <div key={item.id}><p>{item["receiver"].first_name} {item["receiver"].last_name}</p> </div>
   }
   createTask2=(item)=>{
     if(item["status"]==="accepted")
-      return <div><p>{item["sender"].first_name} {item["sender"].last_name}</p> </div>
+      return <div key={item.id}><p>{item["sender"].first_name} {item["sender"].last_name}</p> </div>
   }
 
   render() {

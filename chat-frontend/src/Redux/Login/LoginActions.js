@@ -4,12 +4,12 @@ export const userLoginFetch = user => {
     return dispatch => {
       return axios.post("http://localhost:8000/profile/auth/login",user)
       .then((resp) => {
-        console.log(resp.data);
+        // console.log(resp.data);
         localStorage.setItem("token", resp.data.auth_token);
         dispatch(loginUser(resp.data));
       })
       .catch(err => {
-        console.log("ye wla err aa gya",err)
+        console.log("error message",err)
       })
     }
   }

@@ -21,22 +21,30 @@ class UserList extends Component {
     this.props.FetchAllUsers();
   }
   createTask = (item) => {
+    let isFriend=false
     return (
-      <div>
+      <div key={item.id}>
         <p>
           {item.first_name} {item.last_name}
         </p>{" "}
-        <button
-          key={this.props.allUsers.username}
+
+        {!isFriend && <button
           onClick={() => this.handleClick(item)}
         >
           Add Friend
-        </button>
+        </button>}
+        {isFriend && <button
+          // onClick={() => this.handleClick(item)}
+        >
+          Friends
+        </button>}
+
       </div>
     );
   };
 
   render() {
+
     const All = this.props.allUsers;
     const displayList = All.map(this.createTask);
     return (

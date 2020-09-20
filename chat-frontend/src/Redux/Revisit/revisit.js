@@ -10,11 +10,11 @@ export const getProfileFetch = () => {
         }
       })
       .then((resp) => {
-        console.log("reqqqvbvb",resp.data);
+        // console.log("reqqqvbvb",resp.data);
         dispatch(getInfo(resp.data));
       })
       .catch(err => {
-        console.log("ye wla err aa gya",err)
+        console.log("error message",err)
       })
     }
   }
