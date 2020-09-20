@@ -1,11 +1,22 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FetchAllUsers } from "../Redux";
+const axios = require('axios')
 
 class UserList extends Component {
   handleClick = (item) => {
-    // this.props.sendUser(item);
+    axios({
+      method: 'post',
+      url: 'http://localhost:8000/profile/request/',
+      headers : {
+        "Authorization":"Token "+localStorage.token
+      },
+      data: {
+        "receiver": item.username,
+      }
+    });
   };
+
   componentDidMount() {
     this.props.FetchAllUsers();
   }

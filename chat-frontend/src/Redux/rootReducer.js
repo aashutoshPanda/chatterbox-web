@@ -1,15 +1,13 @@
 import { combineReducers } from 'redux'
 import authReducer from './auth/authReducer'
 import allUsersReducer from './allUsers/allUsersReducer'
-import sentRequests from './ReqSent/ReqSentReducer'
-import receivedRequests from './ReqReceived/ReqReceivedReducer'
+import Requests from './Requests/ReqReducer'
 
 
 const rootReducer = combineReducers({
   auth:authReducer,
   allUsers:allUsersReducer,
-  sentReq:sentRequests,
-  receivedReq:receivedRequests
+  Req:Requests
 })
 
 export default rootReducer

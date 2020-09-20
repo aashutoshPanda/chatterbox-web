@@ -1,39 +1,50 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {FetchAllUsers} from '../Redux'
+import {getReq} from '../Redux'
 
-class Friends extends Component {
+class RequestReceived extends Component {
 
-  getUsers = () => this.props.FetchAllUsers()
-
-  handleClick=(item)=>{
-    // this.props.sendUser(item);
+  componentDidMount(){
+    this.props.getReq()
   }
-
-  createTask=(item)=>{
-  return <div><p>{item.first_name} {item.last_name}</p> <button key={this.props.allUsers.username} onClick={()=>this.handleClick(item)}>Add Friend</button></div>
+   
+  createTask1=(item)=>{
+    if(item["status"]==="accepted")
+      return <div><p>{item["receiver"].first_name} {item["receiver"].last_name}</p> </div>
+  }
+  createTask2=(item)=>{
+    if(item["status"]==="accepted")
+      return <div><p>{item["sender"].first_name} {item["sender"].last_name}</p> </div>
   }
 
   render() {
-    this.getUsers(this.props.allUsers)
-    // console.log("agagagahha",this.props.allUsers)
-    const All=this.props.allUsers
-    const displayList=All.map(this.createTask)
+    let sentFriends=this.props.Req["sent"]
+    let receivedFriends=this.props.Req["received"]
+    // console.log("this is all",All)
+    let displayList1,displayList2
+    if(this.props.Req.length!==0){
+      displayList1=sentFriends.map(this.createTask1)
+    }
+    if(this.props.Req.length!==0){
+      displayList2=receivedFriends.map(this.createTask2)
+    }
+    
     return (
         <div>
             <h2>Friends</h2>
-            {displayList}
+            {displayList1}
+            {displayList2}
         </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  allUsers: state.allUsers.allUsers
+  Req : state.Req.Requests
 })
 
 const mapDispatchToProps = dispatch => ({
-  FetchAllUsers: () => dispatch(FetchAllUsers())
+  getReq: () => dispatch(getReq())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Friends);
+export default connect(mapStateToProps, mapDispatchToProps)(RequestReceived);

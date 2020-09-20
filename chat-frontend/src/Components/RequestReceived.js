@@ -1,23 +1,42 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getReceivedReq} from '../Redux'
+import {getReq} from '../Redux'
+const axios = require('axios')
 
-class RequestSent extends Component {
+class RequestReceived extends Component {
 
-  getUsers = () => this.props.getReceivedReq()
+  componentDidMount(){
+    this.props.getReq()
+  }
 
+  acceptReq=async (item)=>{
+    const accepturl=`http://localhost:8000/profile/request/accept/${item["id"]}/`
+    await axios({
+      method: 'post',
+      url: accepturl,
+      headers : {
+        "Authorization":"Token "+localStorage.token
+      },
+    });
+    await this.props.getReq()
+  }
+   
   createTask=(item)=>{
-  return <div><p>{item["sender"].first_name} {item["sender"].last_name}</p> </div>
+    if(item["status"]==="sent")
+      return <div><p>{item["sender"].first_name} {item["sender"].last_name}</p> <button onClick={()=>this.acceptReq(item)}>Accept</button> </div>
   }
 
   render() {
-    this.getUsers()
-    // console.log("agagagahha")
-    const All=this.props.receivedReq 
-    const displayList=All.map(this.createTask)
+    const All=this.props.Req["received"]
+    // console.log("this is all",All)
+    let displayList
+    if(this.props.Req.length!==0){
+      displayList=All.map(this.createTask)
+    }
+    
     return (
         <div>
-            <h2>RequestReceived</h2>
+            <h2>Request Received (Pending)</h2>
             {displayList}
         </div>
     )
@@ -25,11 +44,11 @@ class RequestSent extends Component {
 }
 
 const mapStateToProps = state => ({
-  receivedReq : state.receivedReq.Requests
+  Req : state.Req.Requests
 })
 
 const mapDispatchToProps = dispatch => ({
-    getReceivedReq: () => dispatch(getReceivedReq())
+  getReq: () => dispatch(getReq())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(RequestSent);
+export default connect(mapStateToProps, mapDispatchToProps)(RequestReceived);

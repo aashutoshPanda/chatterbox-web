@@ -1,6 +1,6 @@
 const axios = require('axios')
 
-export const getSentReq = () => {
+export const getReq = () => {
     return dispatch => {
       return axios.get("http://localhost:8000/profile/request/", {
         headers: {
@@ -8,9 +8,9 @@ export const getSentReq = () => {
         }
       })
       .then((resp) => {
-        console.log("reqqq",resp.data["sent"]);
+        console.log("reqqq",resp.data);
         
-        dispatch(getSentRequest(resp.data["sent"]));
+        dispatch(getRequest(resp.data));
       })
       .catch(err => {
         console.log("ye wla err aa gya",err)
@@ -18,7 +18,7 @@ export const getSentReq = () => {
     }
   }
 
-  const getSentRequest = req => ({
-    type: 'SENT_REQUESTS',
+  const getRequest = req => ({
+    type: 'REQUESTS',
     payload: req
 })

@@ -1,23 +1,29 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getSentReq} from '../Redux'
+import {getReq} from '../Redux'
 
-class RequestSent extends Component {
+class RequestReceived extends Component {
 
-  getUsers = () => this.props.getSentReq()
-
+  componentDidMount(){
+    this.props.getReq()
+  }
+   
   createTask=(item)=>{
-  return <div><p>{item["receiver"].first_name} {item["receiver"].last_name}</p> </div>
+    if(item["status"]==="sent")
+      return <div><p>{item["receiver"].first_name} {item["receiver"].last_name}</p> </div>
   }
 
   render() {
-    this.getUsers()
-    console.log("agagagahha")
-    const All=this.props.sentReq 
-    const displayList=All.map(this.createTask)
+    const All=this.props.Req["sent"]
+    console.log("this is all",All)
+    let displayList
+    if(this.props.Req.length!==0){
+      displayList=All.map(this.createTask)
+    }
+    
     return (
         <div>
-            <h2>RequestSent</h2>
+            <h2>Request Sent (Pending)</h2>
             {displayList}
         </div>
     )
@@ -25,11 +31,11 @@ class RequestSent extends Component {
 }
 
 const mapStateToProps = state => ({
-  sentReq : state.sentReq.Requests
+  Req : state.Req.Requests
 })
 
 const mapDispatchToProps = dispatch => ({
-    getSentReq: () => dispatch(getSentReq())
+  getReq: () => dispatch(getReq())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(RequestSent);
+export default connect(mapStateToProps, mapDispatchToProps)(RequestReceived);
