@@ -59,8 +59,11 @@ class AuthViewSet(viewsets.GenericViewSet):
 
 
 class UserList(APIView):
+    permission_classes = [IsAuthenticated, ]
+    authentication_classes = [TokenAuthentication, ]
+
     def get(self, request):
-        users = Profile.objects.all()
+        users = Profile.objects.exclude(user=request.user)
         data = ProfileSerializer(users, many=True).data
         return Response(data)
 
