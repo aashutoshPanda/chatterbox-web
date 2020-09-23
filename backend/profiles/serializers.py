@@ -63,7 +63,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['bio', 'username', 'first_name', 'last_name']
+        fields = ['id', 'bio', 'username', 'first_name', 'last_name']
 
 
 class RelationshipSerializer(serializers.ModelSerializer):

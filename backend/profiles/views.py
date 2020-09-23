@@ -9,7 +9,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 
 from rest_framework.views import APIView
-# from rest_framework.generics import RetrieveDestroyAPIView
+from rest_framework.generics import ListAPIView
 
 from .utils import get_and_authenticate_user, create_user_account
 from . import serializers
@@ -151,3 +151,31 @@ def requestAcceptView(request, pk):
         return Response(data=data, status=status.HTTP_200_OK)
     except:
         return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+@api_view(['GET'])
+@permission_classes((IsAuthenticated,))
+@authentication_classes((TokenAuthentication,))
+def friend_list(request):
+    try:
+        print(request.user)
+        profile = Profile.objects.get(user=request.user)
+        print(profile.friends.all())
+        friend_list_objects = profile.friends.all()
+        data = UserSerializer(friend_list_objects, many=True).data
+        print(data)
+        return Response(data=data, status=status.HTTP_200_OK)
+    except:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+
+# class Friend_list(generics.ListCreateAPIView):
+#     queryset = User.objects.all()
+#     serializer_class = UserSerializer
+#     permission_classes = [IsAuthenticated]
+#     authentication_classes = [TokenAuthentication]
+
+#     def get_queryset(self):
+#         profile = Profile.objects.get(user=request.user)
+#         friend_list_objects = Profile.objects.get(user=request.user)
+#         return user.accounts.all()

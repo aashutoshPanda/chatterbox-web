@@ -1,7 +1,7 @@
 from django.urls import path
 from rest_framework import routers
 
-from .views import AuthViewSet, UserList, RequestDetailView, RequestView, requestAcceptView, current_user_from_token_view
+from .views import AuthViewSet, UserList, RequestDetailView, RequestView, requestAcceptView, current_user_from_token_view, friend_list
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register('auth', AuthViewSet, basename='profile')
@@ -16,4 +16,6 @@ urlpatterns += [
          name="reqest_detail"),
     path("request/accept/<int:pk>/", requestAcceptView,
          name="reqest_accept"),
+    path("friends/", friend_list,
+         name="friend_list"),
 ]
