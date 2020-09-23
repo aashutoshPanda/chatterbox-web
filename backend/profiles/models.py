@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.core.exceptions import ValidationError
 
 
 class Profile(models.Model):
@@ -40,9 +41,24 @@ class Relationship(models.Model):
     receiver = models.ForeignKey(
         Profile, on_delete=models.CASCADE, related_name='receiver')
     status = models.CharField(
-        max_length=8, choices=STATUS_CHOICES, default='sent')
+        max_length=8, choices=STATUS_CHOICES, default='send')
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        super().save(*args, **kwargs)
+
+    def validate_unique(self, *args, **kwargs):
+        super(Relationship, self).validate_unique(*args, **kwargs)
+        query1 = Relationship.objects.filter(
+            sender=self.sender).filter(receiver=self.receiver)
+        query2 = Relationship.objects.filter(
+            sender=self.receiver).filter(receiver=self.sender)
+        if (query1 or query2):
+            raise ValidationError("Such a request already exists !")
+        if (self.sender == self.receiver):
+            raise ValidationError("Request can't be made to self")
 
     def make_request_accepted(self, accepter):
         if (self.status == 'accepted'):
