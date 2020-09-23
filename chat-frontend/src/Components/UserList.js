@@ -11,18 +11,11 @@ class UserList extends Component {
 
   render() {
     return (
-      <div>
-        <h2>userlist</h2>
-        {/* <div  id="searchWrapper" onChange={this.handleChange}>
-          <input 
-            type="text"
-            name="searchBar"
-            id="searchBar"
-            placeholder="search for a user"
-          />
+      <div className="block">
+        <div className="column is-8">
+          <h2 className="title is-2">Userlist</h2>
+          <Search allItems={this.props.allUsers}/>
         </div>
-        {displayList} */}
-        <Search allItems={this.props.allUsers}/>
       </div>
     );
   }

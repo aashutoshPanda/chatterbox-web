@@ -23,16 +23,16 @@ class Login extends Component {
 
   render() {
     return (
-      <div class="container">
-        <div class="block">
+      <div className="container">
+        <div className="block">
           <form onSubmit={this.handleSubmit}>
-            <h1 class="title">Login</h1>
+            <h1 className="title">Login</h1>
 
-            <div class="field">
-              <label class="label">Username</label>
+            <div className="field">
+              <label className="label">Username</label>
               <input
                 type="text" 
-                class="input"
+                className="input"
                 name='username'
                 placeholder='Username'
                 value={this.state.username}
@@ -40,10 +40,10 @@ class Login extends Component {
                 /><br/>
             </div>
 
-            <div class="field">
-              <label class="label">Password</label>
+            <div className="field">
+              <label className="label">Password</label>
               <input
-                class="input"
+                className="input"
                 type='password'
                 name='password'
                 placeholder='Password'
@@ -52,9 +52,9 @@ class Login extends Component {
                 /><br/>
             </div>
 
-            <div class="field is-grouped">
-              <div class="control">
-                <button class="button is-primary">Submit</button>
+            <div className="field is-grouped">
+              <div className="control">
+                <button className="button is-primary">Submit</button>
               </div>
             </div>
           </form>

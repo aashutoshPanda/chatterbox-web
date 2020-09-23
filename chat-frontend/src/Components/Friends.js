@@ -7,9 +7,18 @@ class RequestReceived extends Component {
   componentDidMount(){
     this.props.getFriends()
   }
-   
+  
   createTask=(item)=>{
-      return <div key={item.id}><p>{item.first_name} {item.last_name}</p> </div>
+      return (
+      <div key={item.id} className="column is-10">
+        <div className="box">
+          <article className="media">
+            <div className="media-content ">
+              <p>{item.first_name} {item.last_name}</p> 
+            </div>
+          </article>
+        </div>
+      </div>)
   }
 
   render() {
@@ -21,8 +30,8 @@ class RequestReceived extends Component {
     }
     
     return (
-        <div>
-            <h2>Friends</h2>
+        <div className="block">
+            <h2 className="title is-3">Friends</h2>
             {displayList}
         </div>
     )

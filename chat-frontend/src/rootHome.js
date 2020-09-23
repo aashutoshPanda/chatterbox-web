@@ -43,29 +43,29 @@ class rootHome extends Component {
     
     return(
       <Router>
-      <div class="block">
+      <div className="block">
         
-      <nav class="nav">
-        <div class="nav-left">
-          <div class="nav-item">
-            <h1 class="title is-5"><Link to="/">Home</Link></h1>
+      <nav className="nav">
+        <div className="nav-left">
+          <div className="nav-item">
+            <h1 className="title is-5"><Link to="/">Home</Link></h1>
           </div>
         </div>
 
-        <div class="nav-right nav-menu">
+        <div className="nav-right nav-menu">
         {this.props.currentUser && 
-        <div class="nav-item">
-          <Link class="title is-5" to="/dashboard">Dashboard</Link>
+        <div className="nav-item">
+          <Link className="title is-5" to="/dashboard">Dashboard</Link>
         </div>}
         {!this.props.currentUser && 
-        <div class="nav-item">
-          <Link to="/login"><button class="button is-primary is-outlined is-small">Login</button></Link>
+        <div className="nav-item">
+          <Link to="/login"><button className="button is-primary is-outlined is-small">Login</button></Link>
         </div>}
         {!this.props.currentUser && 
-        <div class="nav-item">
-          <Link to="/signup"><button class="button is-primary is-outlined is-small">SignUp</button></Link>
+        <div className="nav-item">
+          <Link to="/signup"><button className="button is-primary is-outlined is-small">SignUp</button></Link>
         </div>}
-        <div class="nav-item">
+        <div className="nav-item">
           <Logout></Logout>
         </div>
         </div>
@@ -91,7 +91,7 @@ class rootHome extends Component {
 }
 
 function Home() {
-  return <h2 class="title is-1">Home</h2>;
+  return <h2 className="title is-1">Home</h2>;
 }
 
 

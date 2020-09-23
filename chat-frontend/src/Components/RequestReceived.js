@@ -36,13 +36,26 @@ class RequestReceived extends Component {
    
   createTask=(item)=>{
     if(item["status"]==="sent")
-      return (
-        <div key={item.id}>
-          <p>{item["sender"].first_name} {item["sender"].last_name}</p>{" "} 
-          <button onClick={()=>this.acceptReq(item)}>Accept</button> 
-          <button onClick={()=>this.rejectReq(item)}>Reject</button>
+    return(
+      <div className="column is-10">
+        <div key={item.id} className="box">
+          <article className="media">
+            <div className="media-content ">
+              <p>{item["sender"].first_name} {item["sender"].last_name}</p>{" "} 
+              <button className="button is-success" onClick={()=>this.acceptReq(item)}>Accept</button> 
+              <button className="button is-danger" onClick={()=>this.rejectReq(item)}>Reject</button>
+            </div>
+          </article>
         </div>
-      )
+      </div>
+    )
+      // return (
+      //   <div key={item.id}>
+      //     <p>{item["sender"].first_name} {item["sender"].last_name}</p>{" "} 
+      //     <button onClick={()=>this.acceptReq(item)}>Accept</button> 
+      //     <button onClick={()=>this.rejectReq(item)}>Reject</button>
+      //   </div>
+      // )
   }
 
   render() {
@@ -55,7 +68,7 @@ class RequestReceived extends Component {
     
     return (
         <div>
-            <h2>Request Received (Pending)</h2>
+            <h2 class="title is-3">Request Received (Pending)</h2>
             {displayList}
         </div>
     )

@@ -61,22 +61,47 @@ class Dashboard extends Component {
               }} />
         )} />
       )
+
+{/* <div class="block">
+      <aside class="menu">
+        <p class="menu-label">
+          Label 1
+        </p>
+        <ul class="menu-list">
+          <li><a href="">Link 1</a></li>
+          <li><a href="">Link 1</a></li>
+        </ul>
+        <p class="menu-label">
+          Label 2
+        </p>
+        <ul class="menu-list">
+          <li>
+            <a class="is-active" href="">Link 1</a>
+            <ul>
+              <li><a href="">Link 1</a></li>
+              <li><a href="">Link 1</a></li>
+              <li><a href="">Link 1</a></li>
+            </ul>
+          </li>
+
+          <li><a href="">Link 2</a></li>
+          <li><a href="">Link 3</a></li>
+        </ul>
+      </aside>
+    </div> */}
+
+
     return (
-      <div class="container">
-        <div class="block"> 
-            <h2 class="title is-3">Dashboard</h2>
+      <div className="container">
+        <div className="block"> 
+          <h2 className="title is-3">Dashboard</h2>
+            <aside className="menu">
             <Router>
             <div>
-                <Link to="/userlist">UserList</Link>
-                <br></br>
-                <Link to="/requestsent">Request Sent</Link>
-                <br></br>
-                <Link to="/requestreceived">Request Received</Link>
-                <br></br>
-                <Link to="/friends">Friends</Link>
-                <br></br>
-                <br></br>
-                <br></br>
+                <Link className="menu-label" to="/userlist"><p>UserList</p></Link>
+                <Link className="menu-label" to="/requestsent"><p>Request Sent</p></Link>
+                <Link className="menu-label" to="/requestreceived"><p>Request Received</p></Link>
+                <Link className="menu-label" to="/friends"><p>Friends</p></Link>
                 <Switch>
                     <PrivateRoute1 path="/userlist" component={UserList} />
                     <PrivateRoute2 path="/requestsent" component={Request_Sent} />
@@ -85,8 +110,9 @@ class Dashboard extends Component {
                 </Switch>
             </div>
             </Router>
-          </div>
+          </aside>
         </div>
+      </div>
     )
   }
 }

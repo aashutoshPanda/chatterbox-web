@@ -26,23 +26,27 @@ class search extends Component {
       createTask = (item) => {
         let isFriend=false
         return (
-            <div key={item.id}>
-              <p>
-                {item.first_name} {item.last_name}
-              </p>{" "}
-    
-              {!isFriend && <button
-                onClick={() => this.handleClick(item)}
-              >
-                Add Friend
-              </button>}
-              {isFriend && <button
-                // onClick={() => this.handleClick(item)}
-              >
-                Friends
-              </button>}
-    
+          <div key={item.id} className="column is-10">
+            <div className="box">
+              <article className="media">
+                <div className="media-content ">
+                    <p>{`${item.first_name} ${item.last_name}`}</p>
+                </div>
+                <div className="media-right">
+                  {!isFriend && <button className="button is-info"
+                    onClick={() => this.handleClick(item)}
+                  >
+                    Add Friend
+                  </button>}
+                  {isFriend && <button
+                    // onClick={() => this.handleClick(item)}
+                  >
+                    Friends
+                  </button>}
+                </div>
+              </article>
             </div>
+          </div>
         );
       };
 
@@ -55,7 +59,7 @@ class search extends Component {
             item.last_name.toLowerCase().includes(searchString) 
           );
         });
-        console.log(filteredItems)
+        // console.log(filteredItems)
         this.setState({list:filteredItems})
         
       }
@@ -63,7 +67,8 @@ class search extends Component {
   render() {
     return(
     <div>
-        <input type="text" onChange={this.handleChange}/>
+        <input className="input" type="text" onChange={this.handleChange}/>
+        <br></br><br></br><br></br>
         {this.state.list.map(this.createTask)}
     </div>
         
