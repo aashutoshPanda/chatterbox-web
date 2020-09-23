@@ -59,8 +59,11 @@ class AuthViewSet(viewsets.GenericViewSet):
 
 
 class UserList(APIView):
+    permission_classes = [IsAuthenticated, ]
+    authentication_classes = [TokenAuthentication, ]
+
     def get(self, request):
-        users = Profile.objects.all()
+        users = Profile.objects.exclude(user=request.user)
         data = ProfileSerializer(users, many=True).data
         return Response(data)
 
@@ -98,8 +101,9 @@ class RequestView(APIView):
                 sender=sender, receiver=receiver)
             data = RelationshipSerializer(request).data
             return Response(data=data, status=status.HTTP_201_CREATED)
-        except:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+
+            return Response(data=str(e), status=status.HTTP_400_BAD_REQUEST)
 
 
 class RequestDetailView(APIView):
