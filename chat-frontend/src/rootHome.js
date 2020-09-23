@@ -42,52 +42,56 @@ class rootHome extends Component {
     )
     
     return(
-        <div>
-        <Router>
-          <div>
-            <nav>
-              <ul>
-                {<li>
-                  <Link to="/">Home</Link>
-                </li>}
-                {this.props.currentUser && <li>
-                  <Link to="/dashboard">Dashboard</Link>
-                </li>}
-                {!this.props.currentUser && <li>
-                  <Link to="/login"><button>Login</button></Link>
-                </li>}
-                {!this.props.currentUser && <li>
-                  <Link to="/signup"><button>SignUp</button></Link>
-                </li>}
-                
-              </ul>
-            </nav>
-
-            <Switch>
-              <Route path="/login">
-                <Login />
-              </Route>
-              <PrivateRoute path="/dashboard" component={Dashboard} />
-              <Route path="/signup">
-                <Signup />
-              </Route>
-              
-              <Route exact path="/">
-                <Home />
-              </Route>
-            </Switch>
-          </div>
-          <br></br>
-          <Logout></Logout>
-        </Router>
+      <Router>
+      <div class="block">
         
+      <nav class="nav">
+        <div class="nav-left">
+          <div class="nav-item">
+            <h1 class="title is-5"><Link to="/">Home</Link></h1>
+          </div>
         </div>
+
+        <div class="nav-right nav-menu">
+        {this.props.currentUser && 
+        <div class="nav-item">
+          <Link class="title is-5" to="/dashboard">Dashboard</Link>
+        </div>}
+        {!this.props.currentUser && 
+        <div class="nav-item">
+          <Link to="/login"><button class="button is-primary is-outlined is-small">Login</button></Link>
+        </div>}
+        {!this.props.currentUser && 
+        <div class="nav-item">
+          <Link to="/signup"><button class="button is-primary is-outlined is-small">SignUp</button></Link>
+        </div>}
+        <div class="nav-item">
+          <Logout></Logout>
+        </div>
+        </div>
+      </nav>
+
+      <Switch>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <PrivateRoute path="/dashboard" component={Dashboard} />
+        <Route path="/signup">
+          <Signup />
+        </Route>
+        <Route exact path="/">
+          <Home />
+        </Route>
+        </Switch>
+      
+    </div>
+    </Router>
     );
   }
 }
 
 function Home() {
-  return <h2>Home</h2>;
+  return <h2 class="title is-1">Home</h2>;
 }
 
 

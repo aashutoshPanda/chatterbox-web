@@ -26,44 +26,70 @@ class Signup extends Component {
 
   render() {
     // console.log(this.state)
-    return (      
-      <form onSubmit={this.handleSubmit}>
-        <h1>Sign Up For An Account</h1>
-        <label>Username</label>
-        <input
-          name='username'
-          placeholder='Username'
-          value={this.state.firstname}
-          onChange={this.handleChange}
-          /><br/>
+    return (   
+      <div class="container">
+        <div class="block">   
+          <form onSubmit={this.handleSubmit}>
 
-        <label>Firstname</label>
-        <input
-          name='first_name'
-          placeholder='Firstname'
-          value={this.state.firstname}
-          onChange={this.handleChange}
-          /><br/>
+            <h1 class="title">Sign Up For An Account</h1>
 
-        <label>Lastname</label>
-        <input
-          name='last_name'
-          placeholder='Lastname'
-          value={this.state.lastname}
-          onChange={this.handleChange}
-          /><br/>
+            <div class="field">
+            <label class="label">Username</label>
+            <input
+              type="text" 
+              class="input"
+              name='username'
+              placeholder='Username'
+              value={this.state.firstname}
+              onChange={this.handleChange}
+              /><br/>
+            </div>
 
-        <label>Password</label>
-        <input
-          type='password'
-          name='password'
-          placeholder='Password'
-          value={this.state.password}
-          onChange={this.handleChange}
-          /><br/>
+            <div class="field">
+            <label class="label">Firstname</label>
+            <input
+              type="text" 
+              class="input"
+              name='first_name'
+              placeholder='Firstname'
+              value={this.state.firstname}
+              onChange={this.handleChange}
+              /><br/>
+            </div>
 
-        <input type='submit'/>
-      </form>
+            <div class="field">
+            <label class="label">Lastname</label>
+            <input
+              type="text" 
+              class="input"
+              name='last_name'
+              placeholder='Lastname'
+              value={this.state.lastname}
+              onChange={this.handleChange}
+              /><br/>
+            </div>
+
+            <div class="field">
+            <label class="label">Password</label>
+            <input
+              class="input"
+              type='password'
+              name='password'
+              placeholder='Password'
+              value={this.state.password}
+              onChange={this.handleChange}
+              /><br/>
+            </div>
+
+            <div class="field is-grouped">
+              <div class="control">
+                <button class="button is-primary">Submit</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
     )
   }
 }

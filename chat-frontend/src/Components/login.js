@@ -23,28 +23,43 @@ class Login extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <h1>Login</h1>
+      <div class="container">
+        <div class="block">
+          <form onSubmit={this.handleSubmit}>
+            <h1 class="title">Login</h1>
 
-        <label>Username</label>
-        <input
-          name='username'
-          placeholder='Username'
-          value={this.state.username}
-          onChange={this.handleChange}
-          /><br/>
+            <div class="field">
+              <label class="label">Username</label>
+              <input
+                type="text" 
+                class="input"
+                name='username'
+                placeholder='Username'
+                value={this.state.username}
+                onChange={this.handleChange}
+                /><br/>
+            </div>
 
-        <label>Password</label>
-        <input
-          type='password'
-          name='password'
-          placeholder='Password'
-          value={this.state.password}
-          onChange={this.handleChange}
-          /><br/>
+            <div class="field">
+              <label class="label">Password</label>
+              <input
+                class="input"
+                type='password'
+                name='password'
+                placeholder='Password'
+                value={this.state.password}
+                onChange={this.handleChange}
+                /><br/>
+            </div>
 
-        <input type='submit'/>
-      </form>
+            <div class="field is-grouped">
+              <div class="control">
+                <button class="button is-primary">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
     )
   }
 }

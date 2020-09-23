@@ -62,8 +62,9 @@ class Dashboard extends Component {
         )} />
       )
     return (
-        <div>
-            <h2>Dashboard</h2>
+      <div class="container">
+        <div class="block"> 
+            <h2 class="title is-3">Dashboard</h2>
             <Router>
             <div>
                 <Link to="/userlist">UserList</Link>
@@ -74,6 +75,8 @@ class Dashboard extends Component {
                 <br></br>
                 <Link to="/friends">Friends</Link>
                 <br></br>
+                <br></br>
+                <br></br>
                 <Switch>
                     <PrivateRoute1 path="/userlist" component={UserList} />
                     <PrivateRoute2 path="/requestsent" component={Request_Sent} />
@@ -82,7 +85,7 @@ class Dashboard extends Component {
                 </Switch>
             </div>
             </Router>
-        
+          </div>
         </div>
     )
   }
