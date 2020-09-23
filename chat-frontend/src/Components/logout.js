@@ -16,7 +16,7 @@ class Logout extends Component {
     // console.log(this.props.currentUser) button class="button is-primary is-outlined is-small">
     return (
         <div>
-            {this.props.currentUser && <button  className="button is-primary is-outlined is-small" onClick={this.handleClick}>Log Out</button>}
+            {this.props.currentUser && <button  className="button is-primary is-outlined " onClick={this.handleClick}>Log Out</button>}
         </div>
     )
   }

@@ -43,33 +43,44 @@ class rootHome extends Component {
     
     return(
       <Router>
-      <div className="block">
-        
-      <nav className="nav">
-        <div className="nav-left">
-          <div className="nav-item">
-            <h1 className="title is-5"><Link to="/">Home</Link></h1>
-          </div>
-        </div>
+        <nav className="navbar " role="navigation" aria-label="main navigation">
+          <div className="navbar-brand">
+            <a className="navbar-item" href="https://bulma.io">
+              <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28"></img>
+            </a>
 
-        <div className="nav-right nav-menu">
-        {this.props.currentUser && 
-        <div className="nav-item">
-          <Link className="title is-5" to="/dashboard">Dashboard</Link>
-        </div>}
-        {!this.props.currentUser && 
-        <div className="nav-item">
-          <Link to="/login"><button className="button is-primary is-outlined is-small">Login</button></Link>
-        </div>}
-        {!this.props.currentUser && 
-        <div className="nav-item">
-          <Link to="/signup"><button className="button is-primary is-outlined is-small">SignUp</button></Link>
-        </div>}
-        <div className="nav-item">
-          <Logout></Logout>
-        </div>
-        </div>
-      </nav>
+            <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
+          </div>
+
+          <div id="navbarBasicExample" className="navbar-menu">
+            <div className="navbar-start">
+              <Link className="navbar-item" to="/">Home</Link>
+
+              {this.props.currentUser && 
+                  <Link className="navbar-item" to="/dashboard">Dashboard</Link>
+                }
+            </div>
+
+            <div className="navbar-end">
+              <div className="navbar-item">
+                <div className="buttons">
+                  
+                {!this.props.currentUser && <Link className="button is-primary" to="/signup">
+                    <strong>Sign up</strong>
+                </Link>}
+                {!this.props.currentUser && <Link className="button is-light" to="/login">
+                    <strong>Log in</strong>
+                </Link>}
+                </div>
+              </div>
+              <div className="navbar-item"><Logout></Logout></div>
+            </div>
+          </div>
+        </nav>
 
       <Switch>
         <Route path="/login">
@@ -83,8 +94,7 @@ class rootHome extends Component {
           <Home />
         </Route>
         </Switch>
-      
-    </div>
+        
     </Router>
     );
   }

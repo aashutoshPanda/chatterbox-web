@@ -94,14 +94,14 @@ class Dashboard extends Component {
     return (
       <div className="container">
         <div className="block"> 
-          <h2 className="title is-3">Dashboard</h2>
+          <h2 className="title is-1">Dashboard</h2>
             <aside className="menu">
             <Router>
             <div>
-                <Link className="menu-label" to="/userlist"><p>UserList</p></Link>
-                <Link className="menu-label" to="/requestsent"><p>Request Sent</p></Link>
-                <Link className="menu-label" to="/requestreceived"><p>Request Received</p></Link>
-                <Link className="menu-label" to="/friends"><p>Friends</p></Link>
+                <Link className="menu-label" to="/userlist">  <strong class="m-6">UserList</strong>  </Link>
+                <Link className="menu-label" to="/requestsent">  <strong class="m-6">Request Sent</strong>  </Link>
+                <Link className="menu-label" to="/requestreceived">  <strong class="m-6">Request Received</strong>  </Link>
+                <Link className="menu-label" to="/friends">  <strong class="m-6">Friends</strong>  </Link>
                 <Switch>
                     <PrivateRoute1 path="/userlist" component={UserList} />
                     <PrivateRoute2 path="/requestsent" component={Request_Sent} />
