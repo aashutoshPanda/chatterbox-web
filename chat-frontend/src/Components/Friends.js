@@ -1,50 +1,40 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getReq} from '../Redux'
+import {getFriends} from '../Redux'
 
 class RequestReceived extends Component {
 
   componentDidMount(){
-    this.props.getReq()
+    this.props.getFriends()
   }
    
-  createTask1=(item)=>{
-    if(item["status"]==="accepted")
-      return <div key={item.id}><p>{item["receiver"].first_name} {item["receiver"].last_name}</p> </div>
-  }
-  createTask2=(item)=>{
-    if(item["status"]==="accepted")
-      return <div key={item.id}><p>{item["sender"].first_name} {item["sender"].last_name}</p> </div>
+  createTask=(item)=>{
+      return <div key={item.id}><p>{item.first_name} {item.last_name}</p> </div>
   }
 
   render() {
-    let sentFriends=this.props.Req["sent"]
-    let receivedFriends=this.props.Req["received"]
+    let Friends=this.props.Friends
     // console.log("this is all",All)
-    let displayList1,displayList2
-    if(this.props.Req.length!==0){
-      displayList1=sentFriends.map(this.createTask1)
-    }
-    if(this.props.Req.length!==0){
-      displayList2=receivedFriends.map(this.createTask2)
+    let displayList;
+    if(this.props.Friends.length!==0){
+      displayList=Friends.map(this.createTask)
     }
     
     return (
         <div>
             <h2>Friends</h2>
-            {displayList1}
-            {displayList2}
+            {displayList}
         </div>
     )
   }
 }
 
 const mapStateToProps = state => ({
-  Req : state.Req.Requests
+  Friends : state.Friends.Friends
 })
 
 const mapDispatchToProps = dispatch => ({
-  getReq: () => dispatch(getReq())
+  getFriends: () => dispatch(getFriends())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RequestReceived);

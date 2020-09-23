@@ -1,13 +1,15 @@
 import { combineReducers } from 'redux'
 import authReducer from './auth/authReducer'
 import allUsersReducer from './allUsers/allUsersReducer'
-import Requests from './Requests/ReqReducer'
+import RequestsReducer from './Requests/ReqReducer'
+import FriendsReducer from './friends/friendsReducer'
 
 
 const rootReducer = combineReducers({
   auth:authReducer,
   allUsers:allUsersReducer,
-  Req:Requests
+  Req:RequestsReducer,
+  Friends:FriendsReducer
 })
 
 export default rootReducer
