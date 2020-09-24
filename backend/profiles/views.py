@@ -85,7 +85,7 @@ class RequestView(APIView):
         try:
             profile = Profile.objects.get(user=request.user)
             data = {
-                'sent': [RelationshipSerializer(req).data for req in profile.requests_sent()],
+                'send': [RelationshipSerializer(req).data for req in profile.requests_sent()],
                 'received': [RelationshipSerializer(req).data for req in profile.requests_received()],
             }
             return Response(data=data, status=status.HTTP_200_OK)
@@ -124,7 +124,7 @@ class RequestDetailView(APIView):
             request_obj.delete()
             profile = Profile.objects.get(user=request.user)
             data = {
-                'sent': [RelationshipSerializer(req).data for req in profile.requests_sent()],
+                'send': [RelationshipSerializer(req).data for req in profile.requests_sent()],
                 'received': [RelationshipSerializer(req).data for req in profile.requests_received()],
             }
             return Response(data=data, status=status.HTTP_200_OK)
@@ -149,7 +149,7 @@ def requestAcceptView(request, pk):
         request_obj.save()
         profile = Profile.objects.get(user=request.user)
         data = {
-            'sent': [RelationshipSerializer(req).data for req in profile.requests_sent()],
+            'send': [RelationshipSerializer(req).data for req in profile.requests_sent()],
             'received': [RelationshipSerializer(req).data for req in profile.requests_received()],
         }
         return Response(data=data, status=status.HTTP_200_OK)
