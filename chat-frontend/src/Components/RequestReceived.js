@@ -35,14 +35,16 @@ class RequestReceived extends Component {
   }
    
   createTask=(item)=>{
-    if(item["status"]==="sent")
+    if(item["status"]==="send")
     return(
       <div className="column is-10">
         <div key={item.id} className="box">
           <article className="media">
             <div className="media-content ">
-              <p>{item["sender"].first_name} {item["sender"].last_name}</p>{" "} 
-              <button className="button is-success" onClick={()=>this.acceptReq(item)}>Accept</button> 
+              <p>{item["sender"].first_name} {item["sender"].last_name}</p>
+            </div>
+            <div className="media-right">
+              <button className="button is-success" onClick={()=>this.acceptReq(item)}>Accept</button>{" "}
               <button className="button is-danger" onClick={()=>this.rejectReq(item)}>Reject</button>
             </div>
           </article>

@@ -25,7 +25,7 @@ class RequestReceived extends Component {
   }
 
   render() {
-    const All=this.props.Req["sent"]
+    const All=this.props.Req["send"]
     // console.log("this is all",All)
     let displayList
     if(this.props.Req.length!==0){
