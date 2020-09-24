@@ -138,8 +138,8 @@ class RequestDetailView(APIView):
 def requestAcceptView(request, pk):
     try:
         request_obj = get_object_or_404(Relationship, pk=pk)
-        print(request_obj.receiver.user)
-        print(request.user)
+        print("sender", request_obj.sender.user)
+        print("accepter", request.user)
         if (request_obj.status == 'accepted'):
             return Response(data={"message": "Request already Accepted"}, status=status.HTTP_200_OK)
         elif (request_obj.receiver.user != request.user):
@@ -153,8 +153,8 @@ def requestAcceptView(request, pk):
             'received': [RelationshipSerializer(req).data for req in profile.requests_received()],
         }
         return Response(data=data, status=status.HTTP_200_OK)
-    except:
-        return Response(status=status.HTTP_404_NOT_FOUND)
+    except Exception as e:
+        return Response(data=str(e), status=status.HTTP_404_NOT_FOUND)
 
 
 @api_view(['GET'])

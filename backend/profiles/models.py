@@ -55,7 +55,7 @@ class Relationship(models.Model):
             sender=self.sender).filter(receiver=self.receiver)
         query2 = Relationship.objects.filter(
             sender=self.receiver).filter(receiver=self.sender)
-        if (query1 or query2):
+        if ((query1 or query2) and (self.status == 'send')):
             raise ValidationError("Such a request already exists !")
         if (self.sender == self.receiver):
             raise ValidationError("Request can't be made to self")
