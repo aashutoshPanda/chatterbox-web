@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { FetchAllUsers } from "../Redux";
-import Search from './search'
+import Search from "./search";
 
 class UserList extends Component {
-
   componentDidMount() {
     this.props.FetchAllUsers();
   }
@@ -15,7 +14,7 @@ class UserList extends Component {
         <div className="block">
           <div className="column is-8">
             <h2 className="title is-2">Find Friends</h2>
-            <Search allItems={this.props.allUsers}/>
+            <Search allItems={this.props.allUsers} />
           </div>
         </div>
       </div>
