@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {getReq} from '../Redux'
+import {getFriends} from '../Redux'
 const axios = require('axios')
 
 class RequestReceived extends Component {
@@ -11,14 +12,17 @@ class RequestReceived extends Component {
 
   acceptReq=async (item)=>{
     const accepturl=`http://localhost:8000/profile/request/accept/${item["id"]}/`
+    console.log(item["id"])
     await axios({
       method: 'post',
       url: accepturl,
       headers : {
         "Authorization":"Token "+localStorage.token
-      },
+      }
     });
+    console.log("accept accept")
     await this.props.getReq()
+    await this.props.getFriends()
   }
 
   rejectReq=async (item)=>{
@@ -32,6 +36,7 @@ class RequestReceived extends Component {
       },
     });
     await this.props.getReq()
+
   }
    
   createTask=(item)=>{
@@ -70,7 +75,6 @@ class RequestReceived extends Component {
     
     return (
         <div>
-            <h2 class="title is-3">Request Received (Pending)</h2>
             {displayList}
         </div>
     )
@@ -82,7 +86,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  getReq: () => dispatch(getReq())
+  getReq: () => dispatch(getReq()),
+  getFriends: () => dispatch(getFriends())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RequestReceived);

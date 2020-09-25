@@ -12,6 +12,11 @@ import Login from './Components/login'
 import Logout from './Components/logout'
 import {getProfileFetch} from './Redux';
 import Dashboard from './Components/Dashboard'
+import Notification from './Components/Notification'
+import NewFriend from './Components/NewFriend'
+import UserList from './Components/UserList'
+import BothReq from './Components/BothReq'
+import Friends from './Components/Friends'
 
 class rootHome extends Component {
 
@@ -30,18 +35,45 @@ class rootHome extends Component {
 
   render(){
 
-    const PrivateRoute = ({ component: Component, ...rest }) => (
+    const PrivateRoute1 = ({ component: Component, ...rest }) => (
       <Route {...rest} render={(props) => (
         this.props.currentUser !== false
           ? <Component {...props} />
           : <Redirect to={{
-              pathname: '/',
-              state: { from: props.location }
+              pathname: '/dashboard',
+            }} />
+      )} />
+    )
+    const PrivateRoute2 = ({ component: Component, ...rest }) => (
+      <Route {...rest} render={(props) => (
+        this.props.currentUser !== false
+          ? <Component {...props} />
+          : <Redirect to={{
+              pathname: '/userlist',
+            }} />
+      )} />
+    )
+    const PrivateRoute3 = ({ component: Component, ...rest }) => (
+      <Route {...rest} render={(props) => (
+        this.props.currentUser !== false
+          ? <Component {...props} />
+          : <Redirect to={{
+              pathname: '/requestsent',
+            }} />
+      )} />
+    )
+    const PrivateRoute4 = ({ component: Component, ...rest }) => (
+      <Route {...rest} render={(props) => (
+        this.props.currentUser !== false
+          ? <Component {...props} />
+          : <Redirect to={{
+              pathname: '/friends',
             }} />
       )} />
     )
     
     return(
+      
       <Router>
         <nav className="navbar " role="navigation" aria-label="main navigation">
           <div className="navbar-brand">
@@ -58,7 +90,7 @@ class rootHome extends Component {
 
           <div id="navbarBasicExample" className="navbar-menu">
             <div className="navbar-start">
-              <Link className="navbar-item" to="/">Home</Link>
+              {/* <Link className="navbar-item" to="/">Home</Link> */}
 
               {this.props.currentUser && 
                   <Link className="navbar-item" to="/dashboard">Dashboard</Link>
@@ -77,6 +109,8 @@ class rootHome extends Component {
                 </Link>}
                 </div>
               </div>
+              <div className="navbar-item"><Notification></Notification></div>
+              <div className="navbar-item"><NewFriend></NewFriend></div>
               <div className="navbar-item"><Logout></Logout></div>
             </div>
           </div>
@@ -86,7 +120,10 @@ class rootHome extends Component {
         <Route path="/login">
           <Login />
         </Route>
-        <PrivateRoute path="/dashboard" component={Dashboard} />
+        <PrivateRoute1 path="/dashboard" component={Dashboard} />
+        <PrivateRoute2 path="/userlist" component={UserList} />
+        <PrivateRoute3 path="/bothreq" component={BothReq} />
+        <PrivateRoute4 path="/friends" component={Friends} />
         <Route path="/signup">
           <Signup />
         </Route>
@@ -101,7 +138,13 @@ class rootHome extends Component {
 }
 
 function Home() {
-  return <h2 className="title is-1">Home</h2>;
+  return(
+    <div className="container">
+      <div className="block centerall">
+        <h1 className="title">Welcome to XYZ-chat</h1>
+      </div>
+    </div>
+  ) 
 }
 
 

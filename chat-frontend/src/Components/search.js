@@ -52,6 +52,7 @@ class search extends Component {
 
       handleChange = (e) =>{
         const searchString = e.target.value.toLowerCase();
+        
         const filteredItems = this.props.allItems.filter(item => {
           // console.log(user)
           return (

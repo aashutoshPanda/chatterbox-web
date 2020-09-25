@@ -16,6 +16,9 @@ class RequestReceived extends Component {
             <div className="media-content ">
               <p>{item.first_name} {item.last_name}</p> 
             </div>
+            <div className="media-right">
+                <span className="tag is-success is-light">accepted</span>
+            </div>
           </article>
         </div>
       </div>)
@@ -31,7 +34,6 @@ class RequestReceived extends Component {
     
     return (
         <div className="block">
-            <h2 className="title is-3">Friends</h2>
             {displayList}
         </div>
     )

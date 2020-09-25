@@ -11,10 +11,12 @@ class UserList extends Component {
 
   render() {
     return (
-      <div className="block">
-        <div className="column is-8">
-          <h2 className="title is-2">Userlist</h2>
-          <Search allItems={this.props.allUsers}/>
+      <div className="container">
+        <div className="block">
+          <div className="column is-8">
+            <h2 className="title is-2">Find Friends</h2>
+            <Search allItems={this.props.allUsers}/>
+          </div>
         </div>
       </div>
     );

@@ -17,6 +17,9 @@ class RequestReceived extends Component {
               <div className="media-content ">
                   <p>{`${item["receiver"].first_name} ${item["receiver"].last_name}`}</p>
               </div>
+              <div className="media-right">
+                {<span className="tag is-info is-light">request sent</span>}
+              </div>
             </article>
           </div>
         </div>
@@ -34,7 +37,6 @@ class RequestReceived extends Component {
     
     return (
         <div>
-            <h2 class="title is-3">Request Sent (Pending)</h2>
             {displayList}
         </div>
     )
