@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { userPostFetch } from "../Redux";
 import { withRouter } from "react-router-dom";
-
 class Signup extends Component {
   state = {
     username: "",
     password: "",
     first_name: "",
     last_name: "",
+    errors: [],
   };
 
   handleChange = (event) => {
@@ -20,84 +20,123 @@ class Signup extends Component {
   handleSubmit = async (event) => {
     event.preventDefault();
     await this.props.userPostFetch(this.state);
-    // await console.log("after userPosrFetch",this.state.currentUser)
+
+    console.log("error from redux", this.props.errors);
+
+    if (this.props.errors.length > 0) {
+      this.setState({ errors: this.props.errors });
+      return;
+    }
+
     await this.props.history.push("/dashboard");
   };
 
   render() {
-    // console.log(this.state)
+    const { errors } = this.state;
     return (
-      <div className="container">
-        <div className="block">
-          <form onSubmit={this.handleSubmit}>
-            <h1 className="title">Sign Up For An Account</h1>
-
-            <div className="field">
-              <label className="label">Username</label>
-              <input
-                type="text"
-                className="input"
-                name="username"
-                placeholder="Username"
-                value={this.state.firstname}
-                onChange={this.handleChange}
-              />
-              <br />
-            </div>
-
-            <div className="field">
-              <label className="label">Firstname</label>
-              <input
-                type="text"
-                className="input"
-                name="first_name"
-                placeholder="Firstname"
-                value={this.state.firstname}
-                onChange={this.handleChange}
-              />
-              <br />
-            </div>
-
-            <div className="field">
-              <label className="label">Lastname</label>
-              <input
-                type="text"
-                className="input"
-                name="last_name"
-                placeholder="Lastname"
-                value={this.state.lastname}
-                onChange={this.handleChange}
-              />
-              <br />
-            </div>
-
-            <div className="field">
-              <label className="label">Password</label>
-              <input
-                className="input"
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={this.state.password}
-                onChange={this.handleChange}
-              />
-              <br />
-            </div>
-
-            <div className="field is-grouped">
-              <div className="control">
-                <button className="button is-primary">Submit</button>
+      <form onSubmit={this.handleSubmit}>
+        <section class="hero is-primary is-fullheight">
+          {errors.map((error) => (
+            <div class="notification is-danger is-light">{error}</div>
+          ))}
+          <div class="hero-body">
+            <div class="container">
+              <div class="columns is-centered">
+                <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+                  <form action="" class="box">
+                    <div class="field">
+                      <label for="" class="label">
+                        Username
+                      </label>
+                      <div class="control has-icons-left">
+                        <input
+                          type="text"
+                          className="input"
+                          name="username"
+                          placeholder="Username"
+                          value={this.state.username}
+                          onChange={this.handleChange}
+                          required
+                        ></input>
+                        <span class="icon is-small is-left">
+                          <i class="fa fa-user"></i>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <label for="" class="label">
+                        First Name
+                      </label>
+                      <div class="control has-icons-left">
+                        <input
+                          type="text"
+                          className="input"
+                          name="first_name"
+                          placeholder="First Name"
+                          value={this.state.first_name}
+                          onChange={this.handleChange}
+                          required
+                        ></input>
+                        <span class="icon is-small is-left">
+                          <i class="fa fa-user"></i>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <label for="" class="label">
+                        Last Name
+                      </label>
+                      <div class="control has-icons-left">
+                        <input
+                          type="text"
+                          className="input"
+                          name="last_name"
+                          placeholder="Last Name"
+                          value={this.state.last_name}
+                          onChange={this.handleChange}
+                          required
+                        ></input>
+                        <span class="icon is-small is-left">
+                          <i class="fa fa-user"></i>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <label for="" class="label">
+                        Password
+                      </label>
+                      <div class="control has-icons-left">
+                        <input
+                          className="input"
+                          type="password"
+                          name="password"
+                          placeholder="********"
+                          value={this.state.password}
+                          onChange={this.handleChange}
+                          required
+                        ></input>
+                        <span class="icon is-small is-left">
+                          <i class="fa fa-lock"></i>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <button class="button is-success">Sign Up</button>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
-          </form>
-        </div>
-      </div>
+          </div>
+        </section>
+      </form>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
   currentUser: state.auth.currentUser,
+  errors: state.auth.errors,
 });
 
 const mapDispatchToProps = (dispatch) => ({

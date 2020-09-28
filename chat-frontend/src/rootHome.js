@@ -70,7 +70,7 @@ class rootHome extends Component {
           ) : (
             <Redirect
               to={{
-                pathname: "/requestsent",
+                pathname: "/bothreq",
               }}
             />
           )
@@ -96,17 +96,18 @@ class rootHome extends Component {
 
     return (
       <Router>
-        <nav className="navbar " role="navigation" aria-label="main navigation">
+        <nav className="navbar has-background-primary-light" role="navigation" aria-label="main navigation">
           <div className="navbar-brand">
-            <a className="navbar-item" href="https://bulma.io">
+            <a className="navbar-item" href="/">
               <img
                 src="https://bulma.io/images/bulma-logo.png"
+                alt="bulma"
                 width="112"
                 height="28"
               ></img>
             </a>
 
-            <a
+            <div
               role="button"
               className="navbar-burger burger"
               aria-label="menu"
@@ -116,7 +117,7 @@ class rootHome extends Component {
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
-            </a>
+            </div>
           </div>
 
           <div id="navbarBasicExample" className="navbar-menu">
@@ -134,12 +135,12 @@ class rootHome extends Component {
               <div className="navbar-item">
                 <div className="buttons">
                   {!this.props.currentUser && (
-                    <Link className="button is-primary" to="/signup">
+                    <Link className="button is-primary is-active" to="/signup">
                       <strong>Sign up</strong>
                     </Link>
                   )}
                   {!this.props.currentUser && (
-                    <Link className="button is-light" to="/login">
+                    <Link className="button is-light is-active" to="/login">
                       <strong>Log in</strong>
                     </Link>
                   )}
@@ -157,7 +158,6 @@ class rootHome extends Component {
             </div>
           </div>
         </nav>
-
         <Switch>
           <Route path="/login">
             <Login />

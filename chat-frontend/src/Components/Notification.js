@@ -1,23 +1,28 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter, useLocation } from "react-router-dom";
 
-class Logout extends Component {
-  handleClick = async (event) => {
-    await this.props.history.push("/bothreq");
+function Notification(props) {
+  const location = useLocation();
+  const handleClick = async (event) => {
+    console.log(location);
+    await props.history.push("/bothreq");
   };
 
-  render() {
-    return (
-      <div>
-        {this.props.currentUser && (
-          <button className="button is-primary " onClick={this.handleClick}>
-            Notifications
-          </button>
-        )}
-      </div>
-    );
-  }
+  return (
+    <div>
+      {props.currentUser && (
+        <button
+          className={`button is-primary ${
+            location.pathname === "/bothreq" ? "is-active" : ""
+          }`}
+          onClick={handleClick}
+        >
+          Notifications
+        </button>
+      )}
+    </div>
+  );
 }
 
 const mapStateToProps = (state) => ({
@@ -28,4 +33,6 @@ const mapDispatchToProps = (dispatch) => ({
   // : () => dispatch(())
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Logout));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(Notification)
+);

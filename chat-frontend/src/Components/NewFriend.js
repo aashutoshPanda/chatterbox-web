@@ -1,24 +1,28 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter, useLocation } from "react-router-dom";
+ 
+function NewFriend(props) {
+  const location = useLocation();
 
-class Logout extends Component {
-  handleClick = async (event) => {
-    await this.props.history.push("/userlist");
+  const handleClick = async (event) => {
+    await props.history.push("/userlist");
   };
 
-  render() {
-    // console.log(this.props.currentUser) button class="button is-primary is-outlined is-small">
-    return (
-      <div>
-        {this.props.currentUser && (
-          <button className="button is-primary " onClick={this.handleClick}>
-            New Friend
-          </button>
+  return (
+    <div>
+        {props.currentUser && (
+          <button
+          className={`button is-primary ${
+            location.pathname === "/userlist" ? "is-active" : ""
+          }`}
+          onClick={handleClick}
+        >
+          New Friend
+        </button>
         )}
-      </div>
-    );
-  }
+    </div>
+  );
 }
 
 const mapStateToProps = (state) => ({
@@ -29,4 +33,4 @@ const mapDispatchToProps = (dispatch) => ({
   // userLogout: userInfo => dispatch(userLogout(userInfo))
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Logout));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NewFriend));

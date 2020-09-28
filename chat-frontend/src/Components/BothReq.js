@@ -12,16 +12,24 @@ class Logout extends Component {
 
   render() {
     return (
-      <div>
-        <br></br>
-        <div className="container">
-          <div className="block">
-            <RequestReceived></RequestReceived>
-            <RequestSent></RequestSent>
-            <Friends></Friends>
+      <section class="hero has-background-white-ter is-fullheight">
+        <div class="">
+          <div class="container">
+            <div class="columns is-centered">
+              <div class="column is-8-tablet is-8-desktop is-8-widescreen">
+                <br/>
+                <div className="container">
+                  <div className="block">
+                    <RequestReceived></RequestReceived>
+                    <RequestSent></RequestSent>
+                    <Friends></Friends>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     );
   }
 }

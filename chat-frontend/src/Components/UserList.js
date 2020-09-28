@@ -10,14 +10,20 @@ class UserList extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="block">
-          <div className="column is-8">
-            <h2 className="title is-2">Find Friends</h2>
-            <Search allItems={this.props.allUsers} />
+      <section class="hero has-background-white-ter is-fullheight">
+        <div class="">
+          <div class="container">
+            <div class="columns is-centered">
+              <div class="column ">
+                <div className="column is-8">
+                  <h2 className="title is-2">Find Friends</h2>
+                  <Search allItems={this.props.allUsers} />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
     );
   }
 }

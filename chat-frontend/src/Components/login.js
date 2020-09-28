@@ -7,6 +7,7 @@ class Login extends Component {
   state = {
     username: "",
     password: "",
+    errors: [],
   };
 
   handleChange = (event) => {
@@ -17,57 +18,85 @@ class Login extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
+    
     await this.props.userLoginFetch(this.state);
+
+    if (this.props.errors.length > 0) {
+      this.setState({ errors:this.props.errors });
+      return;
+    }
+
     this.props.history.push("/dashboard");
   };
-
   render() {
+    const { errors } = this.state;
+    console.log("error from redux", this.props.errors);
     return (
-      <div className="container">
-        <div className="block">
-          <form onSubmit={this.handleSubmit}>
-            <h1 className="title">Login</h1>
-
-            <div className="field">
-              <label className="label">Username</label>
-              <input
-                type="text"
-                className="input"
-                name="username"
-                placeholder="Username"
-                value={this.state.username}
-                onChange={this.handleChange}
-              />
-              <br />
-            </div>
-
-            <div className="field">
-              <label className="label">Password</label>
-              <input
-                className="input"
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={this.state.password}
-                onChange={this.handleChange}
-              />
-              <br />
-            </div>
-
-            <div className="field is-grouped">
-              <div className="control">
-                <button className="button is-primary">Submit</button>
+      <form onSubmit={this.handleSubmit}>
+        <section class="hero is-primary is-fullheight">
+          {this.state.errors.map((error) => (
+            <div class="notification is-danger is-light">{error}</div>
+          ))}
+          <div class="hero-body">
+            <div class="container">
+              <div class="columns is-centered">
+                <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+                  <form action="" class="box">
+                    <div class="field">
+                      <label for="" class="label">
+                        Username
+                      </label>
+                      <div class="control has-icons-left">
+                        <input
+                          type="text"
+                          className="input"
+                          name="username"
+                          placeholder="Username"
+                          value={this.state.username}
+                          onChange={this.handleChange}
+                          required
+                        ></input>
+                        <span class="icon is-small is-left">
+                          <i class="fa fa-user"></i>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <label for="" class="label">
+                        Password
+                      </label>
+                      <div class="control has-icons-left">
+                        <input
+                          className="input"
+                          type="password"
+                          name="password"
+                          placeholder="********"
+                          value={this.state.password}
+                          onChange={this.handleChange}
+                          required
+                        ></input>
+                        <span class="icon is-small is-left">
+                          <i class="fa fa-lock"></i>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="field">
+                      <button class="button is-success">Login</button>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
-          </form>
-        </div>
-      </div>
+          </div>
+        </section>
+      </form>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
   currentUser: state.auth.currentUser,
+  errors: state.auth.errors,
 });
 
 const mapDispatchToProps = (dispatch) => ({

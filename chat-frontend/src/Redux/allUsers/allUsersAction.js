@@ -21,5 +21,5 @@ export const FetchAllUsers = () => {
 
 const getAllUsers = (allUsers) => ({
   type: "GET_ALL_USERS",
-  payload: allUsers,
+  payload: allUsers
 });

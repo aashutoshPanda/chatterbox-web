@@ -1,23 +1,23 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FetchAllUsers } from "../Redux";
+import { getFriends } from "../Redux";
 
 class UserList extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      list: this.props.allUsers,
+      list: this.props.Friends,
     };
   }
 
   componentDidMount() {
-    this.props.FetchAllUsers();
+    this.props.getFriends();
   }
 
   handleChange = (e) => {
     const searchString = e.target.value.toLowerCase();
-    const filteredItems = this.props.allUsers.filter((item) => {
+    const filteredItems = this.props.Friends.filter((item) => {
       // console.log(user)
       return (
         item.first_name.toLowerCase().includes(searchString) ||
@@ -47,7 +47,7 @@ class UserList extends Component {
     return (
       <div className="container">
         <div className="column ">
-          <h2 className="title is-2">Find Users</h2>
+          <h2 className="title is-5">Select A Friend To Chat With</h2>
           <div>
             <input className="input" type="text" onChange={this.handleChange} />
             <br></br>
@@ -63,11 +63,11 @@ class UserList extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  allUsers: state.allUsers.allUsers,
+  Friends: state.Friends.Friends
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  FetchAllUsers: () => dispatch(FetchAllUsers()),
+  getFriends: () => dispatch(getFriends())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserList);
