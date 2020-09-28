@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model, password_validation, authenticat
 from rest_framework.authtoken.models import Token
 from rest_framework import serializers
 from django.conf import settings
+from .models import Profile, Relationship
 User = get_user_model()
 client = stream.connect(
     settings.STREAM_API_KEY, settings.STREAM_API_SECRET, location='us-east')
@@ -25,9 +26,10 @@ class AuthUserSerializer(serializers.ModelSerializer):
             'id', 'is_active', 'is_staff')
 
     def get_auth_token(self, obj):
-        # token, created = Token.objects.get_or_create(user=obj)
-        user_token = client.create_user_token(obj.username)
-        return user_token
+        token, _ = Token.objects.get_or_create(user=obj)
+        return str(token)
+        # user_token = client.create_user_token(obj.username)
+        # return user_token
 
 
 class EmptySerializer(serializers.Serializer):
@@ -43,12 +45,31 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         model = User
         fields = ('id', 'username', 'password', 'first_name', 'last_name')
 
-    # def validate_username(self, value):
-    #     user = User.objects.filter(username=value)
-    #     if user:
-    #         raise serializers.ValidationError("Usename is already taken")
-    #     return BaseUserManager.normalize_username(value)
 
-    def validate_password(self, value):
-        password_validation.validate_password(value)
-        return value
+class ProfileSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(source="user.username", read_only=True)
+    first_name = serializers.CharField(
+        source="user.first_name", read_only=True)
+    last_name = serializers.CharField(source="user.last_name", read_only=True)
+
+    class Meta:
+        model = Profile
+        fields = ['bio', 'username', 'first_name', 'last_name', 'id']
+
+
+class UserSerializer(serializers.ModelSerializer):
+
+    bio = serializers.CharField(source="profile.bio")
+
+    class Meta:
+        model = User
+        fields = ['id', 'bio', 'username', 'first_name', 'last_name']
+
+
+class RelationshipSerializer(serializers.ModelSerializer):
+    sender = ProfileSerializer(read_only=True)
+    receiver = ProfileSerializer(read_only=True)
+
+    class Meta:
+        model = Relationship
+        fields = ['id', 'status', 'updated', 'created', 'sender', 'receiver']

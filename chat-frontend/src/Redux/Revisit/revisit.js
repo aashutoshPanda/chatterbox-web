@@ -1,24 +1,26 @@
-export const getProfileFetch = () => {
-    return dispatch => {
-      const token = localStorage.token;
-      if (token) {
-        return fetch("http://localhost:3000/api/v1/profile", {
-          method: "GET",
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-            'Authorization': `Bearer ${token}`
-          }
-        })
-          .then(resp => resp.json())
-          .then(data => {
-              dispatch(loginUser(data.user_name))
-          })
-      }
-    }
-  }
+const axios = require("axios");
 
-  const loginUser = userObj => ({
-    type: 'LOGIN_USER',
-    payload: userObj
-})
+export const getProfileFetch = () => {
+  if (localStorage.token) {
+    return (dispatch) => {
+      return axios
+        .get("http://localhost:8000/profile/current_user_from_token", {
+          headers: {
+            Authorization: "Token " + localStorage.token,
+          },
+        })
+        .then((resp) => {
+          // console.log("reqqqvbvb",resp.data);
+          dispatch(getInfo(resp.data));
+        })
+        .catch((err) => {
+          console.log("error message", err);
+        });
+    };
+  }
+};
+
+const getInfo = (user) => ({
+  type: "LOGIN_USER",
+  payload: user,
+});

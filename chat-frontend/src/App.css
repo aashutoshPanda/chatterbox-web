@@ -31,3 +31,13 @@
     transform: rotate(360deg);
   }
 }
+
+.centerall {
+  height: 100vh;
+  padding: 3rem;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  /* align-items: center; */
+  }
+  

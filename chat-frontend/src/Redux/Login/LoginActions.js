@@ -1,23 +1,35 @@
-export const userLoginFetch = user => {
-    return dispatch => {
-      return fetch("http://localhost:8000/auth/login", {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({user})
-      })
-        .then(resp => resp.json())
-        .then(data => {
-            console.log(data)
-            localStorage.setItem("token", data.token)
-            dispatch(loginUser(data.user_name))
-        })
-    }
-  }
+const axios = require("axios");
 
-  const loginUser = userObj => ({
-    type: 'LOGIN_USER',
-    payload: userObj
-})
+export const userLoginFetch = (user) => {
+  return (dispatch) => {
+    return axios
+      .post("http://localhost:8000/profile/auth/login", user)
+      .then( async (resp) => {
+        // console.log(resp.data);
+        localStorage.setItem("token", resp.data.auth_token);
+        await dispatch(reset())
+        await dispatch(loginUser(resp.data));
+      })
+      .catch( async (err) => {
+        console.log("error message login", err.response.data);
+        await dispatch(errormessage(err.response.data))
+      });
+  };
+};
+
+const loginUser = (userObj) => ({
+  type: "LOGIN_USER",
+  payload: userObj
+});
+
+
+const errormessage = (err) => ({
+  type: "ERROR",
+  payload: err
+});
+
+
+export const reset = () => ({
+  type: "RESET",
+  payload: []
+});
