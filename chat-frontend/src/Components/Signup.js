@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { userPostFetch, errorReset } from "../Redux";
 import { withRouter } from "react-router-dom";
-import {reset} from "../Redux/Signup/SignupActions"
+import { reset } from "../Redux/Signup/SignupActions";
 
 class Signup extends Component {
   state = {
@@ -21,38 +21,18 @@ class Signup extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-<<<<<<< HEAD
     this.props.userPostFetch(this.state);
   };
   componentWillUnmount() {
     this.props.errorReset();
-=======
-    await this.props.userPostFetch(this.state);
-
-    console.log("error from redux", this.props.errors);
-
-    if (this.props.errors.length > 0) {
-      this.setState({ errors: this.props.errors });
-    }
-    else this.props.history.push("/dashboard");
-  };
-  componentWillUnmount(){
-    this.props.reset();
->>>>>>> signup_redirect_error
   }
   render() {
     // const { errors } = this.props.errors;
     return (
       <form onSubmit={this.handleSubmit}>
-<<<<<<< HEAD
         <section class="hero is-primary is-fullheight">
           {this.props.errors.map((error) => (
             <div class="notification is-danger is-light">{error}</div>
-=======
-        <section className="hero is-primary is-fullheight">
-          {errors.map((error) => (
-            <div className="notification is-danger is-light">{error}</div>
->>>>>>> signup_redirect_error
           ))}
           <div className="hero-body">
             <div className="container">
@@ -60,9 +40,7 @@ class Signup extends Component {
                 <div className="column is-5-tablet is-4-desktop is-3-widescreen">
                   <div action="" className="box">
                     <div className="field">
-                      <label  className="label">
-                        Username
-                      </label>
+                      <label className="label">Username</label>
                       <div className="control has-icons-left">
                         <input
                           type="text"
@@ -79,9 +57,7 @@ class Signup extends Component {
                       </div>
                     </div>
                     <div className="field">
-                      <label className="label">
-                        First Name
-                      </label>
+                      <label className="label">First Name</label>
                       <div className="control has-icons-left">
                         <input
                           type="text"
@@ -98,9 +74,7 @@ class Signup extends Component {
                       </div>
                     </div>
                     <div className="field">
-                      <label className="label">
-                        Last Name
-                      </label>
+                      <label className="label">Last Name</label>
                       <div className="control has-icons-left">
                         <input
                           type="text"
@@ -117,9 +91,7 @@ class Signup extends Component {
                       </div>
                     </div>
                     <div className="field">
-                      <label className="label">
-                        Password
-                      </label>
+                      <label className="label">Password</label>
                       <div className="control has-icons-left">
                         <input
                           className="input"
@@ -156,13 +128,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   userPostFetch: (userInfo) => dispatch(userPostFetch(userInfo)),
-<<<<<<< HEAD
   errorReset: () => dispatch(errorReset()),
-=======
-  reset:()=>dispatch(reset())
->>>>>>> signup_redirect_error
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Signup));
-
-
