@@ -31,3 +31,8 @@ const errormessage = (err) => ({
 export const errorReset = () => ({
   type: "RESET",
 });
+
+export const reset = () => ({
+  type: "RESET",
+  payload: [],
+});

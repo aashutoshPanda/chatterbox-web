@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { userLoginFetch, errorReset } from "../Redux/Login/LoginActions";
 import { withRouter } from "react-router-dom";
+import { reset } from "../Redux/Login/LoginActions";
 
 class Login extends Component {
   state = {
@@ -32,16 +33,14 @@ class Login extends Component {
           {this.props.errors.map((error) => (
             <div class="notification is-danger is-light">{error}</div>
           ))}
-          <div class="hero-body">
-            <div class="container">
-              <div class="columns is-centered">
-                <div class="column is-5-tablet is-4-desktop is-3-widescreen">
-                  <form action="" class="box">
-                    <div class="field">
-                      <label for="" class="label">
-                        Username
-                      </label>
-                      <div class="control has-icons-left">
+          <div className="hero-body">
+            <div className="container">
+              <div className="columns is-centered">
+                <div className="column is-5-tablet is-4-desktop is-3-widescreen">
+                  <div action="" className="box">
+                    <div className="field">
+                      <label className="label">Username</label>
+                      <div className="control has-icons-left">
                         <input
                           type="text"
                           className="input"
@@ -51,16 +50,14 @@ class Login extends Component {
                           onChange={this.handleChange}
                           required
                         ></input>
-                        <span class="icon is-small is-left">
-                          <i class="fa fa-user"></i>
+                        <span className="icon is-small is-left">
+                          <i className="fa fa-user"></i>
                         </span>
                       </div>
                     </div>
-                    <div class="field">
-                      <label for="" class="label">
-                        Password
-                      </label>
-                      <div class="control has-icons-left">
+                    <div className="field">
+                      <label className="label">Password</label>
+                      <div className="control has-icons-left">
                         <input
                           className="input"
                           type="password"
@@ -70,15 +67,15 @@ class Login extends Component {
                           onChange={this.handleChange}
                           required
                         ></input>
-                        <span class="icon is-small is-left">
-                          <i class="fa fa-lock"></i>
+                        <span className="icon is-small is-left">
+                          <i className="fa fa-lock"></i>
                         </span>
                       </div>
                     </div>
-                    <div class="field">
-                      <button class="button is-success">Login</button>
+                    <div className="field">
+                      <button className="button is-success">Login</button>
                     </div>
-                  </form>
+                  </div>
                 </div>
               </div>
             </div>

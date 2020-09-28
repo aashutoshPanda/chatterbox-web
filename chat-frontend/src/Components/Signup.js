@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { userPostFetch, errorReset } from "../Redux";
 import { withRouter } from "react-router-dom";
+import {reset} from "../Redux/Signup/SignupActions"
+
 class Signup extends Component {
   state = {
     username: "",
@@ -19,29 +21,49 @@ class Signup extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
+<<<<<<< HEAD
     this.props.userPostFetch(this.state);
   };
   componentWillUnmount() {
     this.props.errorReset();
+=======
+    await this.props.userPostFetch(this.state);
+
+    console.log("error from redux", this.props.errors);
+
+    if (this.props.errors.length > 0) {
+      this.setState({ errors: this.props.errors });
+    }
+    else this.props.history.push("/dashboard");
+  };
+  componentWillUnmount(){
+    this.props.reset();
+>>>>>>> signup_redirect_error
   }
   render() {
     // const { errors } = this.props.errors;
     return (
       <form onSubmit={this.handleSubmit}>
+<<<<<<< HEAD
         <section class="hero is-primary is-fullheight">
           {this.props.errors.map((error) => (
             <div class="notification is-danger is-light">{error}</div>
+=======
+        <section className="hero is-primary is-fullheight">
+          {errors.map((error) => (
+            <div className="notification is-danger is-light">{error}</div>
+>>>>>>> signup_redirect_error
           ))}
-          <div class="hero-body">
-            <div class="container">
-              <div class="columns is-centered">
-                <div class="column is-5-tablet is-4-desktop is-3-widescreen">
-                  <form action="" class="box">
-                    <div class="field">
-                      <label for="" class="label">
+          <div className="hero-body">
+            <div className="container">
+              <div className="columns is-centered">
+                <div className="column is-5-tablet is-4-desktop is-3-widescreen">
+                  <div action="" className="box">
+                    <div className="field">
+                      <label  className="label">
                         Username
                       </label>
-                      <div class="control has-icons-left">
+                      <div className="control has-icons-left">
                         <input
                           type="text"
                           className="input"
@@ -51,16 +73,16 @@ class Signup extends Component {
                           onChange={this.handleChange}
                           required
                         ></input>
-                        <span class="icon is-small is-left">
-                          <i class="fa fa-user"></i>
+                        <span className="icon is-small is-left">
+                          <i className="fa fa-user"></i>
                         </span>
                       </div>
                     </div>
-                    <div class="field">
-                      <label for="" class="label">
+                    <div className="field">
+                      <label className="label">
                         First Name
                       </label>
-                      <div class="control has-icons-left">
+                      <div className="control has-icons-left">
                         <input
                           type="text"
                           className="input"
@@ -70,16 +92,16 @@ class Signup extends Component {
                           onChange={this.handleChange}
                           required
                         ></input>
-                        <span class="icon is-small is-left">
-                          <i class="fa fa-user"></i>
+                        <span className="icon is-small is-left">
+                          <i className="fa fa-user"></i>
                         </span>
                       </div>
                     </div>
-                    <div class="field">
-                      <label for="" class="label">
+                    <div className="field">
+                      <label className="label">
                         Last Name
                       </label>
-                      <div class="control has-icons-left">
+                      <div className="control has-icons-left">
                         <input
                           type="text"
                           className="input"
@@ -89,16 +111,16 @@ class Signup extends Component {
                           onChange={this.handleChange}
                           required
                         ></input>
-                        <span class="icon is-small is-left">
-                          <i class="fa fa-user"></i>
+                        <span className="icon is-small is-left">
+                          <i className="fa fa-user"></i>
                         </span>
                       </div>
                     </div>
-                    <div class="field">
-                      <label for="" class="label">
+                    <div className="field">
+                      <label className="label">
                         Password
                       </label>
-                      <div class="control has-icons-left">
+                      <div className="control has-icons-left">
                         <input
                           className="input"
                           type="password"
@@ -108,15 +130,15 @@ class Signup extends Component {
                           onChange={this.handleChange}
                           required
                         ></input>
-                        <span class="icon is-small is-left">
-                          <i class="fa fa-lock"></i>
+                        <span className="icon is-small is-left">
+                          <i className="fa fa-lock"></i>
                         </span>
                       </div>
                     </div>
-                    <div class="field">
-                      <button class="button is-success">Sign Up</button>
+                    <div className="field">
+                      <button className="button is-success">Sign Up</button>
                     </div>
-                  </form>
+                  </div>
                 </div>
               </div>
             </div>
@@ -134,7 +156,13 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   userPostFetch: (userInfo) => dispatch(userPostFetch(userInfo)),
+<<<<<<< HEAD
   errorReset: () => dispatch(errorReset()),
+=======
+  reset:()=>dispatch(reset())
+>>>>>>> signup_redirect_error
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Signup));
+
+
