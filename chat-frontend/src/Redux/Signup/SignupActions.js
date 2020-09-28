@@ -7,15 +7,16 @@ export const userPostFetch = (user) => {
       .then( async (resp) => {
         // console.log(resp.data);
         localStorage.setItem("token", resp.data.auth_token);
-        await dispatch(errormessage([]))
+        await dispatch(reset())
         await dispatch(loginUser(resp.data));
       })
-      .catch((err) => {
+      .catch( (err) => {
         console.log("error message signup", err.response.data.username);
         dispatch(errormessage(err.response.data.username))
       });
   };
 };
+
 
 const loginUser = (userObj) => ({
   type: "LOGIN_USER",
@@ -25,4 +26,9 @@ const loginUser = (userObj) => ({
 const errormessage = (err) => ({
   type: "ERROR",
   payload: err
+});
+
+export const reset = () => ({
+  type: "RESET",
+  payload: []
 });

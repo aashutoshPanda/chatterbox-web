@@ -12,11 +12,11 @@ class Logout extends Component {
 
   render() {
     return (
-      <section class="hero has-background-white-ter is-fullheight">
-        <div class="">
-          <div class="container">
-            <div class="columns is-centered">
-              <div class="column is-8-tablet is-8-desktop is-8-widescreen">
+      <section className="hero has-background-white-ter is-fullheight">
+        <div className="">
+          <div className="container">
+            <div className="columns is-centered">
+              <div className="column is-8-tablet is-8-desktop is-8-widescreen">
                 <br/>
                 <div className="container">
                   <div className="block">

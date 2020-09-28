@@ -7,7 +7,7 @@ export const userLoginFetch = (user) => {
       .then( async (resp) => {
         // console.log(resp.data);
         localStorage.setItem("token", resp.data.auth_token);
-        await dispatch(errormessage([]))
+        await dispatch(reset())
         await dispatch(loginUser(resp.data));
       })
       .catch( async (err) => {
@@ -26,4 +26,10 @@ const loginUser = (userObj) => ({
 const errormessage = (err) => ({
   type: "ERROR",
   payload: err
+});
+
+
+export const reset = () => ({
+  type: "RESET",
+  payload: []
 });
