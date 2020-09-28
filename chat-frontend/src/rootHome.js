@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-} from "react-router-dom";
 import { connect } from "react-redux";
+import { Router, Switch, Route, Redirect } from "react-router";
+import { Link } from "react-router-dom";
+
+import { createBrowserHistory } from "history";
 import Signup from "./Components/Signup";
 import Login from "./Components/login";
 import Logout from "./Components/logout";
@@ -17,6 +14,7 @@ import NewFriend from "./Components/NewFriend";
 import UserList from "./Components/UserList";
 import BothReq from "./Components/BothReq";
 import Friends from "./Components/Friends";
+export const history = createBrowserHistory();
 
 class rootHome extends Component {
   constructor(props) {
@@ -95,8 +93,12 @@ class rootHome extends Component {
     );
 
     return (
-      <Router>
-        <nav className="navbar has-background-primary-light" role="navigation" aria-label="main navigation">
+      <Router history={history}>
+        <nav
+          className="navbar has-background-primary-light"
+          role="navigation"
+          aria-label="main navigation"
+        >
           <div className="navbar-brand">
             <a className="navbar-item" href="/">
               <img

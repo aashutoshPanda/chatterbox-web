@@ -14,7 +14,8 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "stream-chat": "^2.4.0",
-    "stream-chat-react": "^0.5.8"
+    "stream-chat-react": "^0.5.8",
+    "history": "^4.10.1"
   },
   "scripts": {
     "start": "react-scripts start",

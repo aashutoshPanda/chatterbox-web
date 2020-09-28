@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { userPostFetch } from "../Redux";
+import { userPostFetch, errorReset } from "../Redux";
 import { withRouter } from "react-router-dom";
 class Signup extends Component {
   state = {
@@ -19,24 +19,17 @@ class Signup extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    await this.props.userPostFetch(this.state);
-
-    console.log("error from redux", this.props.errors);
-
-    if (this.props.errors.length > 0) {
-      this.setState({ errors: this.props.errors });
-      return;
-    }
-
-    await this.props.history.push("/dashboard");
+    this.props.userPostFetch(this.state);
   };
-
+  componentWillUnmount() {
+    this.props.errorReset();
+  }
   render() {
-    const { errors } = this.state;
+    // const { errors } = this.props.errors;
     return (
       <form onSubmit={this.handleSubmit}>
         <section class="hero is-primary is-fullheight">
-          {errors.map((error) => (
+          {this.props.errors.map((error) => (
             <div class="notification is-danger is-light">{error}</div>
           ))}
           <div class="hero-body">
@@ -141,6 +134,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   userPostFetch: (userInfo) => dispatch(userPostFetch(userInfo)),
+  errorReset: () => dispatch(errorReset()),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Signup));

@@ -1,6 +1,6 @@
 const initialState = {
   currentUser: false,
-  errors:""
+  errors: [],
 };
 
 export default function reducer(state = initialState, action) {
@@ -10,7 +10,9 @@ export default function reducer(state = initialState, action) {
     case "LOGOUT_USER":
       return { ...state, currentUser: false };
     case "ERROR":
-      return {...state, errors:action.payload}
+      return { ...state, errors: action.payload };
+    case "RESET":
+      return { ...state, errors: [] };
     default:
       return state;
   }
