@@ -35,6 +35,16 @@ STATUS_CHOICES = (
 )
 
 
+class RelationshipManager(models.Manager):
+    def get_pending_requests_profiles(self, sender):
+        pending_requests_receivers_ids = self.filter(
+            sender=sender).values_list('receiver', flat=True)
+        receivers = Profile.objects.filter(
+            pk__in=pending_requests_receivers_ids)
+
+        return receivers
+
+
 class Relationship(models.Model):
     sender = models.ForeignKey(
         Profile, on_delete=models.CASCADE, related_name='sender')
@@ -44,6 +54,7 @@ class Relationship(models.Model):
         max_length=8, choices=STATUS_CHOICES, default='send')
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
+    objects = RelationshipManager()
 
     def save(self, *args, **kwargs):
         self.full_clean()

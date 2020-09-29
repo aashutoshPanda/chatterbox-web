@@ -58,16 +58,6 @@ class AuthViewSet(viewsets.GenericViewSet):
         return super().get_serializer_class()
 
 
-class UserList(APIView):
-    permission_classes = [IsAuthenticated, ]
-    authentication_classes = [TokenAuthentication, ]
-
-    def get(self, request):
-        users = Profile.objects.exclude(user=request.user)
-        data = ProfileSerializer(users, many=True).data
-        return Response(data)
-
-
 @api_view(['GET'])
 @permission_classes((IsAuthenticated,))
 @authentication_classes((TokenAuthentication,))
@@ -173,13 +163,32 @@ def friend_list(request):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
 
-# class Friend_list(generics.ListCreateAPIView):
-#     queryset = User.objects.all()
-#     serializer_class = UserSerializer
-#     permission_classes = [IsAuthenticated]
-#     authentication_classes = [TokenAuthentication]
+@api_view(['GET'])
+@permission_classes((IsAuthenticated,))
+@authentication_classes((TokenAuthentication,))
+def list_of_users_to_send_friend_request(request):
+    try:
+        user_profile = Profile.objects.get(user=request.user)
+        already_request_sent_profile_list = Relationship.objects.get_pending_requests_profiles(
+            user_profile)
+        # return all profile objects except (self & the ones to whom you have sent request)
+        profiles_except_self = Profile.objects.exclude(user=request.user)
+        # difference is like set1 minus the intersction between set1 & set2
+        list_of_users_to_send_friend_request = profiles_except_self.difference(
+            already_request_sent_profile_list)
 
-#     def get_queryset(self):
-#         profile = Profile.objects.get(user=request.user)
-#         friend_list_objects = Profile.objects.get(user=request.user)
-#         return user.accounts.all()
+        data = ProfileSerializer(
+            list_of_users_to_send_friend_request, many=True).data
+        return Response(data=data, status=status.HTTP_200_OK)
+    except Exception as e:
+        return Response(data=str(e), status=status.HTTP_404_NOT_FOUND)
+
+
+class UserList(APIView):
+    permission_classes = [IsAuthenticated, ]
+    authentication_classes = [TokenAuthentication, ]
+
+    def get(self, request):
+        users = Profile.objects.exclude(user=request.user)
+        data = ProfileSerializer(users, many=True).data
+        return Response(data)
