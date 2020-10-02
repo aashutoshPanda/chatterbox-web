@@ -215,3 +215,19 @@ class UploadView(APIView):
             return Response(data=data, status=status.HTTP_201_CREATED)
         except Exception as e:
             return Response(data=str(e), status=status.HTTP_400_BAD_REQUEST)
+
+
+class AddBioView(APIView):
+    permission_classes = [IsAuthenticated, ]
+    authentication_classes = [TokenAuthentication, ]
+
+    def post(self, request, format=None):
+        try:
+            user_profile = Profile.objects.get(user=request.user)
+            bio = request.data["bio"]
+            user_profile.bio = bio
+            user_profile.save()
+            data = ProfileSerializer(user_profile).data
+            return Response(data=data, status=status.HTTP_201_CREATED)
+        except Exception as e:
+            return Response(data=str(e), status=status.HTTP_400_BAD_REQUEST)

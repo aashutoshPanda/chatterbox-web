@@ -1,7 +1,7 @@
 from django.urls import path
 from rest_framework import routers
 
-from .views import AuthViewSet, UserList, RequestDetailView, RequestView, requestAcceptView, current_user_from_token_view, friend_list, list_of_users_to_send_friend_request, UploadView
+from .views import AuthViewSet, UserList, RequestDetailView, RequestView, requestAcceptView, current_user_from_token_view, friend_list, list_of_users_to_send_friend_request, UploadView, AddBioView
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register('auth', AuthViewSet, basename='profile')
@@ -22,4 +22,6 @@ urlpatterns += [
          name="friend_list"),
     path("uploadprofileimage/", UploadView.as_view(),
          name="upload_profile_image"),
+    path("addbio/", AddBioView.as_view(),
+         name="add_bio"),
 ]

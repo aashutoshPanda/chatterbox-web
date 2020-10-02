@@ -3,12 +3,13 @@ from django.db import models
 from django.core.exceptions import ValidationError
 
 default_profile_image = "https://www.flaticon.com/svg/static/icons/svg/847/847969.svg"
+default_bio = "Hi! It's a lovely day"
 
 
 class Profile(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE)
-    bio = models.TextField(blank=True)
+    bio = models.TextField(default=default_bio, blank=True)
     friends = models.ManyToManyField(User, related_name='friends', blank=True)
     # this value will change everytime the profile is updated
     updated = models.DateTimeField(auto_now=True)
