@@ -1,4 +1,7 @@
+backend/project/secrets.py
+
 /chatenv
+*.json
 # Django #
 *.log
 *.pot

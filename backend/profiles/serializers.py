@@ -27,9 +27,10 @@ class AuthUserSerializer(serializers.ModelSerializer):
 
     def get_auth_token(self, obj):
         token, _ = Token.objects.get_or_create(user=obj)
-        return str(token)
-        # user_token = client.create_user_token(obj.username)
-        # return user_token
+        # return str(token)
+        user_token_get_stream = client.create_user_token(obj.username)
+        Token.objects.filter(user=obj).update(key=user_token_get_stream)
+        return user_token_get_stream
 
 
 class EmptySerializer(serializers.Serializer):

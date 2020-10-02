@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
-
+from .secrets import get_secret
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -124,6 +124,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 USER_DETAILS_SERIALIZER = 'AuthUserSerializer'
-STREAM_API_KEY = '3bujzetkut78'
-STREAM_API_SECRET = '8geaekg944r4fvewbeewhvsmvec5mnrsev9axvncvp2dzg86zhxf3xkz89k3hhg9'
+STREAM_API_KEY = get_secret("STREAM_API_KEY")
+STREAM_API_SECRET = get_secret("STREAM_API_SECRET")
 CORS_ALLOW_ALL_ORIGINS = True
