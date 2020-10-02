@@ -2,6 +2,8 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.core.exceptions import ValidationError
 
+default_profile_image = "https://www.flaticon.com/svg/static/icons/svg/847/847969.svg"
+
 
 class Profile(models.Model):
     user = models.OneToOneField(
@@ -11,6 +13,7 @@ class Profile(models.Model):
     # this value will change everytime the profile is updated
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
+    profile_image_url = models.TextField(default=default_profile_image)
 
     def __str__(self):
         return str(self.user)

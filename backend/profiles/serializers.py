@@ -21,7 +21,7 @@ class AuthUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id', 'username', 'first_name',
-                  'last_name', 'is_active', 'is_staff', 'auth_token')
+                  'last_name', 'auth_token')
         read_only_fields = (
             'id', 'is_active', 'is_staff')
 
@@ -55,7 +55,8 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = ['bio', 'username', 'first_name', 'last_name', 'id']
+        fields = ['bio', 'username', 'first_name',
+                  'last_name', 'id', 'profile_image_url']
 
 
 class UserSerializer(serializers.ModelSerializer):

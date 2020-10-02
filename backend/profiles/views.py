@@ -1,3 +1,5 @@
+import cloudinary.uploader
+from rest_framework.parsers import MultiPartParser, JSONParser
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from django.contrib.auth import get_user_model, logout
@@ -192,3 +194,24 @@ class UserList(APIView):
         users = Profile.objects.exclude(user=request.user)
         data = ProfileSerializer(users, many=True).data
         return Response(data)
+
+
+class UploadView(APIView):
+    permission_classes = [IsAuthenticated, ]
+    authentication_classes = [TokenAuthentication, ]
+    parser_classes = (
+        MultiPartParser,
+        JSONParser,
+    )
+
+    def post(self, request, format=None):
+        try:
+            file = request.data.get('picture')
+            user_profile = Profile.objects.get(user=request.user)
+            cloudinary_response = cloudinary.uploader.upload(file)
+            user_profile.profile_image_url = cloudinary_response["secure_url"]
+            user_profile.save()
+            data = ProfileSerializer(user_profile).data
+            return Response(data=data, status=status.HTTP_201_CREATED)
+        except Exception as e:
+            return Response(data=str(e), status=status.HTTP_400_BAD_REQUEST)

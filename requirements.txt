@@ -4,3 +4,4 @@ djoser
 stream-chat
 django-cors-headers
 stream-python
+cloudinary

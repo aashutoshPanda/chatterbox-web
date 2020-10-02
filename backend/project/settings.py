@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+import cloudinary
 from pathlib import Path
 from .secrets import get_secret
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -127,3 +128,8 @@ USER_DETAILS_SERIALIZER = 'AuthUserSerializer'
 STREAM_API_KEY = get_secret("STREAM_API_KEY")
 STREAM_API_SECRET = get_secret("STREAM_API_SECRET")
 CORS_ALLOW_ALL_ORIGINS = True
+
+
+cloudinary.config(cloud_name=get_secret("CLOUDINARY_CLOUD_NAME"),
+                  api_key=get_secret("CLOUDINARY_API_KEY"),
+                  api_secret=get_secret("CLOUDINARY_API_SECRET"),)
