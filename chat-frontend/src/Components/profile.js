@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-{
-  /* <button className="button is-primary is-small" >
-                        upload/change profile picture
-                      </button> */
-}
-
 class profile extends Component {
   editbio = () => {
     this.props.history.push("/updatebio");
@@ -23,7 +17,7 @@ class profile extends Component {
         <br />
         <div className="columns is-centered is-vcentered is-offset-1">
           <div className="card column is-3 is-1by1">
-            <div className="card-image">
+            <div className="card-image ">
               <figure className="image">
                 <img
                   className="is-rounded"
@@ -45,11 +39,11 @@ class profile extends Component {
               </div>
             </div>
             <footer className="card-footer">
-              <a href="#" className="card-footer-item" onClick={this.editbio}>
+              <a href="" className="card-footer-item" onClick={this.editbio}>
                 {" "}
                 Edit Bio
               </a>
-              <a href="#" className="card-footer-item" onClick={this.editPic}>
+              <a href="" className="card-footer-item" onClick={this.editPic}>
                 Upload Pic
               </a>
             </footer>

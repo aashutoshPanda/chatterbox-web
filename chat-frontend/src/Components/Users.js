@@ -31,22 +31,26 @@ class UserList extends Component {
 
   handleOtherUserClick = (item) => {
     this.props.setOtherUser(item);
-    console.log(this.props.otherUser);
+    // console.log(this.props.otherUser);
   };
 
   createTask = (item) => {
+    // console.log(item)
     return (
-        <p
-          className={`panel-block ${
-            this.props.otherUser && item.id === this.props.otherUser.id
-              ? "has-background-grey-lighter"
-              : ""
-          }`}
-          onClick={() => this.handleOtherUserClick(item)}
-          key={item.id}
-        >
-            {`${item.first_name} ${item.last_name}`}
-        </p>
+      <p
+        className={`panel-block has-background-info-light ${
+          this.props.otherUser && item.id === this.props.otherUser.id
+            ? "has-background-grey-lighter"
+            : ""
+        }`}
+        onClick={() => this.handleOtherUserClick(item)}
+        key={item.id}
+      >
+        <figure className="image is-48x48">
+          <img src={item.profile_image_url} alt="dp" />
+        </figure>
+        {`${item.first_name} ${item.last_name}`}
+      </p>
     );
   };
 
@@ -54,24 +58,26 @@ class UserList extends Component {
     return (
       <div className="container">
         <div className="column ">
-          <nav class="panel is-primary">
+          <nav className="panel is-primary">
             <p className="panel-heading">Select A Friend To Chat With</p>
             <div>
-              <div class="panel-block">
-                <p class="control has-icons-left">
+              <div className="panel-block has-background-info-light">
+                <p className="control has-icons-left">
                   <input
-                    class="input"
+                    className="input "
                     type="text"
                     placeholder="Search"
                     onChange={this.handleChange}
                   />
-                  <span class="icon is-left">
-                    <i class="fa fa-search" aria-hidden="true"></i>
+                  <span className="icon is-left">
+                    <i className="fa fa-search" aria-hidden="true"></i>
                   </span>
                 </p>
               </div>
-              {/* {console.log(this.state.list)} */}
-              {this.state.list.map(this.createTask)}
+              {this.state.list.length !== 0 &&
+                this.state.list.map(this.createTask)}
+              {this.state.list.length === 0 &&
+                this.props.Friends.map(this.createTask)}
             </div>
           </nav>
         </div>

@@ -15,9 +15,10 @@ import UserList from "./Components/UserList";
 import BothReq from "./Components/BothReq";
 import Friends from "./Components/Friends";
 import Profile from "./Components/profile";
-import ProfileButton from "./Components/ProfileButton"
-import UpdateBio from "./Components/UploadBio"
-import UploadImage from "./Components/UploadImage"
+import ProfileButton from "./Components/ProfileButton";
+import UpdateBio from "./Components/UploadBio";
+import UploadImage from "./Components/UploadImage";
+import Home from "./Components/Home";
 export const history = createBrowserHistory();
 
 class rootHome extends Component {
@@ -178,7 +179,7 @@ class rootHome extends Component {
               {/* <Link className="navbar-item" to="/">Home</Link> */}
 
               {this.props.currentUser && (
-                <Link className="navbar-item" to="/dashboard">
+                <Link className="navbar-item has-text-link-dark" to="/dashboard">
                   Dashboard
                 </Link>
               )}
@@ -235,16 +236,6 @@ class rootHome extends Component {
       </Router>
     );
   }
-}
-
-function Home() {
-  return (
-    <div className="container">
-      <div className="block centerall">
-        <h1 className="title">Welcome to XYZ-chat</h1>
-      </div>
-    </div>
-  );
 }
 
 const mapStateToProps = (state) => ({
