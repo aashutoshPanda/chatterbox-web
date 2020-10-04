@@ -14,10 +14,10 @@ class Dashboard extends Component {
         <div className="container">
           <div className="block">
             <div className="columns">
-              <div className="column is-5 has-background-white-bis">
+              <div className="column is-5">
                 <Users></Users>
               </div>
-              <div className="column is-7 has-background-grey-lighter">
+              <div className="column is-7 ">
                 <ChatComponent></ChatComponent>
               </div>
             </div>

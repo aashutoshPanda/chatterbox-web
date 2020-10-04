@@ -54,7 +54,7 @@ class UserList extends Component {
     return (
       <div className="container">
         <div className="column ">
-          <nav class="panel">
+          <nav class="panel is-primary">
             <p className="panel-heading">Select A Friend To Chat With</p>
             <div>
               <div class="panel-block">

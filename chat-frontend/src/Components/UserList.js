@@ -34,22 +34,11 @@ class UserList extends Component {
 
   createTask = (item) => {
     return (
-      <div key={item.id} className="column is-10">
-        <div className="box">
-          <article className="media">
-            <div className="media-content ">
-              <p>{`${item.first_name} ${item.last_name}`}</p>
-            </div>
-            <div className="media-right">
-              <button
-                className="button is-info"
-                onClick={() => this.handleClick(item)}
-              >
-                Add Friend
-              </button>
-            </div>
-          </article>
-        </div>
+      <div key={item.id} className="panel-block">
+        <p>{`${item.first_name} ${item.last_name}`}</p>
+        <span class="button is-info " onClick={() => this.handleClick(item)}>
+          <i class="fa fa-user-plus" aria-hidden="true"></i>
+        </span>
       </div>
     );
   };
@@ -69,33 +58,30 @@ class UserList extends Component {
   };
   render() {
     return (
-      <section className="hero has-background-white-ter is-fullheight">
-        <div className="">
-          <div className="container">
-            <div className="columns is-centered">
-              <div className="column ">
-                <div className="column is-8">
-                  <h2 className="title is-2">Find New Friends</h2>
-                  <div>
-                    <div className="">
-                      <p className="control has-icons-left">
-                        <input className="input" type="text" placeholder="Search" />
-                        <span className="icon is-left">
-                          <i className="fa fa-search" aria-hidden="true"></i>
-                        </span>
-                      </p>
-                    </div>
-                    <br></br>
-                    <br></br>
-                    <br></br>
-                    {this.state.list.map(this.createTask)}
-                  </div>
-                </div>
-              </div>
+      <div className="container">
+        <br></br>
+
+        <div className="columns is-centered">
+          <nav class="panel column is-7 is-primary">
+            <p class="panel-heading">Find New Friends</p>
+            <div class="panel-block">
+              <p class="control has-icons-left">
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="Search"
+                  onChange={this.handleChange}
+                />
+                <span class="icon is-left">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </span>
+              </p>
             </div>
-          </div>
+
+            {this.state.list.map(this.createTask)}
+          </nav>
         </div>
-      </section>
+      </div>
     );
   }
 }
