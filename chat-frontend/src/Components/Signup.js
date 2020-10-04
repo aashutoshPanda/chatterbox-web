@@ -13,6 +13,7 @@ class Signup extends Component {
   };
 
   handleChange = (event) => {
+    this.props.errorReset();
     this.setState({
       [event.target.name]: event.target.value,
     });
@@ -32,15 +33,15 @@ class Signup extends Component {
         <section class="hero is-primary is-fullheight">
           <div className="hero-body">
             <div className="container">
-              {this.props.errors.map((error) => (
-                <div className="columns is-centered">
-                  <div className="notification is-danger is-light column is-4 ">
-                    {error}
-                  </div>
-                </div>
-              ))}
               <div className="columns is-centered">
                 <div className="column is-5-tablet is-4-desktop is-3-widescreen">
+                  {this.props.errors.map((error) => (
+                    <div className="columns is-centered">
+                      <div className="notification is-danger is-light column is-11 ">
+                        {error}
+                      </div>
+                    </div>
+                  ))}
                   <div action="" className="box">
                     <div className="field">
                       <label className="label">Username</label>
