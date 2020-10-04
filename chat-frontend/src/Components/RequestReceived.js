@@ -65,13 +65,6 @@ class RequestReceived extends Component {
           </div>
         </div>
       );
-    // return (
-    //   <div key={item.id}>
-    //     <p>{item["sender"].first_name} {item["sender"].last_name}</p>{" "}
-    //     <button onClick={()=>this.acceptReq(item)}>Accept</button>
-    //     <button onClick={()=>this.rejectReq(item)}>Reject</button>
-    //   </div>
-    // )
   };
 
   render() {

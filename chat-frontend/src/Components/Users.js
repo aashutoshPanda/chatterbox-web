@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getFriends } from "../Redux";
+import { setOtherUser } from "../Redux";
 
 class UserList extends Component {
   constructor(props) {
@@ -28,18 +29,24 @@ class UserList extends Component {
     this.setState({ list: filteredItems });
   };
 
+  handleOtherUserClick = (item) => {
+    this.props.setOtherUser(item);
+    console.log(this.props.otherUser);
+  };
+
   createTask = (item) => {
-    let isFriend = false;
     return (
-      <div key={item.id} className="column ">
-        <div className="box">
-          <article className="media">
-            <div className="media-content ">
-              <p>{`${item.first_name} ${item.last_name}`}</p>
-            </div>
-          </article>
-        </div>
-      </div>
+        <p
+          className={`panel-block ${
+            this.props.otherUser && item.id === this.props.otherUser.id
+              ? "has-background-grey-lighter"
+              : ""
+          }`}
+          onClick={() => this.handleOtherUserClick(item)}
+          key={item.id}
+        >
+            {`${item.first_name} ${item.last_name}`}
+        </p>
     );
   };
 
@@ -47,15 +54,26 @@ class UserList extends Component {
     return (
       <div className="container">
         <div className="column ">
-          <h2 className="title is-5">Select A Friend To Chat With</h2>
-          <div>
-            <input className="input" type="text" onChange={this.handleChange} />
-            <br></br>
-            <br></br>
-            <br></br>
-            {/* {console.log(this.state.list)} */}
-            {this.state.list.map(this.createTask)}
-          </div>
+          <nav class="panel">
+            <p className="panel-heading">Select A Friend To Chat With</p>
+            <div>
+              <div class="panel-block">
+                <p class="control has-icons-left">
+                  <input
+                    class="input"
+                    type="text"
+                    placeholder="Search"
+                    onChange={this.handleChange}
+                  />
+                  <span class="icon is-left">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                  </span>
+                </p>
+              </div>
+              {/* {console.log(this.state.list)} */}
+              {this.state.list.map(this.createTask)}
+            </div>
+          </nav>
         </div>
       </div>
     );
@@ -63,11 +81,13 @@ class UserList extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  Friends: state.Friends.Friends
+  Friends: state.Friends.Friends,
+  otherUser: state.OtherUser.otherUser,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getFriends: () => dispatch(getFriends())
+  getFriends: () => dispatch(getFriends()),
+  setOtherUser: (otherUser) => dispatch(setOtherUser(otherUser)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserList);

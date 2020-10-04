@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { userPostFetch, errorReset } from "../Redux";
 import { withRouter } from "react-router-dom";
-import { reset } from "../Redux/Signup/SignupActions";
 
 class Signup extends Component {
   state = {
@@ -31,11 +30,15 @@ class Signup extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <section class="hero is-primary is-fullheight">
-          {this.props.errors.map((error) => (
-            <div class="notification is-danger is-light">{error}</div>
-          ))}
           <div className="hero-body">
             <div className="container">
+              {this.props.errors.map((error) => (
+                <div className="columns is-centered">
+                  <div className="notification is-danger is-light column is-4 ">
+                    {error}
+                  </div>
+                </div>
+              ))}
               <div className="columns is-centered">
                 <div className="column is-5-tablet is-4-desktop is-3-widescreen">
                   <div action="" className="box">

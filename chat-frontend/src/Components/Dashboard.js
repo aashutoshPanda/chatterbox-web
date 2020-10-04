@@ -6,6 +6,7 @@ import ChatComponent from "./ChatComponent";
 import Users from "./Users";
 
 class Dashboard extends Component {
+
   render() {
     return (
       <div>
@@ -29,6 +30,7 @@ class Dashboard extends Component {
 
 const mapStateToProps = (state) => ({
   currentUser: state.auth.currentUser,
+  otherUser: state.OtherUser.otherUser
 });
 
 const mapDispatchToProps = (dispatch) => ({

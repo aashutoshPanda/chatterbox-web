@@ -41,3 +41,10 @@
   /* align-items: center; */
   }
   
+  .align-text-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+ 

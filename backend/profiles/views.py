@@ -212,8 +212,10 @@ class UploadView(APIView):
             user_profile.profile_image_url = cloudinary_response["secure_url"]
             user_profile.save()
             data = ProfileSerializer(user_profile).data
+            print("Image Upload Success")
             return Response(data=data, status=status.HTTP_201_CREATED)
         except Exception as e:
+            print(str(e))
             return Response(data=str(e), status=status.HTTP_400_BAD_REQUEST)
 
 

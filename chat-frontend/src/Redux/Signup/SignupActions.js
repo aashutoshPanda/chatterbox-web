@@ -7,7 +7,7 @@ export const userPostFetch = (user) => {
       .then(async (resp) => {
         // console.log(resp.data);
         localStorage.setItem("token", resp.data.auth_token);
-        await dispatch(errormessage([]));
+        await dispatch(errorReset());
         await dispatch(loginUser(resp.data));
         history.push("/dashboard");
       })
@@ -32,7 +32,3 @@ export const errorReset = () => ({
   type: "RESET",
 });
 
-export const reset = () => ({
-  type: "RESET",
-  payload: [],
-});

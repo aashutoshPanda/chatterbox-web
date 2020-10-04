@@ -14,6 +14,10 @@ import NewFriend from "./Components/NewFriend";
 import UserList from "./Components/UserList";
 import BothReq from "./Components/BothReq";
 import Friends from "./Components/Friends";
+import Profile from "./Components/profile";
+import ProfileButton from "./Components/ProfileButton"
+import UpdateBio from "./Components/UploadBio"
+import UploadImage from "./Components/UploadImage"
 export const history = createBrowserHistory();
 
 class rootHome extends Component {
@@ -91,7 +95,54 @@ class rootHome extends Component {
         }
       />
     );
-
+    const PrivateRoute5 = ({ component: Component, ...rest }) => (
+      <Route
+        {...rest}
+        render={(props) =>
+          this.props.currentUser !== false ? (
+            <Component {...props} />
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/profile",
+              }}
+            />
+          )
+        }
+      />
+    );
+    const PrivateRoute6 = ({ component: Component, ...rest }) => (
+      <Route
+        {...rest}
+        render={(props) =>
+          this.props.currentUser !== false ? (
+            <Component {...props} />
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/updatebio",
+              }}
+            />
+          )
+        }
+      />
+    );
+    const PrivateRoute7 = ({ component: Component, ...rest }) => (
+      <Route
+        {...rest}
+        render={(props) =>
+          this.props.currentUser !== false ? (
+            <Component {...props} />
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/uploadImage",
+              }}
+            />
+          )
+        }
+      />
+    );
     return (
       <Router history={history}>
         <nav
@@ -149,6 +200,9 @@ class rootHome extends Component {
                 </div>
               </div>
               <div className="navbar-item">
+                <ProfileButton></ProfileButton>
+              </div>
+              <div className="navbar-item">
                 <Notification></Notification>
               </div>
               <div className="navbar-item">
@@ -168,6 +222,9 @@ class rootHome extends Component {
           <PrivateRoute2 path="/userlist" component={UserList} />
           <PrivateRoute3 path="/bothreq" component={BothReq} />
           <PrivateRoute4 path="/friends" component={Friends} />
+          <PrivateRoute5 path="/profile" component={Profile} />
+          <PrivateRoute6 path="/updatebio" component={UpdateBio} />
+          <PrivateRoute7 path="/uploadImage" component={UploadImage} />
           <Route path="/signup">
             <Signup />
           </Route>
