@@ -16,7 +16,7 @@ def post_save_add_to_friends(sender, instance, created, **kwargs):
     sender_ = instance.sender
     receiver_ = instance.receiver
     if (instance.status == 'accepted'):
-        sender_.friends.add(receiver_.user)
-        receiver_.friends.add(sender_.user)
+        sender_.friends.add(receiver_)
+        receiver_.friends.add(sender_)
         sender_.save()
         receiver_.save()

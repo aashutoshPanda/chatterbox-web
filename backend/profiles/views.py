@@ -158,7 +158,7 @@ def friend_list(request):
         profile = Profile.objects.get(user=request.user)
         print(profile.friends.all())
         friend_list_objects = profile.friends.all()
-        data = UserSerializer(friend_list_objects, many=True).data
+        data = ProfileSerializer(friend_list_objects, many=True).data
         print(data)
         return Response(data=data, status=status.HTTP_200_OK)
     except:

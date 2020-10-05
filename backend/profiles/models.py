@@ -10,7 +10,8 @@ class Profile(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE)
     bio = models.TextField(default=default_bio, blank=True)
-    friends = models.ManyToManyField(User, related_name='friends', blank=True)
+    friends = models.ManyToManyField(
+        'self', related_name='friends', blank=True)
     # this value will change everytime the profile is updated
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
