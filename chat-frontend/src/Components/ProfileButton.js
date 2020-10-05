@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 
 function ProfileButton(props) {
   const location = useLocation();
@@ -12,14 +14,9 @@ function ProfileButton(props) {
   return (
     <div>
       {props.currentUser && (
-        <button
-          className={`button is-primary ${
-            location.pathname === "/profile" ? "is-active" : ""
-          }`}
-          onClick={handleClick}
-        >
+        <Link className={`has-text-link-dark`} onClick={handleClick}>
           Profile
-        </button>
+        </Link>
       )}
     </div>
   );

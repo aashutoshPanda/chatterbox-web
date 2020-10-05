@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter, useLocation } from "react-router-dom";
- 
+import { Link } from "react-router-dom";
+
 function NewFriend(props) {
   const location = useLocation();
 
@@ -11,16 +12,11 @@ function NewFriend(props) {
 
   return (
     <div>
-        {props.currentUser && (
-          <button
-          className={`button is-primary ${
-            location.pathname === "/userlist" ? "is-active" : ""
-          }`}
-          onClick={handleClick}
-        >
+      {props.currentUser && (
+        <Link className={`has-text-link-dark `} onClick={handleClick}>
           New Friend
-        </button>
-        )}
+        </Link>
+      )}
     </div>
   );
 }
@@ -33,4 +29,6 @@ const mapDispatchToProps = (dispatch) => ({
   // userLogout: userInfo => dispatch(userLogout(userInfo))
 });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NewFriend));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(NewFriend)
+);
