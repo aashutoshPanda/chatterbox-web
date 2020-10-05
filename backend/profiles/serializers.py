@@ -62,10 +62,13 @@ class ProfileSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
 
     bio = serializers.CharField(source="profile.bio")
+    profile_image_url = serializers.CharField(
+        source="profile.profile_image_url")
 
     class Meta:
         model = User
-        fields = ['id', 'bio', 'username', 'first_name', 'last_name']
+        fields = ['id', 'bio', 'username', 'first_name',
+                  'last_name', 'profile_image_url']
 
 
 class RelationshipSerializer(serializers.ModelSerializer):
