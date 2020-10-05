@@ -24,11 +24,16 @@ export const history = createBrowserHistory();
 class rootHome extends Component {
   constructor(props) {
     super(props);
+    this.navLinks = React.createRef();
     this.state = {};
   }
 
   componentDidMount = () => {
     if (localStorage.token) this.props.getProfileFetch();
+  };
+
+  burgerClick = () => {
+    this.navLinks.current.classList.toggle("is-active");
   };
 
   render() {
@@ -144,6 +149,7 @@ class rootHome extends Component {
         }
       />
     );
+
     return (
       <Router history={history}>
         <nav
@@ -167,6 +173,7 @@ class rootHome extends Component {
               aria-label="menu"
               aria-expanded="false"
               data-target="navbarBasicExample"
+              onClick={this.burgerClick}
             >
               <span aria-hidden="true"></span>
               <span aria-hidden="true"></span>
@@ -174,42 +181,58 @@ class rootHome extends Component {
             </div>
           </div>
 
-          <div id="navbarBasicExample" className="navbar-menu">
+          <div
+            id="navbarBasicExample"
+            className="navbar-menu"
+            ref={this.navLinks}
+          >
             <div className="navbar-start">
-              {/* <Link className="navbar-item" to="/">Home</Link> */}
-
               {this.props.currentUser && (
-                <Link className="navbar-item has-text-link-dark" to="/dashboard">
-                  Dashboard
+                <Link className="navbar-item" to="/dashboard">
+                  <p className="has-text-link-dark" onClick={this.burgerClick}>
+                    Dashboard
+                  </p>
                 </Link>
               )}
+              <Link
+                className="navbar-item has-text-link-dark"
+                onClick={this.burgerClick}
+              >
+                <ProfileButton></ProfileButton>
+              </Link>
+
+              <Link className="navbar-item" onClick={this.burgerClick}>
+                <NewFriend></NewFriend>
+              </Link>
             </div>
 
-            <div className="navbar-end">
+            <div className="navbar-end" ref={this.navLinks}>
               <div className="navbar-item">
                 <div className="buttons">
                   {!this.props.currentUser && (
-                    <Link className="button is-primary is-active" to="/signup">
+                    <Link
+                      className="button is-primary is-active"
+                      to="/signup"
+                      onClick={this.burgerClick}
+                    >
                       <strong>Sign up</strong>
                     </Link>
                   )}
                   {!this.props.currentUser && (
-                    <Link className="button is-light is-active" to="/login">
+                    <Link
+                      className="button is-light is-active"
+                      to="/login"
+                      onClick={this.burgerClick}
+                    >
                       <strong>Log in</strong>
                     </Link>
                   )}
                 </div>
               </div>
-              <div className="navbar-item">
-                <ProfileButton></ProfileButton>
-              </div>
-              <div className="navbar-item">
+              <div className="navbar-item" onClick={this.burgerClick}>
                 <Notification></Notification>
               </div>
-              <div className="navbar-item">
-                <NewFriend></NewFriend>
-              </div>
-              <div className="navbar-item">
+              <div className="navbar-item" onClick={this.burgerClick}>
                 <Logout></Logout>
               </div>
             </div>

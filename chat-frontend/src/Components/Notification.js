@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Notification(props) {
   const location = useLocation();
@@ -12,14 +13,10 @@ function Notification(props) {
   return (
     <div>
       {props.currentUser && (
-        <button
-          className={`button is-primary ${
-            location.pathname === "/bothreq" ? "is-active" : ""
-          }`}
+        <Link
+          className="has-text-link-dark fa fa-bell"
           onClick={handleClick}
-        >
-          Notifications
-        </button>
+        ></Link>
       )}
     </div>
   );
