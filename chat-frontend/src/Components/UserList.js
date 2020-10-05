@@ -34,7 +34,7 @@ class UserList extends Component {
 
   createTask = (item) => {
     return (
-      <div key={item.id} className="panel-block has-background-info-light">
+      <div key={item.id} className="panel-block has-background-white">
         <p>{`${item.first_name} ${item.last_name}`}</p>
         <span
           className="button is-info "

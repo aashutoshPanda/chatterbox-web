@@ -38,7 +38,7 @@ class UserList extends Component {
     // console.log(item)
     return (
       <p
-        className={`panel-block has-background-info-light ${
+        className={`panel-block has-background-white ${
           this.props.otherUser && item.id === this.props.otherUser.id
             ? "has-background-grey-lighter"
             : ""
