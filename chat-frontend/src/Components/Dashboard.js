@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { userLogout } from "../Redux";
+import { logoutUser } from "../Redux";
 import { withRouter } from "react-router-dom";
 import ChatComponent from "./ChatComponent";
 import Users from "./Users";
 
 class Dashboard extends Component {
-
   render() {
     return (
       <div>
@@ -30,11 +29,11 @@ class Dashboard extends Component {
 
 const mapStateToProps = (state) => ({
   currentUser: state.auth.currentUser,
-  otherUser: state.OtherUser.otherUser
+  otherUser: state.OtherUser.otherUser,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  userLogout: (userInfo) => dispatch(userLogout(userInfo)),
+  logoutUser: () => dispatch(logoutUser()),
 });
 
 export default withRouter(

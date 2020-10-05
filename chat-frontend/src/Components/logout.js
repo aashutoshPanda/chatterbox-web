@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { userLogout } from "../Redux";
+import { logoutUser } from "../Redux/Logout/logoutAction.js";
 import { withRouter } from "react-router-dom";
 
 class Logout extends Component {
   handleClick = async (event) => {
     await event.preventDefault();
     await localStorage.removeItem("token");
-    await this.props.userLogout();
+    await this.props.logoutUser();
     await this.props.history.push("/");
   };
 
@@ -33,7 +33,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  userLogout: (userInfo) => dispatch(userLogout(userInfo)),
+  logoutUser: () => dispatch(logoutUser()),
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Logout));

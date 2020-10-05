@@ -12,39 +12,46 @@ import { connect } from "react-redux";
 
 import "stream-chat-react/dist/css/index.css";
 import { secrets } from "../secrets";
+
+import { resetOtherUser } from "../Redux/OtherUser/OtherUserAction.js";
 class MainChat extends Component {
   constructor(props) {
     super(props);
+
     this.chatClient = new StreamChat(secrets["STREAM_API_KEY"]);
-    this.username = this.props.currentUser.username;
-    this.fullName =
-      this.props.currentUser.first_name +
-      " " +
-      this.props.currentUser.last_name;
-    this.profile_image_url = this.props.currentUser.profile_image_url;
     this.userToken = localStorage.getItem("token");
     this.chatClient.setUser(
       {
-        id: this.username,
-        name: this.fullName,
-        image: this.profile_image_url,
+        id: this.props.currentUser.username,
+        name:
+          this.props.currentUser.first_name +
+          " " +
+          this.props.currentUser.last_name,
+        image: this.props.currentUser.profile_image_url,
       },
       this.userToken
     );
-
-    this.channel = this.chatClient.channel("messaging", "godevs", {
-      // add as many custom fields as you'd like
-      image:
-        "https://cdn.chrisshort.net/testing-certificate-chains-in-go/GOPHER_MIC_DROP.png",
-      name: "Talk about Go",
-    });
   }
-
+  componentWillUnmount() {
+    this.props.resetCurrentUser();
+  }
   render() {
+    const channelName =
+      this.props.currentUser.username < this.props.otherUser.username
+        ? this.props.currentUser.username + this.props.otherUser.username
+        : this.props.otherUser.username + this.props.currentUser.username;
+
+    const channel = this.chatClient.channel("messaging", channelName, {
+      image: this.props.otherUser.profile_image_url,
+      name:
+        this.props.otherUser.first_name + " " + this.props.otherUser.last_name,
+    });
+
+    console.log("other user", this.props.otherUser);
     console.log("current user", this.props.currentUser);
     return (
       <Chat client={this.chatClient} theme={"messaging light"}>
-        <Channel channel={this.channel}>
+        <Channel channel={channel}>
           <Window>
             <ChannelHeader />
             <MessageList />
@@ -59,10 +66,11 @@ class MainChat extends Component {
 
 const mapStateToProps = (state) => ({
   currentUser: state.auth.currentUser,
+  otherUser: state.OtherUser.otherUser,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  // getFriends: () => dispatch(getFriends()),
+  resetCurrentUser: () => dispatch(resetOtherUser()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainChat);

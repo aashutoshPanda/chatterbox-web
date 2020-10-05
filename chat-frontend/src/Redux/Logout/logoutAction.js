@@ -1,9 +1,3 @@
-export const userLogout = () => {
-  return (dispatch) => {
-    return dispatch(logoutUser());
-  };
+export const logoutUser = () => {
+  return { type: "USER_LOGOUT" };
 };
-
-const logoutUser = () => ({
-  type: "LOGOUT_USER",
-});

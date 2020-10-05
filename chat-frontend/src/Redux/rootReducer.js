@@ -3,14 +3,20 @@ import authReducer from "./auth/authReducer";
 import allUsersReducer from "./allUsers/allUsersReducer";
 import RequestsReducer from "./Requests/ReqReducer";
 import FriendsReducer from "./friends/friendsReducer";
-import OtherUserReducer from "./OtherUser/OtherUserReducer"
+import OtherUserReducer from "./OtherUser/OtherUserReducer";
 
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
   auth: authReducer,
   allUsers: allUsersReducer,
   Req: RequestsReducer,
   Friends: FriendsReducer,
-  OtherUser:OtherUserReducer
+  OtherUser: OtherUserReducer,
 });
+const rootReducer = (state, action) => {
+  if (action.type === "USER_LOGOUT") {
+    state = undefined;
+  }
+  return appReducer(state, action);
+};
 
 export default rootReducer;
