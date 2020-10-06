@@ -14,6 +14,8 @@ import "stream-chat-react/dist/css/index.css";
 import { secrets } from "../secrets";
 
 import { resetOtherUser } from "../Redux/OtherUser/OtherUserAction.js";
+
+import InitialChat from "./initialChat"
 class MainChat extends Component {
   constructor(props) {
     super(props);
@@ -49,7 +51,10 @@ class MainChat extends Component {
 
     console.log("other user", this.props.otherUser);
     console.log("current user", this.props.currentUser);
-    return (
+    if(this.props.otherUser===false) return(
+      <InitialChat></InitialChat>
+    )
+    else return (
       <Chat client={this.chatClient} theme={"messaging light"}>
         <Channel channel={channel}>
           <Window>

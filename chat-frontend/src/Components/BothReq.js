@@ -13,12 +13,12 @@ class Logout extends Component {
   render() {
     return (
       <div className="">
-        <div className="container">
+        <div className="container ">
           <div className="columns is-centered">
             <div className="column is-8-tablet is-8-desktop is-8-widescreen">
               <br />
               <div className="container">
-                <div className="block">
+                <div className="block ">
                   <RequestReceived></RequestReceived>
                   <RequestSent></RequestSent>
                   <Friends></Friends>

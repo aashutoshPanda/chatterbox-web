@@ -20,7 +20,7 @@ class profile extends Component {
             <div className="card-image ">
               <figure className="image">
                 <img
-                  className="is-rounded"
+                  className="is-rounded pl-3 pr-3"
                   src={this.props.currentUser.profile_image_url}
                   alt="profile pic"
                 ></img>
