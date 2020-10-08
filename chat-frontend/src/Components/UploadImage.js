@@ -3,6 +3,7 @@ import ImageUploader from "react-images-upload";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { UploadPicture } from "../Redux";
+import {ClockLoader} from "react-spinners"
 
 export class UploadImage extends Component {
   constructor(props) {
@@ -18,7 +19,13 @@ export class UploadImage extends Component {
   };
 
   render() {
-    return (
+    console.log("picLoading",this.props.picLoading)
+    if(this.props.picLoading === true) return(
+      <div className="centerall">
+        <ClockLoader size={150} color="purple" />
+      </div>
+    );
+    else return (
       <div>
         <ImageUploader
           withIcon={true}
@@ -34,6 +41,7 @@ export class UploadImage extends Component {
 
 const mapStateToProps = (state) => ({
   currentUser: state.auth.currentUser,
+  picLoading: state.auth.picLoading
 });
 
 const mapDispatchToProps = (dispatch) => ({

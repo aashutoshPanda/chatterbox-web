@@ -48,7 +48,7 @@ class MainChat extends Component {
       name:
         this.props.otherUser.first_name + " " + this.props.otherUser.last_name,
     });
-
+    console.log("channel", channel)
     console.log("other user", this.props.otherUser);
     console.log("current user", this.props.currentUser);
     if(this.props.otherUser===false) return(

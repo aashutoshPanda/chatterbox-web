@@ -5,6 +5,7 @@ export const UploadPicture = (img) => {
     console.log("img in UploadPicAction", img[0]);
     const data = new FormData();
     data.append("picture", img[0]);
+    dispatch(startLoading());
     return axios({
       method: "post",
       url: "http://localhost:8000/profile/uploadprofileimage/",
@@ -18,6 +19,7 @@ export const UploadPicture = (img) => {
       .then(async (resp) => {
         console.log(resp.data);
         await dispatch(loginUser(resp.data));
+        dispatch(endLoading());
         history.push("/profile");
       })
       .catch(async (err) => {
@@ -25,6 +27,14 @@ export const UploadPicture = (img) => {
       });
   };
 };
+
+const startLoading = () => ({
+  type: "LOADING_TRUE"
+})
+
+const endLoading=()=>({
+  type: "LOADING_FALSE"
+})
 
 const loginUser = (userObj) => ({
   type: "LOGIN_USER",

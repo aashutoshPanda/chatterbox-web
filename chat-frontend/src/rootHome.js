@@ -18,7 +18,7 @@ import Profile from "./Components/profile";
 import ProfileButton from "./Components/ProfileButton";
 import UpdateBio from "./Components/UploadBio";
 import UploadImage from "./Components/UploadImage";
-import Home from "./Components/Home";
+import Home from "./Components/Home/Home";
 export const history = createBrowserHistory();
 
 class rootHome extends Component {

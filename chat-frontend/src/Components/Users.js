@@ -37,7 +37,7 @@ class UserList extends Component {
   createTask = (item) => {
     // console.log(item)
     return (
-      <p
+      <div
         className={`panel-block has-background-white ${
           this.props.otherUser && item.id === this.props.otherUser.id
             ? "has-background-grey-lighter"
@@ -49,8 +49,9 @@ class UserList extends Component {
         <figure className="image is-48x48">
           <img src={item.profile_image_url} alt="dp" />
         </figure>
-        {`${item.first_name} ${item.last_name}`}
-      </p>
+        <div>{`${item.first_name} ${item.last_name}`}</div>
+        <div>{`(${item.username})`}</div>
+      </div>
     );
   };
 

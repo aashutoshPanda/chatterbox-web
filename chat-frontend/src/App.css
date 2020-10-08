@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .App-logo {
@@ -33,12 +36,11 @@
 }
 
 .centerall {
-  height: 100vh;
   padding: 3rem;
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
-  /* align-items: center; */
+  align-items: center;
   }
   
   .align-text-center {
@@ -63,4 +65,5 @@
     min-height: 100%;
     overflow-x: hidden;
   }
+
   
