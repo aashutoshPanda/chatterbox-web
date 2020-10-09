@@ -171,16 +171,18 @@ def friend_list(request):
 def list_of_users_to_send_friend_request(request):
     try:
         user_profile = Profile.objects.get(user=request.user)
-        already_request_sent_profile_list = Relationship.objects.get_pending_requests_profiles(
-            user_profile)
-        # return all profile objects except (self & the ones to whom you have sent request)
         profiles_except_self = Profile.objects.exclude(user=request.user)
-        # difference is like set1 minus the intersction between set1 & set2
-        list_of_users_to_send_friend_request = profiles_except_self.difference(
-            already_request_sent_profile_list)
-
-        data = ProfileSerializer(
-            list_of_users_to_send_friend_request, many=True).data
+        data = []
+        for other_profile in profiles_except_self:
+            relation_data = Relationship.objects.get_friend_status(user_profile, other_profile)
+            print(relation_data)
+            relation_data = RelationshipSerializer(relation_data).data
+            data.append(
+                {
+                    "relationship_data":relation_data,
+                    "data":ProfileSerializer(other_profile).data
+                }
+            )
         return Response(data=data, status=status.HTTP_200_OK)
     except Exception as e:
         return Response(data=str(e), status=status.HTTP_404_NOT_FOUND)

@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.db.models import Q
 from django.core.exceptions import ValidationError
 
 default_profile_image = "https://www.flaticon.com/svg/static/icons/svg/847/847969.svg"
@@ -47,7 +48,11 @@ class RelationshipManager(models.Manager):
             pk__in=pending_requests_receivers_ids)
 
         return receivers
-
+    # with Q [models.Q] we can combine conditions with our queries
+    # here any relationship with both sender receviver combination is being sent
+    def get_friend_status(self, profile_a, profile_b):
+        return self.filter(Q(sender=profile_a, receiver=profile_b) | Q(sender=profile_b, receiver=profile_a)).first()
+        
 
 class Relationship(models.Model):
     sender = models.ForeignKey(
