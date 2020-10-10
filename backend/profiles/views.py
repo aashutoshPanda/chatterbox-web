@@ -175,7 +175,6 @@ def list_of_users_to_send_friend_request(request):
         data = []
         for other_profile in profiles_except_self:
             relation_data = Relationship.objects.get_friend_status(user_profile, other_profile)
-            print(relation_data)
             relation_data = RelationshipSerializer(relation_data).data
             data.append(
                 {
