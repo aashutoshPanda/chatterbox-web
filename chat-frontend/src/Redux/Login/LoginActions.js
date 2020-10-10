@@ -11,6 +11,21 @@ export const userLoginFetch = (user) => {
         await dispatch(loginUser(resp.data));
         history.push("/dashboard");
       })
+      .then(() => {
+        axios
+          .get("http://localhost:8000/profile/current_user_from_token", {
+            headers: {
+              Authorization: "Token " + localStorage.token,
+            },
+          })
+          .then((resp) => {
+            // console.log("reqqqvbvb",resp.data);
+            dispatch(loginUser(resp.data));
+          })
+          .catch((err) => {
+            console.log("error message", err);
+          });
+      })
       .catch(async (err) => {
         console.log("error message login", err.response.data);
         await dispatch(errormessage(err.response.data));

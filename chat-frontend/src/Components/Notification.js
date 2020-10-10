@@ -14,8 +14,8 @@ function Notification(props) {
     <div>
       {props.currentUser && (
         <Link
-          className="has-text-link-dark fa fa-bell"
-          onClick={handleClick}
+          className="fa fa-bell"
+          onClick={handleClick} 
         ></Link>
       )}
     </div>

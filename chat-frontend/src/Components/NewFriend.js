@@ -13,8 +13,8 @@ function NewFriend(props) {
   return (
     <div>
       {props.currentUser && (
-        <Link className={`has-text-link-dark `} onClick={handleClick}>
-          New Friend
+        <Link onClick={handleClick}>
+        <strong>New Friend</strong>
         </Link>
       )}
     </div>

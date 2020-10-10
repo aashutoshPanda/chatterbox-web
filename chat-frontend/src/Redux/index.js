@@ -7,3 +7,4 @@ export { getFriends } from "./friends/friendsAction";
 export { UploadPicture } from "./UploadPic/UploadPicAction";
 export { UploadUserBio } from "./UploadBio/UploadBioAction";
 export { setOtherUser } from "./OtherUser/OtherUserAction";
+export { setOtherProfile } from "./OtherProfile/OtherProfileAction";

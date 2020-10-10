@@ -1,7 +1,7 @@
 const initialState = {
   currentUser: false,
   errors: [],
-  picLoading: false
+  picLoading: false,
 };
 
 export default function reducer(state = initialState, action) {

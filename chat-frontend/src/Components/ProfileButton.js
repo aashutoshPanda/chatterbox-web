@@ -14,8 +14,8 @@ function ProfileButton(props) {
   return (
     <div>
       {props.currentUser && (
-        <Link className={`has-text-link-dark`} onClick={handleClick}>
-          Profile
+        <Link  onClick={handleClick}>
+        <strong>Profile</strong>
         </Link>
       )}
     </div>
