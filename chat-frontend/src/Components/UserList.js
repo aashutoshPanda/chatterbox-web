@@ -17,12 +17,13 @@ class UserList extends Component {
 
     this.state = {
       list: this.props.allUsers,
+      firstRender: true
     };
   }
 
   acceptReq = async (item) => {
     const accepturl = `http://localhost:8000/profile/request/accept/${item["id"]}/`;
-    console.log("useraccept",item["id"]);
+    console.log("useraccept", item["id"]);
     await axios({
       method: "post",
       url: accepturl,
@@ -30,13 +31,16 @@ class UserList extends Component {
         Authorization: "Token " + localStorage.token,
       },
     })
-    .then(()=> {console.log("successfully accepted")})
-    .catch((err) => {
-      console.log(err)
-    })
+      .then(() => {
+        console.log("successfully accepted");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     console.log("accept accept");
     await this.props.getReq();
     await this.props.FetchAllUsers();
+    await this.setState({ list: this.props.allUsers });
   };
 
   rejectReq = async (item) => {
@@ -50,6 +54,7 @@ class UserList extends Component {
     });
     await this.props.getReq();
     await this.props.FetchAllUsers();
+    await this.setState({ list: this.props.allUsers });
   };
 
   viewProfile = (item) => {
@@ -80,75 +85,109 @@ class UserList extends Component {
 
     if (status === null) {
       return (
-        <div key={itemData.id} className="panel-block has-background-white">
-          <p>{`${itemData.first_name} ${itemData.last_name}`}</p>
-          <button
-            className="button is-info "
-            onClick={() => this.sendReq(itemData)}
-          >
-            <i className="fa fa-user-plus" aria-hidden="true"></i>
-          </button>
-
-          <button
-            className="button is-info "
-            onClick={() => this.viewProfile(itemData)}
-          >
-            View Profile
-          </button>
+        <div key={itemData.id} className="box has-background-white">
+          <article className="media">
+            <div className="media-content ">
+              <p>{`${itemData.first_name} ${itemData.last_name}`}</p>
+            </div>
+            <div className="media-right">
+              <button
+                className="button is-info is-small"
+                onClick={() => this.sendReq(itemData)}
+              >
+                <i className="fa fa-user-plus" aria-hidden="true"></i>
+              </button>{" "}
+              <button
+                className="button is-info is-small"
+                onClick={() => this.viewProfile(itemData)}
+              >
+                View Profile
+              </button>
+            </div>
+          </article>
         </div>
       );
     } else if (status === "send") {
-        if (itemRelationship.sender.id === itemData.id) {
-          return (
-            <div key={itemData.id} className="panel-block has-background-white">
-              <p>{`${itemData.first_name} ${itemData.last_name}`}</p>
-              <button
-                  className="button is-success"
-                  onClick={() => this.acceptReq(itemData)}
+      if (itemRelationship.sender.id === itemData.id) {
+        return (
+          <div key={itemData.id} className="box has-background-white">
+            <article className="media">
+              <div className="media-content ">
+                <p>{`${itemData.first_name} ${itemData.last_name}`}</p>
+              </div>
+              <div className="media-right">
+                <button
+                  className="button is-success is-small"
+                  onClick={() => this.acceptReq(itemRelationship)}
                 >
                   Accept
                 </button>{" "}
                 <button
-                  className="button is-danger"
-                  onClick={() => this.rejectReq(itemData)}
+                  className="button is-danger is-small"
+                  onClick={() => this.rejectReq(itemRelationship)}
                 >
                   Reject
+                </button>{" "}
+                <button
+                  className="button is-info is-small"
+                  onClick={() => this.viewProfile(itemData)}
+                >
+                  View Profile
                 </button>
-              <button
-                className="button is-info "
-                onClick={() => this.viewProfile(itemData)}
-              >
-                View Profile
-              </button>
-            </div>
-          );
-        } else {
-          return (
-            <div key={itemData.id} className="panel-block has-background-white">
-              <p>{`${itemData.first_name} ${itemData.last_name}`}</p>
-              <button className="button is-info " onClick={()=>this.rejectReq(itemData)}>Cancel Request</button>
-              
-              <button
-                className="button is-info "
-                onClick={() => this.viewProfile(itemData)}
-              >
-                View Profile
-              </button>
-              <div className="tag is-info">Request Sent</div>
-            </div>
-          );
+              </div>
+            </article>
+          </div>
+        );
+      } else {
+        return (
+          <div key={itemData.id} className="box has-background-white">
+            <article className="media">
+              <div className="media-content ">
+                <p>{`${itemData.first_name} ${itemData.last_name}`}</p>
+                <div className="tag is-info is-light">Request Sent</div>
+              </div>
+              <div className="media-right">
+                <button
+                  className="button is-danger is-small"
+                  onClick={() => this.rejectReq(itemRelationship)}
+                >
+                  Cancel Request
+                </button>{" "}
+
+                <button
+                  className="button is-info is-small"
+                  onClick={() => this.viewProfile(itemData)}
+                >
+                  View Profile
+                </button>
+                
+              </div>
+            </article>
+          </div>
+        );
       }
     } else if (status === "accepted") {
       return (
-        <div key={itemData.id} className="panel-block has-background-white">
-          <p>{`${itemData.first_name} ${itemData.last_name}`}</p>
-          <button className="button is-info " onClick={()=>this.rejectReq(itemData)}>unfriend</button>
-          <button
-            className="button is-info "
-            onClick={() => this.viewProfile(itemData)}
-          >
-            View Profile
-          </button>
+        <div key={itemData.id} className="box has-background-white">
+          <article className="media">
+            <div className="media-content ">
+              <p>{`${itemData.first_name} ${itemData.last_name}`}</p>
+            </div>
+            <div className="media-right">
+              <button
+                className="button is-danger is-small"
+                onClick={() => this.rejectReq(itemRelationship)}
+              >
+                Unfriend
+              </button>{" "}
+              <button
+                className="button is-info is-small"
+                onClick={() => this.viewProfile(itemData)}
+              >
+                View Profile
+              </button>
+            </div>
+          </article>
         </div>
       );
     }
@@ -158,14 +197,14 @@ class UserList extends Component {
     const searchString = e.target.value.toLowerCase();
 
     const filteredItems = this.props.allUsers.filter((item) => {
-      console.log(item)
+      console.log(item);
       return (
         item.data.first_name.toLowerCase().includes(searchString) ||
         item.data.last_name.toLowerCase().includes(searchString)
       );
     });
     // console.log(filteredItems)
-    this.setState({ list: filteredItems });
+    this.setState({ list: filteredItems, firstRender:false });
   };
   render() {
     return (
@@ -188,10 +227,11 @@ class UserList extends Component {
                 </span>
               </p>
             </div>
+            <br></br>
 
-            {this.state.list.length !== 0 &&
+            {!this.state.firstRender &&
               this.state.list.map(this.createTask)}
-            {this.state.list.length === 0 &&
+            {this.state.firstRender &&
               this.props.allUsers.map(this.createTask)}
           </nav>
         </div>

@@ -9,6 +9,7 @@ class UserList extends Component {
 
     this.state = {
       list: this.props.Friends,
+      firstRender: true
     };
   }
 
@@ -26,7 +27,7 @@ class UserList extends Component {
       );
     });
     // console.log(filteredItems)
-    this.setState({ list: filteredItems });
+    this.setState({ list: filteredItems,firstRender: false });
   };
 
   handleOtherUserClick = (item) => {
@@ -50,7 +51,6 @@ class UserList extends Component {
           <img src={item.profile_image_url} alt="dp" />
         </figure>
         <div>{`${item.first_name} ${item.last_name}`}</div>
-        <div>{`(${item.username})`}</div>
       </div>
     );
   };
@@ -75,9 +75,9 @@ class UserList extends Component {
                   </span>
                 </p>
               </div>
-              {this.state.list.length !== 0 &&
+              {!this.state.firstRender &&
                 this.state.list.map(this.createTask)}
-              {this.state.list.length === 0 &&
+              {this.state.firstRender &&
                 this.props.Friends.map(this.createTask)}
             </div>
           </nav>
