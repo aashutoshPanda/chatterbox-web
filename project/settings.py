@@ -142,3 +142,9 @@ CORS_ALLOW_ALL_ORIGINS = True
 cloudinary.config(cloud_name=get_secret("CLOUDINARY_CLOUD_NAME"),
                   api_key=get_secret("CLOUDINARY_API_KEY"),
                   api_secret=get_secret("CLOUDINARY_API_SECRET"),)
+
+
+# for heroku
+if 'DATABASE_URL' in os.environ:
+    import dj_database_url
+    DATABASES = {'default': dj_database_url.config()}
