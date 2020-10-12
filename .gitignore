@@ -1,7 +1,5 @@
-project/secrets.py
 node_modules/
 /chatenv
-src/secrets.js
 # Django #
 *.log
 *.pot
