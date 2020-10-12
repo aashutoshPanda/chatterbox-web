@@ -1,7 +1,6 @@
 project/secrets.py
 node_modules/
 /chatenv
-*.json
 src/secrets.js
 # Django #
 *.log
