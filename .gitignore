@@ -1,4 +1,4 @@
-backend/project/secrets.py
+project/secrets.py
 node_modules/
 /chatenv
 *.json
