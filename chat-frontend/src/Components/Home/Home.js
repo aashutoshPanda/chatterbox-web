@@ -1,9 +1,17 @@
-import React from "react";
+import React, { Component } from 'react'
 import ProfileCard from "./profileCard";
+import { withRouter } from "react-router-dom";
 
-function Home() {
-  return (
-    <div>
+
+export class Home extends Component {
+
+  componentDidMount(){
+    if(localStorage.token) this.props.history.push("/dashboard");
+  }
+
+  render() {
+    return (
+      <div >
       <div className="centerall">
         <div className="title">Welcome to XYX-Chat</div>
       </div>
@@ -23,7 +31,8 @@ function Home() {
         </div>
       </div>
     </div>
-  );
+    )
+  }
 }
 
-export default Home;
+export default withRouter(Home)
