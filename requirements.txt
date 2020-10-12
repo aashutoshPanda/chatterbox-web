@@ -1,7 +1,9 @@
-django
-djangorestframework
-djoser
-stream-chat
-django-cors-headers
-stream-python
-cloudinary
+Django==3.1.2
+djangorestframework==3.12.1
+djoser==2.0.5
+stream-chat==1.6.0
+stream-python==4.0.0
+django-cors-headers==3.5.0
+cloudinary==1.22.0
+gunicorn==20.0.4 
+whitenoise==5.2.0
