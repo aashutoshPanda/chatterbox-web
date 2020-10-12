@@ -3,7 +3,7 @@ const axios = require("axios");
 export const userPostFetch = (user) => {
   return (dispatch) => {
     axios
-      .post("http://localhost:8000/profile/auth/register", user)
+      .post("https://chatterbox-web.herokuapp.com/profile/auth/register", user)
       .then(async (resp) => {
         // console.log(resp.data);
         localStorage.setItem("token", resp.data.auth_token);
@@ -13,7 +13,7 @@ export const userPostFetch = (user) => {
       })
       .then(() => {
         axios
-          .get("http://localhost:8000/profile/current_user_from_token", {
+          .get("https://chatterbox-web.herokuapp.com/profile/current_user_from_token", {
             headers: {
               Authorization: "Token " + localStorage.token,
             },

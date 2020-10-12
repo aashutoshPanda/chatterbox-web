@@ -5,7 +5,7 @@ export const UploadUserBio = (UserBio) => {
     console.log("userbio colsole",UserBio)
     return axios({
       method: "post",
-      url: "http://localhost:8000/profile/addbio/",
+      url: "https://chatterbox-web.herokuapp.com/profile/addbio/",
       headers: {
         Authorization: "Token " + localStorage.token,
       },

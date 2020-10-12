@@ -4,7 +4,7 @@ export const getProfileFetch = () => {
   if (localStorage.token) {
     return (dispatch) => {
       return axios
-        .get("http://localhost:8000/profile/current_user_from_token", {
+        .get("https://chatterbox-web.herokuapp.com/profile/current_user_from_token", {
           headers: {
             Authorization: "Token " + localStorage.token,
           },
