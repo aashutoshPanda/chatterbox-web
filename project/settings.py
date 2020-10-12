@@ -27,7 +27,7 @@ SECRET_KEY = 'jsswujv0^r_!neg(fuxxutf+6u*o&54s&(k21&c@za3vd)+n2z'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['chatterbox-web.herokuapp.com']
+ALLOWED_HOSTS = ['chatterbox-web.herokuapp.com','localhost']
 
 
 # Application definition
