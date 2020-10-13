@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 class profile extends Component {
-  editbio = () => {
+  editbio = (e) => {
+    e.preventDefault()
     this.props.history.push("/updatebio");
   };
 
-  editPic = () => {
+  editPic = (e) => {
+    e.preventDefault()
     this.props.history.push("/uploadImage");
   };
   render() {
