@@ -87,7 +87,16 @@ class UserList extends Component {
       return (
         <div key={itemData.id} className="box has-background-white">
           <article className="media">
+            <div className="media-left">
+              <figure class="image is-64x64">
+                <img class="is-rounded"
+                src="https://bulma.io/images/bulma-logo.png"
+                alt="chatterbox-logo"
+                />
+              </figure>
+            </div>
             <div className="media-content ">
+
               <p>{`${itemData.first_name} ${itemData.last_name}`}</p>
             </div>
             <div className="media-right">
@@ -112,6 +121,14 @@ class UserList extends Component {
         return (
           <div key={itemData.id} className="box has-background-white">
             <article className="media">
+              <div className="media-left">
+              <figure class="image is-64x64">
+                <img class="is-rounded"
+                src="https://bulma.io/images/bulma-logo.png"
+                alt="chatterbox-logo"
+                />
+              </figure>
+            </div>
               <div className="media-content ">
                 <p>{`${itemData.first_name} ${itemData.last_name}`}</p>
               </div>
@@ -142,6 +159,14 @@ class UserList extends Component {
         return (
           <div key={itemData.id} className="box has-background-white">
             <article className="media">
+              <div className="media-left">
+              <figure class="image is-64x64">
+                <img class="is-rounded"
+                src="https://bulma.io/images/bulma-logo.png"
+                alt="chatterbox-logo"
+                />
+              </figure>
+            </div>
               <div className="media-content ">
                 <p>{`${itemData.first_name} ${itemData.last_name}`}</p>
                 <div className="tag is-info is-light">Request Sent</div>
@@ -170,6 +195,14 @@ class UserList extends Component {
       return (
         <div key={itemData.id} className="box has-background-white">
           <article className="media">
+            <div className="media-left">
+              <figure class="image is-64x64">
+                <img class="is-rounded"
+                src="https://bulma.io/images/bulma-logo.png"
+                alt="chatterbox-logo"
+                />
+              </figure>
+            </div>
             <div className="media-content ">
               <p>{`${itemData.first_name} ${itemData.last_name}`}</p>
             </div>

@@ -208,12 +208,12 @@ class rootHome extends Component {
         >
           <div className="navbar-brand">
             <div className="navbar-item">
-              <img
-                src="https://bulma.io/images/bulma-logo.png"
-                alt="bulma"
-                width="112"
-                height="28"
-              ></img>
+              <figure class="image is-32x32">
+                <img
+                src={require('./chatter-box-logo.png')}
+                alt="chatterbox-logo"
+                />
+              </figure>
             </div>
 
             <div
