@@ -14,7 +14,7 @@ export const userPostFetch = (user) => {
       })
       .then(() => {
         axios
-          .get("https://chatterbox-web.herokuapp.com/api/profile/current_user_from_token", {
+          .get("https://chatterbox-web.herokuapp.com/api/profile/current_user_from_token/", {
             headers: {
               Authorization: "Token " + localStorage.token,
             },
