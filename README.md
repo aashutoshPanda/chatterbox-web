@@ -27,11 +27,11 @@
 - `pip install -r requirements.txt`
 - `npm i`
 
-Run React app
+#### Run React  app
 
 - `npm start`
 
-Run Django Rest backend
+#### Run Django Rest backend
 
 - `python manage.py makemigrations`
 - `python manage.py migrate`
