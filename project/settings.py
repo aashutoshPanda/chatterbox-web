@@ -27,7 +27,8 @@ SECRET_KEY = 'jsswujv0^r_!neg(fuxxutf+6u*o&54s&(k21&c@za3vd)+n2z'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['chatterbox-web.herokuapp.com','localhost']
+# ALLOWED_HOSTS = ['chatterbox-web.herokuapp.com','localhost']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -94,8 +95,12 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'chatterboxdb',
+        'PASSWORD': 'postgres',
+        'USER': 'postgres',
+        'HOST': 'localhost',
+        'POST':'5432'
     }
 }
 

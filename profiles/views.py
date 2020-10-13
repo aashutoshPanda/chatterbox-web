@@ -1,4 +1,5 @@
 import cloudinary.uploader
+import stream
 from rest_framework.parsers import MultiPartParser, JSONParser
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view, permission_classes, authentication_classes
@@ -19,6 +20,9 @@ from .serializers import ProfileSerializer, UserSerializer, RelationshipSerializ
 from . models import Profile, Relationship
 User = get_user_model()
 
+from django.conf import settings
+client = stream.connect(
+    settings.STREAM_API_KEY, settings.STREAM_API_SECRET, location='us-east')
 
 class AuthViewSet(viewsets.GenericViewSet):
     permission_classes = [AllowAny, ]
@@ -33,7 +37,8 @@ class AuthViewSet(viewsets.GenericViewSet):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = get_and_authenticate_user(**serializer.validated_data)
-        data = serializers.AuthUserSerializer(user).data
+        profile = Profile.objects.get(user=user)
+        data = ProfileSerializer(profile).data
         return Response(data=data, status=status.HTTP_200_OK)
 
     @action(methods=['POST', ], detail=False)
@@ -41,7 +46,11 @@ class AuthViewSet(viewsets.GenericViewSet):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = create_user_account(**serializer.validated_data)
-        data = serializers.AuthUserSerializer(user).data
+        profile = Profile.objects.get(user=user)
+        user_token_get_stream = client.create_user_token(user.username)
+        profile.chat_token = user_token_get_stream
+        profile.save()
+        data = ProfileSerializer(profile).data
         return Response(data=data, status=status.HTTP_201_CREATED)
 
     @action(methods=['POST', ], detail=False)

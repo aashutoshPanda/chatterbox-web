@@ -10,12 +10,13 @@ default_bio = "Hi! It's a lovely day"
 class Profile(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE)
-    bio = models.TextField(default=default_bio, blank=True)
+    bio = models.TextField(default=default_bio, blank=True,max_length=200)
     friends = models.ManyToManyField(User, related_name='friends', blank=True)
     # this value will change everytime the profile is updated
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
-    profile_image_url = models.TextField(default=default_profile_image)
+    profile_image_url = models.TextField(default=default_profile_image, max_length=200)
+    chat_token = models.CharField(blank=True,max_length=255)
 
     def __str__(self):
         return str(self.user)
