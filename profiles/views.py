@@ -218,7 +218,7 @@ class UploadView(APIView):
         try:
             file = request.data.get('picture')
             user_profile = Profile.objects.get(user=request.user)
-            cloudinary_response = cloudinary.uploader.upload(file)
+            cloudinary_response = cloudinary.uploader.upload(file,width=150,height=150,crop="fill",gravity="faces",radius=10,)
             user_profile.profile_image_url = cloudinary_response["secure_url"]
             user_profile.save()
             data = ProfileSerializer(user_profile).data
