@@ -6,6 +6,7 @@
 <p align="center">
   <a href="https://chatterbox-web.herokuapp.com "><img src="https://i.ibb.co/9wjknt6/chatterbox-demo.jpg" alt="chatterbox-demo" border="0"></a>
 </p>
+
 ### Progress
 
 - [x] Manage Friends
