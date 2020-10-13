@@ -1,6 +1,16 @@
 # Chat with Django and React
 
-Live Demo : [chatter-box](https://chatterbox-web.herokuapp.com "chatterbox WEB")
+Live Demo : [chatter-box](https://chatterbox-web.herokuapp.com "chatter-box")
+
+### Progress
+- [x] Manage Friends
+- [x] Bio & Profile Picture
+- [x] Notification Panel
+- [ ] Unfriend
+- [ ] UI Improvement
+
+### Bugs
+- [ ] Wrong Name on first click for second login
 
 ## To get started, follow these steps:
 
