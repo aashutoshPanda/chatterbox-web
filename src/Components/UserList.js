@@ -17,7 +17,7 @@ class UserList extends Component {
 
     this.state = {
       list: this.props.allUsers,
-      firstRender: true
+      firstRender: true,
     };
   }
 
@@ -89,29 +89,29 @@ class UserList extends Component {
           <article className="media">
             <div className="media-left">
               <figure class="image is-64x64">
-                <img class="is-rounded"
-                src={itemData.profile_image_url}
-                alt="chatterbox-logo"
+                <img
+                  class="is-rounded"
+                  src={itemData.profile_image_url}
+                  alt="chatterbox-logo"
                 />
               </figure>
             </div>
             <div className="media-content ">
-
               <p>{`${itemData.first_name} ${itemData.last_name}`}</p>
-            </div>
-            <div className="media-right">
-              <button
-                className="button is-info is-small"
-                onClick={() => this.sendReq(itemData)}
-              >
-                <i className="fa fa-user-plus" aria-hidden="true"></i>
-              </button>{" "}
-              <button
-                className="button is-info is-small"
-                onClick={() => this.viewProfile(itemData)}
-              >
-                View Profile
-              </button>
+              <div className="">
+                <button
+                  className="button is-info is-small"
+                  onClick={() => this.sendReq(itemData)}
+                >
+                  <i className="fa fa-user-plus" aria-hidden="true"></i>
+                </button>{" "}
+                <button
+                  className="button is-info is-small"
+                  onClick={() => this.viewProfile(itemData)}
+                >
+                  View Profile
+                </button>
+              </div>
             </div>
           </article>
         </div>
@@ -122,35 +122,36 @@ class UserList extends Component {
           <div key={itemData.id} className="box has-background-white">
             <article className="media">
               <div className="media-left">
-              <figure class="image is-64x64">
-                <img class="is-rounded"
-                src={itemData.profile_image_url}
-                alt="chatterbox-logo"
-                />
-              </figure>
-            </div>
+                <figure class="image is-64x64">
+                  <img
+                    class="is-rounded"
+                    src={itemData.profile_image_url}
+                    alt="chatterbox-logo"
+                  />
+                </figure>
+              </div>
               <div className="media-content ">
                 <p>{`${itemData.first_name} ${itemData.last_name}`}</p>
-              </div>
-              <div className="media-right">
-                <button
-                  className="button is-success is-small"
-                  onClick={() => this.acceptReq(itemRelationship)}
-                >
-                  Accept
-                </button>{" "}
-                <button
-                  className="button is-danger is-small"
-                  onClick={() => this.rejectReq(itemRelationship)}
-                >
-                  Reject
-                </button>{" "}
-                <button
-                  className="button is-info is-small"
-                  onClick={() => this.viewProfile(itemData)}
-                >
-                  View Profile
-                </button>
+                <div className="">
+                  <button
+                    className="button is-success is-small"
+                    onClick={() => this.acceptReq(itemRelationship)}
+                  >
+                    Accept
+                  </button>{" "}
+                  <button
+                    className="button is-danger is-small"
+                    onClick={() => this.rejectReq(itemRelationship)}
+                  >
+                    Reject
+                  </button>{" "}
+                  <button
+                    className="button is-info is-small"
+                    onClick={() => this.viewProfile(itemData)}
+                  >
+                    View Profile
+                  </button>
+                </div>
               </div>
             </article>
           </div>
@@ -160,32 +161,31 @@ class UserList extends Component {
           <div key={itemData.id} className="box has-background-white">
             <article className="media">
               <div className="media-left">
-              <figure class="image is-64x64">
-                <img class="is-rounded"
-                src={itemData.profile_image_url}
-                alt="chatterbox-logo"
-                />
-              </figure>
-            </div>
+                <figure class="image is-64x64">
+                  <img
+                    class="is-rounded"
+                    src={itemData.profile_image_url}
+                    alt="chatterbox-logo"
+                  />
+                </figure>
+              </div>
               <div className="media-content ">
                 <p>{`${itemData.first_name} ${itemData.last_name}`}</p>
-                <div className="tag is-info is-light">Request Sent</div>
-              </div>
-              <div className="media-right">
-                <button
-                  className="button is-danger is-small"
-                  onClick={() => this.rejectReq(itemRelationship)}
-                >
-                  Cancel Request
-                </button>{" "}
-
-                <button
-                  className="button is-info is-small"
-                  onClick={() => this.viewProfile(itemData)}
-                >
-                  View Profile
-                </button>
-                
+                {/* <span className="tag is-info is-light">Request Sent</span> */}
+                <div className="">
+                  <button
+                    className="button is-danger is-small"
+                    onClick={() => this.rejectReq(itemRelationship)}
+                  >
+                    Cancel Request
+                  </button>{" "}
+                  <button
+                    className="button is-info is-small"
+                    onClick={() => this.viewProfile(itemData)}
+                  >
+                    View Profile
+                  </button>
+                </div>
               </div>
             </article>
           </div>
@@ -197,28 +197,29 @@ class UserList extends Component {
           <article className="media">
             <div className="media-left">
               <figure class="image is-64x64">
-                <img class="is-rounded"
-                src={itemData.profile_image_url}
-                alt="chatterbox-logo"
+                <img
+                  class="is-rounded"
+                  src={itemData.profile_image_url}
+                  alt="chatterbox-logo"
                 />
               </figure>
             </div>
             <div className="media-content ">
               <p>{`${itemData.first_name} ${itemData.last_name}`}</p>
-            </div>
-            <div className="media-right">
-              <button
-                className="button is-danger is-small"
-                onClick={() => this.rejectReq(itemRelationship)}
-              >
-                Unfriend
-              </button>{" "}
-              <button
-                className="button is-info is-small"
-                onClick={() => this.viewProfile(itemData)}
-              >
-                View Profile
-              </button>
+              <div className="">
+                <button
+                  className="button is-danger is-small"
+                  onClick={() => this.rejectReq(itemRelationship)}
+                >
+                  Unfriend
+                </button>{" "}
+                <button
+                  className="button is-info is-small"
+                  onClick={() => this.viewProfile(itemData)}
+                >
+                  View Profile
+                </button>
+              </div>
             </div>
           </article>
         </div>
@@ -237,7 +238,7 @@ class UserList extends Component {
       );
     });
     // console.log(filteredItems)
-    this.setState({ list: filteredItems, firstRender:false });
+    this.setState({ list: filteredItems, firstRender: false });
   };
   render() {
     return (
@@ -262,10 +263,8 @@ class UserList extends Component {
             </div>
             <br></br>
 
-            {!this.state.firstRender &&
-              this.state.list.map(this.createTask)}
-            {this.state.firstRender &&
-              this.props.allUsers.map(this.createTask)}
+            {!this.state.firstRender && this.state.list.map(this.createTask)}
+            {this.state.firstRender && this.props.allUsers.map(this.createTask)}
           </nav>
         </div>
       </div>
