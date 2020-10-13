@@ -1,3 +1,4 @@
+node_modules/
 /chatenv
 # Django #
 *.log
@@ -115,3 +116,4 @@ GitHub.sublime-settings
 !.vscode/launch.json 
 !.vscode/extensions.json 
 .history
+
