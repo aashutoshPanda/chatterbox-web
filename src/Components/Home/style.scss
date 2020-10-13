@@ -1,5 +1,5 @@
-$primary: #7F00FF;
-$secondary: #00D1B2;
+$primary: #0f3057;
+$secondary: #008891;
 $section: transparent;
 $muted: #999;
 
@@ -17,7 +17,7 @@ body {
   position: relative;
   .card {
     border-radius: 6px;
-    overflow:hidden;
+    overflow: hidden;
     max-width: 300px;
     max-height: 380px;
     margin: 0 auto;
@@ -65,7 +65,7 @@ body {
         border-color: $primary;
         color: white;
         border-radius: 100px;
-        transition: opacity .3s;
+        transition: opacity 0.3s;
         &:hover {
           opacity: 0.7;
         }
@@ -74,7 +74,7 @@ body {
   }
 }
 
-.give-padding{
-    width: 25%;
-    color: $primary;
+.give-padding {
+  width: 25%;
+  color: $primary;
 }

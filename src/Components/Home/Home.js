@@ -31,7 +31,7 @@ export class Home extends Component {
         <section class="hero is-info">
           <div class="hero-body">
             <div class="container has-text-centered">
-              <h1 class="title">Made by:</h1>
+              <h1 class="title">Meet the Team</h1>
               <div className="columns is-centered">
                 <div className="column is-9">
                   <div className="columns">

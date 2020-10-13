@@ -48,9 +48,9 @@ class UserList extends Component {
         key={item.id}
       >
         <figure className="image is-48x48">
-          <img src={item.profile_image_url} alt="dp" />
+          <img className="is-rounded" src={item.profile_image_url} alt="dp" />
         </figure>
-        <div>{`${item.first_name} ${item.last_name}`}</div>
+        <div className="ml-4">{`${item.first_name} ${item.last_name}`}</div>
       </div>
     );
   };
