@@ -8,6 +8,7 @@ Live Demo : [chatter-box](https://chatterbox-web.herokuapp.com "chatter-box")
 - [x] Notification Panel
 - [ ] Unfriend
 - [ ] UI Improvement
+- [ ] Mobile Friendly
 
 ### Bugs
 - [ ] Wrong Name on first click for second login
