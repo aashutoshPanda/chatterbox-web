@@ -3,25 +3,25 @@ const axios = require("axios");
 export const userPostFetch = (user) => {
   return (dispatch) => {
     axios
-      .post("https://chatterbox-web.herokuapp.com/profile/auth/register", user)
+      .post("https://chatterbox-web.herokuapp.com/api/profile/auth/register", user)
       .then(async (resp) => {
         // console.log(resp.data);
         localStorage.setItem("token", resp.data.auth_token);
-        localStorage.setItem("chatToken", resp.data.auth_token);
+        localStorage.setItem("chatToken", resp.data.chat_token);
         await dispatch(errorReset());
         await dispatch(loginUser(resp.data));
         history.push("/dashboard");
       })
       .then(() => {
         axios
-          .get("https://chatterbox-web.herokuapp.com/profile/current_user_from_token", {
+          .get("https://chatterbox-web.herokuapp.com/api/profile/current_user_from_token", {
             headers: {
               Authorization: "Token " + localStorage.token,
             },
           })
           .then((resp) => {
-            // console.log("reqqqvbvb",resp.data);
-            dispatch(loginUser(resp.data));
+            console.log("response from signup",resp.data);
+            
           })
           .catch((err) => {
             console.log("error message", err);

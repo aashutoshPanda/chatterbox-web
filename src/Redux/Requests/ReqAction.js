@@ -3,7 +3,7 @@ const axios = require("axios");
 export const getReq = () => {
   return (dispatch) => {
     return axios
-      .get("https://chatterbox-web.herokuapp.com/profile/request/", {
+      .get("https://chatterbox-web.herokuapp.com/api/profile/request/", {
         headers: {
           Authorization: "Token " + localStorage.token,
         },

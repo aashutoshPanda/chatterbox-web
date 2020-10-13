@@ -22,7 +22,7 @@ class UserList extends Component {
   }
 
   acceptReq = async (item) => {
-    const accepturl = `https://chatterbox-web.herokuapp.com/profile/request/accept/${item["id"]}/`;
+    const accepturl = `https://chatterbox-web.herokuapp.com/api/profile/request/accept/${item["id"]}/`;
     console.log("useraccept", item["id"]);
     await axios({
       method: "post",
@@ -44,7 +44,7 @@ class UserList extends Component {
   };
 
   rejectReq = async (item) => {
-    const rejecturl = `https://chatterbox-web.herokuapp.com/profile/request/${item["id"]}/`;
+    const rejecturl = `https://chatterbox-web.herokuapp.com/api/profile/request/${item["id"]}/`;
     await axios({
       method: "delete",
       url: rejecturl,
@@ -66,7 +66,7 @@ class UserList extends Component {
   sendReq = async (item) => {
     await axios({
       method: "post",
-      url: "https://chatterbox-web.herokuapp.com/profile/request/",
+      url: "https://chatterbox-web.herokuapp.com/api/profile/request/",
       headers: {
         Authorization: "Token " + localStorage.token,
       },

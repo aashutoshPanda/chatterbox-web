@@ -10,7 +10,7 @@ class RequestReceived extends Component {
   }
 
   acceptReq = async (item) => {
-    const accepturl = `https://chatterbox-web.herokuapp.com/profile/request/accept/${item["id"]}/`;
+    const accepturl = `https://chatterbox-web.herokuapp.com/api/profile/request/accept/${item["id"]}/`;
     console.log(item["id"]);
     await axios({
       method: "post",
@@ -25,7 +25,7 @@ class RequestReceived extends Component {
   };
 
   rejectReq = async (item) => {
-    const rejecturl = `https://chatterbox-web.herokuapp.com/profile/request/${item["id"]}/`;
+    const rejecturl = `https://chatterbox-web.herokuapp.com/api/profile/request/${item["id"]}/`;
     await axios({
       method: "delete",
       url: rejecturl,

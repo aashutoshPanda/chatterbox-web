@@ -8,7 +8,7 @@ export const UploadPicture = (img) => {
     dispatch(startLoading());
     return axios({
       method: "post",
-      url: "https://chatterbox-web.herokuapp.com/profile/uploadprofileimage/",
+      url: "https://chatterbox-web.herokuapp.com/api/profile/uploadprofileimage/",
       headers: {
         "Content-Type": "multipart/form-data",
         "Authorization": "Token " + localStorage.token,
