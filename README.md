@@ -1,6 +1,6 @@
 # Chat with Django and React
 
-Live Demo : [chatter-box](https://chatterbox-web.herokuapp.com "chatter-box")
+Live Demo : [chatter-box](https://chatterbox-web.herokuapp.com "chatterbox WEB")
 
 ## To get started, follow these steps:
 
