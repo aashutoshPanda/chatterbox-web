@@ -7,6 +7,7 @@ export const userLoginFetch = (user) => {
       .then(async (resp) => {
         // console.log(resp.data);
         localStorage.setItem("token", resp.data.auth_token);
+        localStorage.setItem("chatToken", resp.data.chat_token);
         await dispatch(errormessage([]));
         await dispatch(loginUser(resp.data));
         history.push("/dashboard");

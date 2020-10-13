@@ -7,6 +7,7 @@ export const userPostFetch = (user) => {
       .then(async (resp) => {
         // console.log(resp.data);
         localStorage.setItem("token", resp.data.auth_token);
+        localStorage.setItem("chatToken", resp.data.auth_token);
         await dispatch(errorReset());
         await dispatch(loginUser(resp.data));
         history.push("/dashboard");

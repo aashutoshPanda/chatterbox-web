@@ -21,7 +21,7 @@ class MainChat extends Component {
     super(props);
 
     this.chatClient = new StreamChat(secrets["STREAM_API_KEY"]);
-    this.userToken = localStorage.getItem("token");
+    this.userToken = localStorage.getItem("chatToken");
     this.chatClient.setUser(
       {
         id: this.props.currentUser.username,
