@@ -41,10 +41,19 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 
 
 class ProfileSerializer(serializers.ModelSerializer):
-    user = AuthUserSerializer(read_only=True)
+    username = serializers.CharField(source="user.username", read_only=True)
+    first_name = serializers.CharField(
+        source="user.first_name", read_only=True)
+    last_name = serializers.CharField(source="user.last_name", read_only=True)
+    auth_token = serializers.SerializerMethodField()
     class Meta:
         model = Profile
-        fields = ['bio','profile_image_url','chat_token','user']
+        fields = ['bio', 'username', 'first_name',
+                  'last_name', 'id', 'profile_image_url','chat_token','auth_token']
+    def get_auth_token(self, obj):
+        user = User.objects.get(profile=obj)
+        token, _ = Token.objects.get_or_create(user=user)
+        return str(token)
 
 class UserSerializer(serializers.ModelSerializer):
 

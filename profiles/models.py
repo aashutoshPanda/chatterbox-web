@@ -9,7 +9,7 @@ default_bio = "Hi! It's a lovely day"
 
 class Profile(models.Model):
     user = models.OneToOneField(
-        User, on_delete=models.CASCADE)
+        User, on_delete=models.CASCADE,related_name='profile')
     bio = models.TextField(default=default_bio, blank=True,max_length=200)
     friends = models.ManyToManyField(User, related_name='friends', blank=True)
     # this value will change everytime the profile is updated
