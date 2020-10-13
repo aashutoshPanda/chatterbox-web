@@ -272,7 +272,7 @@ class rootHome extends Component {
                 <div className="buttons">
                   {!this.props.currentUser && (
                     <Link
-                      className="button is-primary is-active"
+                      className="button is-primary"
                       to="/signup"
                       onClick={this.burgerClick}
                     >
@@ -281,7 +281,7 @@ class rootHome extends Component {
                   )}
                   {!this.props.currentUser && (
                     <Link
-                      className="button is-light is-active"
+                      className="button is-light"
                       to="/login"
                       onClick={this.burgerClick}
                     >

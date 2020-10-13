@@ -11,26 +11,26 @@ export class profileCard extends Component {
               <div className="header">
                 <div className="avatar">
                   <img
-                    src="https://randomuser.me/api/portraits/women/67.jpg"
+                    src="https://res.cloudinary.com/dmquemhgb/image/upload/v1602585067/zveicfpujztq0e3rcaha.jpg"
                     alt=""
                   />
                 </div>
               </div>
               <div className="card-body">
                 <div className="user-meta has-text-centered">
-                  <h3 className="username">Helen Miller</h3>
-                  <h5 className="position">Accountant</h5>
+                  <h3 className="username">Swastik Sahoo</h3>
+                  <h5 className="position">IT Undergraduate</h5>
                 </div>
                 <div className="user-bio has-text-centered">
                   <p>
-                    Helen Miller is an accountant at the Acme Inc comany. She
-                    works very hard.
+                    Student at NIT Raipur. Competitive Programmer and Web Developer.
                   </p>
                 </div>
                 <div className="action has-text-centered">
-                  <a href="#" className="give-padding fa fa-instagram"></a>
-                  <a href="#" className="give-padding fa fa-facebook"></a>
-                  <a href="#" className="give-padding fa fa-twitter"></a>
+                  <a href="https://www.instagram.com/swastiksahooo/?hl=en" className="give-padding fa fa-instagram"></a>
+                  <a href="https://www.facebook.com/swastik.sahoo.359?ref=bookmarks" className="give-padding fa fa-facebook"></a>
+                  <a href="https://www.linkedin.com/in/swastik-sahoo/" className="give-padding fa fa-linkedin"></a>
+                  <a href="https://github.com/swastiksahoo153" className="give-padding fa fa-github"></a>
                 </div>
               </div>
             </div>

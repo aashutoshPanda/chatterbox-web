@@ -90,7 +90,7 @@ class UserList extends Component {
             <div className="media-left">
               <figure class="image is-64x64">
                 <img class="is-rounded"
-                src="https://bulma.io/images/bulma-logo.png"
+                src={itemData.profile_image_url}
                 alt="chatterbox-logo"
                 />
               </figure>
@@ -124,7 +124,7 @@ class UserList extends Component {
               <div className="media-left">
               <figure class="image is-64x64">
                 <img class="is-rounded"
-                src="https://bulma.io/images/bulma-logo.png"
+                src={itemData.profile_image_url}
                 alt="chatterbox-logo"
                 />
               </figure>
@@ -162,7 +162,7 @@ class UserList extends Component {
               <div className="media-left">
               <figure class="image is-64x64">
                 <img class="is-rounded"
-                src="https://bulma.io/images/bulma-logo.png"
+                src={itemData.profile_image_url}
                 alt="chatterbox-logo"
                 />
               </figure>
@@ -198,7 +198,7 @@ class UserList extends Component {
             <div className="media-left">
               <figure class="image is-64x64">
                 <img class="is-rounded"
-                src="https://bulma.io/images/bulma-logo.png"
+                src={itemData.profile_image_url}
                 alt="chatterbox-logo"
                 />
               </figure>

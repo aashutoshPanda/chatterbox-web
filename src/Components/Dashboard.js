@@ -16,7 +16,7 @@ class Dashboard extends Component {
               <div className="column is-5">
                 <Users></Users>
               </div>
-              <div className="column is-7 ">
+              <div className="column is-7 p-6">
                 <ChatComponent></ChatComponent>
               </div>
             </div>
