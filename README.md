@@ -1,7 +1,7 @@
 
 # Chat with Django and React
 
-## Live Demo : [Chatterbox](https://chatterbox-drf.herokuapp.com "chatter-box")
+## Live Demo : [Chatterbox](https://chatterbox-web.herokuapp.com/ "chatter-box")
 
 <p align="center">
   <a href="https://chatterbox-web.herokuapp.com "><img src="https://i.ibb.co/9wjknt6/chatterbox-demo.jpg" alt="chatterbox-demo" border="0"></a>
